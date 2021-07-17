@@ -1,9 +1,14 @@
-import './App.css';
+import Home from './pages/Home';
+import GlobalStyle from './styles/GlobalStyle';
+import { Route } from 'react-router-dom';
 
 function App() {
 	return (
 		<div className='App'>
-			<h1>App</h1>
+			<GlobalStyle />
+			<Route path={['/daily/:id', '/hourly/:id', '/']}>
+				<Home />
+			</Route>
 		</div>
 	);
 }

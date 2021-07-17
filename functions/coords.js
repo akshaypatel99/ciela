@@ -17,15 +17,14 @@ const fetchAddress = async (lat, lon) => {
 };
 
 exports.handler = async function (event, context) {
-	console.log(event);
-	console.log(context);
-
 	try {
 		const { lat, lon } = JSON.parse(event.body);
 		let weather = {};
 		const response = await axios.get(
 			`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=metric&appid=${process.env.REACT_OPENWEATHER_APP_ID}`
 		);
+
+		console.log('coords response', response);
 
 		const address = await fetchAddress(lat, lon);
 
@@ -46,6 +45,9 @@ exports.handler = async function (event, context) {
 		return {
 			statusCode: 200,
 			body: JSON.stringify({ weather }),
+			headers: {
+				'Content-Type': 'application/json',
+			},
 		};
 	} catch (error) {
 		return {

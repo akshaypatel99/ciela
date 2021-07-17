@@ -20,9 +20,6 @@ const fetchLatlong = async (city) => {
 };
 
 exports.handler = async function (event, context) {
-	console.log(event);
-	console.log(context);
-
 	try {
 		const { city } = JSON.parse(event.body);
 		let weather = {};
@@ -48,6 +45,9 @@ exports.handler = async function (event, context) {
 		return {
 			statusCode: 200,
 			body: JSON.stringify({ weather }),
+			headers: {
+				'Content-Type': 'application/json',
+			},
 		};
 	} catch (error) {
 		return {
