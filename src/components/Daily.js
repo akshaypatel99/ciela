@@ -14,8 +14,7 @@ const Daily = () => {
 			{!isLoading && daily && (
 				<StyledDaily>
 					<div className='daily__title'>
-						<h1>Week Ahead</h1>
-						<div className='line'></div>
+						<h2>Week Ahead</h2>
 					</div>
 
 					<DailyContainer>
@@ -64,29 +63,10 @@ const Daily = () => {
 };
 
 const StyledDaily = styled.div`
-	margin-bottom: 4rem;
+	margin-bottom: 2rem;
 
 	.daily__title {
 		margin-bottom: 1rem;
-
-		.line {
-			width: 5rem;
-			height: 5px;
-			margin-top: 0.5rem;
-			background: hsl(191, 81%, 54%);
-		}
-	}
-
-	@media (max-width: 768px) {
-		.daily__title {
-			.line {
-				width: 3rem;
-			}
-		}
-	}
-
-	@media (max-width: 500px) {
-		margin-bottom: 2rem;
 	}
 `;
 
@@ -96,7 +76,7 @@ const DailyContainer = styled.div`
 	overflow-x: scroll;
 	width: 100%;
 	margin: 0 auto;
-	padding: 2rem;
+	padding: 1rem 2rem;
 
 	@media (max-width: 500px) {
 		::-webkit-scrollbar {
@@ -106,9 +86,6 @@ const DailyContainer = styled.div`
 `;
 
 const DailySummary = styled.div`
-	border: 1px solid hsl(210, 16%, 76%);
-	border-radius: 1rem;
-	box-shadow: 0 1px 2px hsl(0, 0%, 0%, 0.15);
 	padding: 1.1rem;
 	min-width: 278px;
 	min-height: 192px;
@@ -117,15 +94,15 @@ const DailySummary = styled.div`
 	flex-direction: column;
 	transition: all 0.2s ease-out;
 	cursor: pointer;
+	background: hsl(0, 0%, 100%, 0.1);
+	box-shadow: 0 8px 16px hsl(0, 0%, 0%, 0.2);
+	backdrop-filter: blur(20px);
+	-webkit-backdrop-filter: blur(20px);
+	border-radius: 10px;
+	border: 2px solid hsl(0, 0%, 100%, 0.2);
 
 	a {
 		text-decoration: none;
-	}
-
-	:hover {
-		border-top: 5px solid hsl(191, 81%, 54%);
-		box-shadow: 0 5px 15px hsl(0, 0%, 0%, 0.2);
-		transform: translateY(20px);
 	}
 
 	.daily__top {

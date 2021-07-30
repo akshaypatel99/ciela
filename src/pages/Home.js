@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { Search, MapPin } from 'react-feather';
+import backdrop from '../assets/images/sky.jpg';
 
 import Current from '../components/Current';
 import Daily from '../components/Daily';
@@ -86,8 +87,7 @@ const Home = () => {
 			<Container>
 				<Banner>
 					<div className='logo__section'>
-						<h1>The Weather</h1>
-						<div className='line'></div>
+						<h1>Ciela</h1>
 						<h4>{today}</h4>
 					</div>
 
@@ -96,7 +96,7 @@ const Home = () => {
 							<MapPin color='hsl(191, 81%, 54%)' />
 							<h4>Use my current location</h4>
 						</div>
-						<h5>OR</h5>
+						<h6>OR</h6>
 						<div className='search__form'>
 							<SearchInput>
 								<form onSubmit={weatherHandler}>
@@ -145,7 +145,10 @@ const Home = () => {
 
 const StyledHome = styled.div`
 	width: 100%;
-	height: 100vh;
+	height: 100%;
+	background-image: url(${backdrop});
+	background-position: 50% 50%;
+	background-size: cover;
 
 	.home__nav {
 		position: absolute;
@@ -185,17 +188,6 @@ const Banner = styled.div`
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
-
-		h1 {
-			font-size: 36px;
-		}
-
-		.line {
-			width: 5rem;
-			height: 5px;
-			margin: 0.5rem 0 1rem 0rem;
-			background: hsl(191, 81%, 54%);
-		}
 	}
 
 	.search__section {
@@ -204,16 +196,15 @@ const Banner = styled.div`
 		align-items: center;
 		justify-content: flex-end;
 		margin-top: 10vh;
-		border: 2px solid hsl(191, 81%, 54%);
-		border-radius: 1rem;
-		box-shadow: 0 4px 6px hsla(0, 0%, 0%, 0);
 		padding: 2rem;
+		background: hsl(0, 0%, 100%, 0.1);
+		box-shadow: 0 20px 40px hsl(0, 0%, 0%, 0.2);
+		backdrop-filter: blur(20px);
+		-webkit-backdrop-filter: blur(20px);
+		border-radius: 10px;
+		border: 2px solid hsl(0, 0%, 100%, 0.2);
 
-		:hover {
-			box-shadow: 0 4px 6px hsla(0, 0%, 0%, 0.2);
-		}
-
-		h5 {
+		h6 {
 			margin: 1rem 0rem;
 		}
 
@@ -236,11 +227,6 @@ const Banner = styled.div`
 	@media (max-width: 768px) {
 		margin-bottom: 0rem;
 
-		.logo__section {
-			h1 {
-				font-size: 32px;
-			}
-		}
 		.search__section {
 			margin: 2rem auto;
 			padding: 1rem;

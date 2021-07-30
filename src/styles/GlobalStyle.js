@@ -6,16 +6,17 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
-    color: hsl(209, 15%, 28%);
+    color: hsl(0, 0%, 90%);
   }
 
   h1 {
     font-weight: 600;
-    font-size: 2rem;
+    font-size: 4rem;
   }
 
   h2 {
-    font-size: 1.5rem;
+    font-size: 2rem;
+    font-weight: 600;
   }
 
   h3 {
@@ -30,15 +31,20 @@ const GlobalStyle = createGlobalStyle`
     font-size: 0.8rem;
   }
 
-  @media (max-width:1024px){
+  h6 {
+    font-size: 0.8rem;
+  }
+
+  ${
+		'' /* @media (min-width:1024px){
     h1 {
-      font-size: 1.75rem;
+      font-size: 3rem;
     }
   }
 
-  @media (max-width:768px){
+  @media (min-width:768px){
     h1 {
-      font-size: 1.5rem;
+      font-size: 2.5rem;
     }
 
     h2 {
@@ -56,11 +62,15 @@ const GlobalStyle = createGlobalStyle`
     h5 {
       font-size: 0.8rem;
     }
+
+    h6 {
+      font-size: 0.8rem;
+    }
   }
 
-  @media (max-width:500px){
+  @media (min-width:500px){
     h1 {
-      font-size: 1.3rem;
+      font-size: 4rem;
     }
 
     h2 {
@@ -78,7 +88,12 @@ const GlobalStyle = createGlobalStyle`
     h5 {
       font-size: 0.8rem;
     }
-  }
+
+    h6 {
+      font-size: 0.8rem;
+    }
+  } */
+	}
 `;
 
 export default GlobalStyle;

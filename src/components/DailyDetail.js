@@ -51,7 +51,7 @@ const DailyDetail = ({ pathId }) => {
 					{day && (
 						<DayDetail>
 							<div className='dailydtl__title'>
-								<h1>{formatDayDate(day.dt, timezoneOffset)}</h1>
+								<h2>{formatDayDate(day.dt, timezoneOffset)}</h2>
 								<div className='line'></div>
 							</div>
 
@@ -70,7 +70,7 @@ const DailyDetail = ({ pathId }) => {
 									</div>
 
 									<div className='dailydtl__left__temp'>
-										<h1>{Math.round(day.temp.max)}&#176;C</h1>
+										<h2>{Math.round(day.temp.max)}&#176;C</h2>
 										<h2>{Math.round(day.temp.min)}&#176;C</h2>
 									</div>
 								</div>
@@ -194,7 +194,7 @@ const DayDetail = styled.div`
 	border: 3px solid hsl(191, 81%, 54%);
 
 	.dailydtl__title {
-		h1 {
+		h2 {
 			font-weight: 700;
 		}
 
@@ -245,7 +245,7 @@ const DayDetail = styled.div`
 			display: flex;
 			flex-direction: column;
 
-			h1 {
+			h2 {
 				font-size: 4rem;
 				font-weight: 600;
 			}
@@ -420,7 +420,7 @@ const DayDetail = styled.div`
 			}
 
 			&__temp {
-				h1 {
+				h2 {
 					font-size: 3rem;
 				}
 
@@ -459,7 +459,7 @@ const DayDetail = styled.div`
 			&__temp {
 				margin-left: 0.5rem;
 
-				h1 {
+				h2 {
 					font-size: 2.8rem;
 				}
 

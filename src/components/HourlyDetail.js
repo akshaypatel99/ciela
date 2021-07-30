@@ -44,7 +44,7 @@ const HourlyDetail = ({ pathId }) => {
 				<CardShadow className='shadow' onClick={exitDetailHandler}>
 					<HourDetail>
 						<div className='hourlydtl__title'>
-							<h1>{formatTime(detail.dt, timezoneOffset)}</h1>
+							<h2>{formatTime(detail.dt, timezoneOffset)}</h2>
 							<div className='line'></div>
 						</div>
 
@@ -63,7 +63,7 @@ const HourlyDetail = ({ pathId }) => {
 										src={convertIcon(detail.weather[0].icon)}
 										alt={detail.weather[0].main}
 									/>
-									<h1>{Math.round(detail.temp)}&#176;C</h1>
+									<h2>{Math.round(detail.temp)}&#176;C</h2>
 								</div>
 							</div>
 							<div className='hourlydtl__right'>
@@ -168,7 +168,7 @@ const HourDetail = styled.div`
 	border: 3px solid hsl(191, 81%, 54%);
 
 	.hourlydtl__title {
-		h1 {
+		h2 {
 			font-weight: 700;
 		}
 
@@ -219,7 +219,7 @@ const HourDetail = styled.div`
 				width: 18rem;
 			}
 
-			h1 {
+			h2 {
 				font-size: 5rem;
 				font-weight: 600;
 			}
@@ -369,7 +369,7 @@ const HourDetail = styled.div`
 					width: 8rem;
 				}
 
-				h1 {
+				h2 {
 					font-size: 3.5rem;
 				}
 			}

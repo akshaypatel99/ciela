@@ -12,8 +12,7 @@ const Hourly = () => {
 			{!isLoading && minutely && (
 				<StyledMinutely>
 					<div className='minutely__title'>
-						<h1>Rainfall Next Hour</h1>
-						<div className='line'></div>
+						<h2>Rainfall Next Hour</h2>
 					</div>
 
 					<MinutelyContainer>
@@ -115,22 +114,7 @@ const StyledMinutely = styled.div`
 	margin-bottom: 2rem;
 
 	.minutely__title {
-		margin-bottom: 2rem;
-
-		.line {
-			width: 5rem;
-			height: 5px;
-			margin-top: 0.5rem;
-			background: hsl(191, 81%, 54%);
-		}
-	}
-
-	@media (max-width: 768px) {
-		.minutely__title {
-			.line {
-				width: 3rem;
-			}
-		}
+		margin-bottom: 1rem;
 	}
 `;
 
@@ -138,9 +122,13 @@ const MinutelyContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	padding: 1.5rem;
-	border: 1px solid hsl(210, 16%, 76%);
-	border-radius: 1rem;
 	margin: 0 auto;
+	background: hsl(0, 0%, 100%, 0.1);
+	box-shadow: 0 8px 16px hsl(0, 0%, 0%, 0.2);
+	backdrop-filter: blur(20px);
+	-webkit-backdrop-filter: blur(20px);
+	border-radius: 10px;
+	border: 2px solid hsl(0, 0%, 100%, 0.2);
 
 	::-webkit-scrollbar {
 		display: none;

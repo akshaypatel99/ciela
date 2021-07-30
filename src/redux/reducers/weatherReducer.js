@@ -1,6 +1,6 @@
 const initialState = {
 	weather: {},
-	isLoading: true,
+	isLoading: false,
 };
 
 const weatherReducer = (state = initialState, action) => {

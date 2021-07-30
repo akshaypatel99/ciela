@@ -13,8 +13,7 @@ const Hourly = () => {
 			{!isLoading && hourly && (
 				<StyledHourly>
 					<div className='hourly__title'>
-						<h1>Next 48 Hours</h1>
-						<div className='line'></div>
+						<h2>Next 48 Hours</h2>
 					</div>
 
 					<HourlyContainer>
@@ -39,29 +38,10 @@ const Hourly = () => {
 };
 
 const StyledHourly = styled.div`
-	margin-bottom: 4rem;
+	margin-bottom: 2rem;
 
 	.hourly__title {
 		margin-bottom: 1rem;
-
-		.line {
-			width: 5rem;
-			height: 5px;
-			margin-top: 0.5rem;
-			background: hsl(191, 81%, 54%);
-		}
-	}
-
-	@media (max-width: 768px) {
-		.hourly__title {
-			.line {
-				width: 3rem;
-			}
-		}
-	}
-
-	@media (max-width: 500px) {
-		margin-bottom: 2rem;
 	}
 `;
 
@@ -81,8 +61,6 @@ const HourlyContainer = styled.div`
 `;
 
 const HourlySummary = styled.div`
-	border: 1px solid hsl(210, 16%, 76%);
-	border-radius: 1rem;
 	padding: 1rem;
 	display: flex;
 	flex-direction: column;
@@ -95,6 +73,12 @@ const HourlySummary = styled.div`
 	margin-right: 10px;
 	transition: transform 0.2s ease-out;
 	cursor: pointer;
+	background: hsl(0, 0%, 100%, 0.1);
+	box-shadow: 0 5px 10px hsl(0, 0%, 0%, 0.2);
+	backdrop-filter: blur(20px);
+	-webkit-backdrop-filter: blur(20px);
+	border-radius: 10px;
+	border: 2px solid hsl(0, 0%, 100%, 0.2);
 
 	a {
 		text-decoration: none;
@@ -107,16 +91,6 @@ const HourlySummary = styled.div`
 				border: 2px solid hsl(39, 91%, 74%);
 			`;
 	}}
-
-	:hover {
-		transform: scale(1.15);
-		border-top: 5px solid hsl(191, 81%, 54%);
-		box-shadow: 0 5px 10px hsl(0, 0%, 0%, 0.15);
-	}
-
-	@media (max-width: 500px) {
-		box-shadow: 0 5px 10px hsl(0, 0%, 0%, 0.2);
-	}
 `;
 
 export default Hourly;

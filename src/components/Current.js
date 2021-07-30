@@ -16,13 +16,12 @@ const Current = ({ city }) => {
 			{!isLoading && current && (
 				<StyledCurrent>
 					<div className='currently__title'>
-						<h1>Currently</h1>
-						<div className='line'></div>
+						<h2>Currently</h2>
 					</div>
 
 					<CurrentContainer>
 						<div className='current__city'>
-							<h1>{city ? city : address}</h1>
+							<h2>{city ? city : address}</h2>
 						</div>
 
 						<div className='current__main'>
@@ -32,9 +31,9 @@ const Current = ({ city }) => {
 								</div>
 
 								<div className='current__weather'>
-									<h1>
+									<h2>
 										<span>{Math.round(current.temp)}</span>&#176;C
-									</h1>
+									</h2>
 									<img
 										src={convertIcon(current.weather[0].icon)}
 										alt={current.weather[0].main}
@@ -102,40 +101,24 @@ const Current = ({ city }) => {
 };
 
 const StyledCurrent = styled.div`
-	margin: 2rem 0rem 4rem 0rem;
+	margin: 2rem 0rem 4rem;
 
 	.currently__title {
-		margin-bottom: 2rem;
-
-		.line {
-			width: 5rem;
-			height: 5px;
-			margin-top: 0.5rem;
-			background: hsl(191, 81%, 54%);
-		}
-	}
-
-	@media (max-width: 768px) {
-		.currently__title {
-			.line {
-				width: 3rem;
-			}
-		}
-	}
-
-	@media (max-width: 500px) {
-		margin-bottom: 2rem;
+		margin-bottom: 1rem;
 	}
 `;
 
 const CurrentContainer = styled.div`
-	border: 2px solid hsl(191, 81%, 54%);
-	border-radius: 1rem;
 	padding: 2rem;
 	min-height: 10rem;
 	width: 90%;
 	margin: 0 auto;
+	background: hsl(0, 0%, 100%, 0.1);
 	box-shadow: 0 20px 40px hsl(0, 0%, 0%, 0.2);
+	backdrop-filter: blur(20px);
+	-webkit-backdrop-filter: blur(20px);
+	border-radius: 10px;
+	border: 2px solid hsl(0, 0%, 100%, 0.2);
 
 	.current__city {
 		margin-bottom: 2rem;
@@ -163,7 +146,7 @@ const CurrentContainer = styled.div`
 		display: flex;
 		align-items: center;
 
-		h1 {
+		h2 {
 			font-size: 6rem;
 			font-weight: 600;
 			margin-right: 2rem;
@@ -268,7 +251,7 @@ const CurrentContainer = styled.div`
 	@media (max-width: 768px) {
 		padding: 1rem;
 
-		h1 {
+		h2 {
 			font-size: 1.5rem;
 		}
 
@@ -278,7 +261,7 @@ const CurrentContainer = styled.div`
 		}
 
 		.current__weather {
-			h1 {
+			h2 {
 				font-size: 4rem;
 			}
 
@@ -296,7 +279,7 @@ const CurrentContainer = styled.div`
 	}
 
 	@media (max-width: 500px) {
-		h1 {
+		h2 {
 			font-size: 1.2rem;
 		}
 
@@ -306,7 +289,7 @@ const CurrentContainer = styled.div`
 		}
 
 		.current__weather {
-			h1 {
+			h2 {
 				font-size: 3rem;
 			}
 
