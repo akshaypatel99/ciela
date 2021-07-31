@@ -8,7 +8,7 @@ export const formatDate = (unixTime, timezoneOffset) => {
 
 export const formatDayDate = (unixTime, timezoneOffset) => {
 	const day = new Date(unixTime * 1e3).toLocaleString('en-gb', {
-		weekday: 'long',
+		weekday: 'short',
 	});
 	let date = new Date(unixTime * 1e3).getDate();
 	const newDate = dateOrdinalSuffix(date);

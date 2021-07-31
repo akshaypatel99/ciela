@@ -52,7 +52,6 @@ const DailyDetail = ({ pathId }) => {
 						<DayDetail>
 							<div className='dailydtl__title'>
 								<h2>{formatDayDate(day.dt, timezoneOffset)}</h2>
-								<div className='line'></div>
 							</div>
 
 							<div className='dailydtl__close'>
@@ -60,77 +59,73 @@ const DailyDetail = ({ pathId }) => {
 							</div>
 
 							<div className='dailydtl'>
-								<div className='dailydtl__left'>
-									<div className='dailydtl__left__weather'>
-										<h3>{day.weather[0].description}</h3>
+								<div className='dailydtl__top'>
+									<div className='dailydtl__top__weather'>
+										<h4>{day.weather[0].description}</h4>
 										<img
 											src={convertIcon(day.weather[0].icon)}
 											alt={day.weather[0].main}
 										/>
 									</div>
 
-									<div className='dailydtl__left__temp'>
-										<h2>{Math.round(day.temp.max)}&#176;C</h2>
-										<h2>{Math.round(day.temp.min)}&#176;C</h2>
+									<div className='dailydtl__top__temp'>
+										<h2 id='high'>{Math.round(day.temp.max)}&#176;C</h2>
+										<h2 id='low'>{Math.round(day.temp.min)}&#176;C</h2>
 									</div>
 								</div>
-								<div className='dailydtl__right'>
-									<div className='dailydtl__right__icons'>
-										<div className='sunrise'>
+								<div className='dailydtl__bottom'>
+									<div className='dailydtl__bottom__info'>
+										<div className='dailydtl__bottom__info__icons'>
 											<Sunrise />
 											<p>{formatTime(day.sunrise, timezoneOffset)}</p>
 										</div>
-										<div className='sunset'>
+										<div className='dailydtl__bottom__info__icons'>
 											<Sunset />
 											<p>{formatTime(day.sunset, timezoneOffset)}</p>
 										</div>
-										<div className='uvIndex'>
+										<div className='dailydtl__bottom__info__icons'>
 											<Sun />
 											<p>UV Index: {day.uvi}</p>
 										</div>
 
-										<div className='cloud'>
+										<div className='dailydtl__bottom__info__icons'>
 											<Cloud />
 											<p>{day.clouds}% cloudy</p>
 										</div>
 
-										<div className='por'>
+										<div className='dailydtl__bottom__info__icons'>
 											<Umbrella />
 											<p>{(day.pop * 100).toFixed(0)}% chance of rain</p>
 										</div>
 
-										<div className='humidity'>
+										<div className='dailydtl__bottom__info__icons'>
 											<Droplet />
 											<p>{day.humidity}% humidity</p>
 										</div>
 
-										<div className='pressure'>
+										<div className='dailydtl__bottom__info__icons'>
 											<LifeBuoy />
 											<p>Pressure: {day.pressure} hPa</p>
 										</div>
 
-										<div className='wind'>
-											<div className='wind__main'>
-												<Wind />
-												<p>
-													{Math.round(day.wind_speed * 2.237).toFixed(0)} mph
-												</p>
-											</div>
-											<div className='wind__dir'>
-												<p>{convertWindDirection(day.wind_deg)}</p>
-											</div>
+										<div className='dailydtl__bottom__info__icons'>
+											<Wind />
+											<p className='wind'>
+												{Math.round(day.wind_speed * 2.237).toFixed(0)} mph{' '}
+												{convertWindDirection(day.wind_deg)} wind
+											</p>
 										</div>
 
 										<div className='temp__feel'>
 											<div className='temperatures'>
-												<h3>Temperature:</h3>
+												<h6>Temperature:</h6>
 												<p>Day: {day.temp.day.toFixed(1)}&#176;C</p>
 												<p>Eve: {day.temp.eve.toFixed(1)}&#176;C</p>
 												<p>Morn: {day.temp.morn.toFixed(1)}&#176;C</p>
 												<p>Night: {day.temp.night.toFixed(1)}&#176;C</p>
 											</div>
 											<div className='feels'>
-												<h3>Feels Like:</h3>
+												<h6>Feels Like:</h6>
 												<p>Day: {day.feels_like.day.toFixed(1)}&#176;C</p>
 												<p>Eve: {day.feels_like.eve.toFixed(1)}&#176;C</p>
 												<p>Morn: {day.feels_like.morn.toFixed(1)}&#176;C</p>
@@ -167,7 +162,7 @@ const CardShadow = styled.div`
 	width: 100%;
 	height: 100%;
 	overflow-y: scroll;
-	background: rgba(0, 0, 0, 0.4);
+	background: hsl(190, 20%, 25%, 0.4);
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -181,9 +176,7 @@ const CardShadow = styled.div`
 const DayDetail = styled.div`
 	width: 90%;
 	min-height: 690px;
-	border-radius: 1rem;
-	padding: 2rem 10rem;
-	background: white;
+	padding: 1.5rem;
 	position: absolute;
 	margin: auto;
 	top: 50%;
@@ -191,18 +184,16 @@ const DayDetail = styled.div`
 	left: 0;
 	right: 0;
 	z-index: 10;
-	border: 3px solid hsl(191, 81%, 54%);
+	background: hsl(0, 0%, 50%, 0.1);
+	box-shadow: 0 20px 40px hsl(0, 0%, 0%, 0.2);
+	backdrop-filter: blur(20px);
+	-webkit-backdrop-filter: blur(20px);
+	border-radius: 10px;
+	border: 2px solid hsl(0, 0%, 100%, 0.2);
 
 	.dailydtl__title {
 		h2 {
-			font-weight: 700;
-		}
-
-		.line {
-			width: 5rem;
-			height: 5px;
-			margin-top: 0.5rem;
-			background: hsl(191, 81%, 54%);
+			font-weight: 600;
 		}
 	}
 
@@ -215,64 +206,67 @@ const DayDetail = styled.div`
 
 	.dailydtl {
 		display: flex;
-		justify-content: space-between;
+		flex-direction: column;
+		align-items: center;
 		margin-top: 2rem;
 	}
 
-	.dailydtl__left {
+	.dailydtl__top {
+		width: 100%;
+		min-height: 170px;
 		display: flex;
-		flex-direction: column;
-		align-items: space-between;
-		flex: 0.4;
+		justify-content: space-around;
+		align-items: center;
 
 		&__weather {
 			display: flex;
 			flex-direction: column;
+			padding: 0.5rem;
 
-			h3 {
+			h4 {
 				text-transform: capitalize;
 				font-weight: 500;
-				font-size: 1.75rem;
 			}
 
 			img {
-				height: 20rem;
-				width: 20rem;
+				height: 8rem;
+				width: 8rem;
 			}
 		}
 
 		&__temp {
 			display: flex;
 			flex-direction: column;
-
-			h2 {
-				font-size: 4rem;
-				font-weight: 600;
-			}
+			margin-left: 0.5rem;
 
 			h2 {
 				font-size: 3rem;
-				font-weight: 400;
+				font-weight: 600;
+			}
+
+			#low {
+				font-weight: 500;
 			}
 		}
 	}
 
-	.dailydtl__right {
+	.dailydtl__bottom {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
 		flex: 1;
-		margin-left: 2rem;
+		width: 80%;
+		margin: 0 auto;
 	}
 
-	.dailydtl__right__icons {
+	.dailydtl__bottom__info {
 		display: flex;
 		flex-wrap: wrap;
+		margin-top: 1rem;
 
 		& > * {
-			flex: 1 1 160px;
-			margin: 0.25rem;
+			flex: 1 1 96px;
 		}
 
 		svg,
@@ -280,31 +274,22 @@ const DayDetail = styled.div`
 			margin-right: 0.75rem;
 		}
 
-		.sunrise,
-		.sunset,
-		.wind,
-		.uvIndex,
-		.cloud,
-		.por,
-		.humidity,
-		.pressure {
+		.dailydtl__bottom__info__icons {
 			display: flex;
-			height: 80px;
-		}
+			height: 44px;
+			margin-top: 0.75rem;
 
-		.wind {
-			flex-direction: column;
-		}
-
-		.wind__main {
-			display: flex;
+			p {
+				font-size: 0.8rem;
+			}
 		}
 
 		.temp__feel {
 			display: flex;
 			width: 100%;
-			justify-content: space-around;
+			justify-content: center;
 			padding: 0.5rem 0rem;
+			margin-top: 1rem;
 
 			.temperatures,
 			.feels {
@@ -325,184 +310,27 @@ const DayDetail = styled.div`
 		right: 1rem;
 	}
 
-	@media (max-width: 1400px) {
-		padding: 2rem 4rem;
+	@media (min-width: 500px) {
+		max-width: 450px;
 
-		.dailydtl__right__icons {
-			& > * {
-				flex: 1 1 144px;
-			}
-		}
-
-		.dailydtl__left {
-			&__weather {
-				img {
-					height: 15rem;
-					width: 15rem;
-				}
-			}
-		}
-	}
-
-	@media (max-width: 1024px) {
-		padding: 2rem;
-
-		.dailydtl {
-			flex-direction: column;
-			align-items: center;
-		}
-
-		.dailydtl__left {
-			width: 100%;
-			flex-direction: row;
-			justify-content: space-around;
-
-			&__weather {
-				h3 {
-					font-size: 1.3rem;
-				}
-
-				img {
-					height: 10rem;
-					width: 10rem;
-				}
-			}
-		}
-
-		.dailydtl__right {
-			width: 100%;
-			margin: 0 auto;
-		}
-
-		.dailydtl__right__icons {
-			width: 100%;
-			margin-top: 1rem;
-			& > * {
-				flex: 1 1 128px;
-			}
-
-			.sunrise,
-			.sunset,
-			.wind,
-			.uvIndex,
-			.cloud,
-			.por,
-			.humidity,
-			.pressure {
-				height: 80px;
-			}
-
-			.temperatures,
-			.feels {
-				h3,
-				p {
-					font-size: 0.9rem;
-				}
-			}
-		}
-	}
-
-	@media (max-width: 768px) {
-		.dailydtl__title {
-			.line {
-				width: 3rem;
-			}
-		}
-
-		.dailydtl__left {
-			min-height: 170px;
-
-			&__weather {
-				img {
-					height: 8rem;
-					width: 8rem;
-				}
-			}
-
-			&__temp {
-				h2 {
-					font-size: 3rem;
-				}
-
-				h2 {
-					font-size: 2rem;
-				}
-			}
-		}
-
-		.dailydtl__right__icons {
-			& > * {
-				flex: 1 1 104px;
-			}
-
-			.sunrise,
-			.sunset,
-			.wind,
-			.uvIndex,
-			.cloud,
-			.por,
-			.humidity,
-			.pressure {
-				height: 60px;
-
-				p {
-					font-size: 0.9rem;
-				}
-			}
-		}
-	}
-
-	@media (max-width: 500px) {
-		padding: 1.5rem;
-
-		.dailydtl__left {
-			&__temp {
-				margin-left: 0.5rem;
-
-				h2 {
-					font-size: 2.8rem;
-				}
-
-				h2 {
-					font-size: 1.8rem;
-				}
-			}
-
-			&__weather {
-				padding: 0.5rem;
-				h3 {
-					font-size: 1rem;
-				}
-			}
-		}
-
-		.dailydtl__right {
+		.dailydtl__bottom {
 			width: 90%;
-			margin: 0 auto;
+			margin: 1rem auto;
 		}
 
-		.dailydtl__right__icons {
-			.sunrise,
-			.sunset,
-			.wind,
-			.uvIndex,
-			.cloud,
-			.por,
-			.humidity,
-			.pressure {
-				height: 44px;
+		.dailydtl__bottom__info {
+			.dailydtl__bottom__info__icons {
+				height: 64px;
+				margin-top: 1rem;
 
 				p {
-					font-size: 0.8rem;
+					font-size: 0.9rem;
 				}
 			}
 
 			.temp__feel {
-				justify-content: center;
-				h3,
-				p {
-					font-size: 0.8rem;
-				}
+				margin-top: 0;
+				padding-bottom: 0.5rem;
 			}
 		}
 	}

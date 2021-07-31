@@ -18,19 +18,19 @@ const Hourly = () => {
 					<MinutelyContainer>
 						<TopScale>
 							<div className='increments'>
-								<h3>Now</h3>
+								<h6>Now</h6>
 							</div>
 							<div className='increments'>
-								<h3>15</h3>
+								<h6>15</h6>
 							</div>
 							<div className='increments'>
-								<h3>30</h3>
+								<h6>30</h6>
 							</div>
 							<div className='increments'>
-								<h3>45</h3>
+								<h6>45</h6>
 							</div>
 							<div className='increments'>
-								<h3>60</h3>
+								<h6>60</h6>
 							</div>
 						</TopScale>
 						<Chart>
@@ -52,7 +52,7 @@ const Hourly = () => {
 											<MinutelyDataPoint
 												key={dp.dt}
 												style={{
-													background: 'hsl(189, 87%, 97%)',
+													background: 'hsl(190, 90%, 92%)',
 													borderTop: '1px solid hsl(208, 12%, 58%)',
 													borderBottom: '1px solid hsl(208, 12%, 58%)',
 												}}
@@ -63,24 +63,24 @@ const Hourly = () => {
 						</Chart>
 						<BottomScale>
 							<div className='increments'>
-								<h4>{formatTime(minutely[0].dt, timezoneOffset)}</h4>
+								<h6>{formatTime(minutely[0].dt, timezoneOffset)}</h6>
 							</div>
 							<div className='increments'>
-								<h4>{formatTime(minutely[15].dt, timezoneOffset)}</h4>
+								<h6>{formatTime(minutely[15].dt, timezoneOffset)}</h6>
 							</div>
 							<div className='increments'>
-								<h4>{formatTime(minutely[30].dt, timezoneOffset)}</h4>
+								<h6>{formatTime(minutely[30].dt, timezoneOffset)}</h6>
 							</div>
 							<div className='increments'>
-								<h4>{formatTime(minutely[45].dt, timezoneOffset)}</h4>
+								<h6>{formatTime(minutely[45].dt, timezoneOffset)}</h6>
 							</div>
 							<div className='increments'>
-								<h4>{formatTime(minutely[60].dt, timezoneOffset)}</h4>
+								<h6>{formatTime(minutely[60].dt, timezoneOffset)}</h6>
 							</div>
 						</BottomScale>
 						<Key>
 							<div className='key__title'>
-								<h3>Key</h3>
+								<h4>Key</h4>
 								<p>Rainfall in mm/hr</p>
 							</div>
 
@@ -123,12 +123,12 @@ const MinutelyContainer = styled.div`
 	flex-direction: column;
 	padding: 1.5rem;
 	margin: 0 auto;
-	background: hsl(0, 0%, 100%, 0.1);
+	background: hsl(0, 0%, 50%, 0.1);
 	box-shadow: 0 8px 16px hsl(0, 0%, 0%, 0.2);
 	backdrop-filter: blur(20px);
 	-webkit-backdrop-filter: blur(20px);
 	border-radius: 10px;
-	border: 2px solid hsl(0, 0%, 100%, 0.2);
+	border: 1px solid hsl(0, 0%, 100%, 0.2);
 
 	::-webkit-scrollbar {
 		display: none;
@@ -138,7 +138,7 @@ const MinutelyContainer = styled.div`
 const MinutelyDataPoint = styled.div`
 	width: 100%;
 	min-height: 50px;
-	min-width: 5px;
+	min-width: 4px;
 `;
 
 const TopScale = styled.div`
@@ -161,12 +161,9 @@ const Key = styled.div`
 	margin-top: 2rem;
 
 	.key__title,
-	h3 {
+	h4 {
 		margin-bottom: 0.5rem;
-	}
-
-	p {
-		font-size: 0.9rem;
+		font-weight: 550;
 	}
 `;
 const KeyContainer = styled.div`
@@ -177,6 +174,10 @@ const KeySquare = styled.div`
 	.color {
 		min-height: 20px;
 		min-width: 40px;
+	}
+
+	.description {
+		margin-bottom: 0.5rem;
 	}
 `;
 

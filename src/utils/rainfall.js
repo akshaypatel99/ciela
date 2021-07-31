@@ -20,6 +20,11 @@ export const rainfall = (amount) => {
 
 export const rainfallKey = [
 	{
+		color: '#d8f6fc',
+		amount: '< 0.01',
+		description: 'No rain',
+	},
+	{
 		color: '#0055de',
 		amount: '0.01-0.5',
 		description: 'Drizzle',

@@ -101,7 +101,7 @@ const Star = styled.div`
 	height: 2px;
 	background: linear-gradient(
 		-45deg,
-		${(props) => props.color || 'hsl(191, 81%, 54%)'},
+		${(props) => props.color || 'hsl(0, 0%, 100%)'},
 		rgba(0, 0, 255, 0)
 	);
 	position: absolute;

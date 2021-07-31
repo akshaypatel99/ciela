@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import sky from '../assets/images/sky.jpg';
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -6,94 +7,42 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
-    color: hsl(0, 0%, 90%);
+    color: hsl(0, 0%, 100%);
+  }
+
+  html {
+    background: url(${sky}) no-repeat center center fixed;
   }
 
   h1 {
     font-weight: 600;
-    font-size: 4rem;
+    font-size: 4.2rem;
   }
 
   h2 {
     font-size: 2rem;
-    font-weight: 600;
+    font-weight: 500;
   }
 
   h3 {
+    font-size: 1.6rem;
+  }
+
+  h4 {
     font-size: 1.2rem;
   }
 
-  h4, p {
+  h5 {
     font-size: 1rem;
   }
 
-  h5 {
-    font-size: 0.8rem;
-  }
-
   h6 {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
   }
 
-  ${
-		'' /* @media (min-width:1024px){
-    h1 {
-      font-size: 3rem;
-    }
+  p {
+    font-size: 0.9rem;
   }
-
-  @media (min-width:768px){
-    h1 {
-      font-size: 2.5rem;
-    }
-
-    h2 {
-      font-size: 1.2rem;
-    }
-
-    h3 {
-      font-size: 1.1rem;
-    }
-
-    h4, p {
-      font-size: 1rem;
-    }
-
-    h5 {
-      font-size: 0.8rem;
-    }
-
-    h6 {
-      font-size: 0.8rem;
-    }
-  }
-
-  @media (min-width:500px){
-    h1 {
-      font-size: 4rem;
-    }
-
-    h2 {
-      font-size: 1.1rem;
-    }
-
-    h3 {
-      font-size: 1rem;
-    }
-
-    h4, p {
-      font-size: 0.9rem;
-    }
-
-    h5 {
-      font-size: 0.8rem;
-    }
-
-    h6 {
-      font-size: 0.8rem;
-    }
-  } */
-	}
 `;
 
 export default GlobalStyle;

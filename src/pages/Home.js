@@ -3,7 +3,6 @@ import { useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { Search, MapPin } from 'react-feather';
-import backdrop from '../assets/images/sky.jpg';
 
 import Current from '../components/Current';
 import Daily from '../components/Daily';
@@ -93,7 +92,7 @@ const Home = () => {
 
 					<div className='search__section'>
 						<div className='geolocation' onClick={getGeolocation}>
-							<MapPin color='hsl(191, 81%, 54%)' />
+							<MapPin color='#fff' />
 							<h4>Use my current location</h4>
 						</div>
 						<h6>OR</h6>
@@ -144,11 +143,8 @@ const Home = () => {
 };
 
 const StyledHome = styled.div`
-	width: 100%;
-	height: 100%;
-	background-image: url(${backdrop});
-	background-position: 50% 50%;
-	background-size: cover;
+	min-width: 100%;
+	min-height: 100%;
 
 	.home__nav {
 		position: absolute;
@@ -159,21 +155,15 @@ const StyledHome = styled.div`
 `;
 
 const Container = styled.div`
-	max-width: 1600px;
+	width: 100%;
+	height: 100%;
 	margin: 0 auto;
-	padding: 4rem 10rem;
+	padding: 2rem 1rem;
 
-	@media (max-width: 1200px) {
-		padding: 2rem 5rem;
-	}
-
-	@media (max-width: 768px) {
-		padding: 2rem 3rem;
-	}
-
-	@media (max-width: 500px) {
+	@media (min-width: 500px) {
+		max-width: 500px;
 		padding: 2rem;
-	} ;
+	}
 `;
 
 const Banner = styled.div`
@@ -188,6 +178,11 @@ const Banner = styled.div`
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
+
+		h1 {
+			font-style: italic;
+			letter-spacing: -0.05rem;
+		}
 	}
 
 	.search__section {
@@ -195,9 +190,9 @@ const Banner = styled.div`
 		flex-direction: column;
 		align-items: center;
 		justify-content: flex-end;
-		margin-top: 10vh;
+		margin-top: 5vh;
 		padding: 2rem;
-		background: hsl(0, 0%, 100%, 0.1);
+		background: hsl(0, 0%, 50%, 0.1);
 		box-shadow: 0 20px 40px hsl(0, 0%, 0%, 0.2);
 		backdrop-filter: blur(20px);
 		-webkit-backdrop-filter: blur(20px);

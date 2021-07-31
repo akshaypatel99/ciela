@@ -24,7 +24,7 @@ const Daily = () => {
 									<Link to={`/daily/${dp.dt}`}>
 										<div className='daily__top'>
 											<div className='daily__main'>
-												<h3>{formatDayDate(dp.dt, timezoneOffset)}</h3>
+												<h4>{formatDayDate(dp.dt, timezoneOffset)}</h4>
 												<p>{dp.weather[0].description}</p>
 											</div>
 											<div className='daily__icon'>
@@ -48,8 +48,8 @@ const Daily = () => {
 												</div>
 											</div>
 											<div className='daily__temp'>
-												<h2>{Math.round(dp.temp.max)}&#176;C</h2>
-												<h3>{Math.round(dp.temp.min)}&#176;C</h3>
+												<h3>{Math.round(dp.temp.max)}&#176;C</h3>
+												<h4>{Math.round(dp.temp.min)}&#176;C</h4>
 											</div>
 										</div>
 									</Link>
@@ -78,23 +78,27 @@ const DailyContainer = styled.div`
 	margin: 0 auto;
 	padding: 1rem 2rem;
 
-	@media (max-width: 500px) {
+	::-webkit-scrollbar {
+		display: none;
+	}
+
+	@media (min-width: 500px) {
 		::-webkit-scrollbar {
-			display: none;
+			display: auto;
 		}
 	}
 `;
 
 const DailySummary = styled.div`
 	padding: 1.1rem;
-	min-width: 278px;
-	min-height: 192px;
+	min-width: 256px;
+	min-height: 176px;
 	margin-right: 1rem;
 	display: flex;
 	flex-direction: column;
 	transition: all 0.2s ease-out;
 	cursor: pointer;
-	background: hsl(0, 0%, 100%, 0.1);
+	background: hsl(0, 0%, 50%, 0.1);
 	box-shadow: 0 8px 16px hsl(0, 0%, 0%, 0.2);
 	backdrop-filter: blur(20px);
 	-webkit-backdrop-filter: blur(20px);
@@ -152,15 +156,6 @@ const DailySummary = styled.div`
 		h2 {
 			padding-bottom: 0.5rem;
 		}
-	}
-
-	@media (max-width: 768px) {
-		min-width: 256px;
-		min-height: 176px;
-	}
-
-	@media (max-width: 500px) {
-		box-shadow: 0 5px 15px hsl(0, 0%, 0%, 0.2);
 	}
 `;
 

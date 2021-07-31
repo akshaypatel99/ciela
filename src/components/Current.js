@@ -25,15 +25,15 @@ const Current = ({ city }) => {
 						</div>
 
 						<div className='current__main'>
-							<div className='current__left'>
+							<div className='current__top'>
 								<div className='current__desc'>
-									<h2>{current.weather[0].description}</h2>
+									<h3>{current.weather[0].description}</h3>
 								</div>
 
 								<div className='current__weather'>
-									<h2>
+									<h1>
 										<span>{Math.round(current.temp)}</span>&#176;C
-									</h2>
+									</h1>
 									<img
 										src={convertIcon(current.weather[0].icon)}
 										alt={current.weather[0].main}
@@ -41,41 +41,42 @@ const Current = ({ city }) => {
 								</div>
 
 								<div className='current__info'>
-									<div className='feels__like'>
-										<p>Feels like </p>
-										<h4>{Math.round(current.feels_like)}&#176;C</h4>
+									<div className='current__info__temps'>
+										<p>Feels like: </p>
+										<h6>{Math.round(current.feels_like)}&#176;C</h6>
 									</div>
-
-									<div className='high__low'>
+									<div className='current__info__temps'>
 										<p>High: </p>
-										<h4>{Math.round(daily[0].temp.max)}&#176;C</h4>
+										<h6>{Math.round(daily[0].temp.max)}&#176;C</h6>
+									</div>
+									<div className='current__info__temps'>
 										<p>Low: </p>
-										<h4>{Math.round(daily[0].temp.min)}&#176;C</h4>
+										<h6>{Math.round(daily[0].temp.min)}&#176;C</h6>
 									</div>
 								</div>
 							</div>
 
-							<div className='current__right'>
+							<div className='current__bottom'>
 								<div className='current__extra'>
-									<div className='sunrise'>
+									<div className='current__extra__icons'>
 										<Sunrise />
 										<p>{formatTime(current.sunrise, timezoneOffset)}</p>
 									</div>
-									<div className='sunset'>
+									<div className='current__extra__icons'>
 										<Sunset />
 										<p>{formatTime(current.sunset, timezoneOffset)}</p>
 									</div>
 
-									<div className='uvIndex'>
+									<div className='current__extra__icons'>
 										<Sun />
 										<p>UV Index: {current.uvi}</p>
 									</div>
-									<div className='cloud'>
+									<div className='current__extra__icons'>
 										<Cloud />
 										<p>{current.clouds}% cloudy</p>
 									</div>
 
-									<div className='wind'>
+									<div className='current__extra__icons__wind'>
 										<div className='wind__main'>
 											<Wind />
 											<p>
@@ -86,7 +87,7 @@ const Current = ({ city }) => {
 											<p>{convertWindDirection(current.wind_deg)} wind</p>
 										</div>
 									</div>
-									<div className='por'>
+									<div className='current__extra__icons'>
 										<Umbrella />
 										<p>{(daily[0].pop * 100).toFixed(0)}% chance of rain</p>
 									</div>
@@ -111,9 +112,9 @@ const StyledCurrent = styled.div`
 const CurrentContainer = styled.div`
 	padding: 2rem;
 	min-height: 10rem;
-	width: 90%;
+	width: 100%;
 	margin: 0 auto;
-	background: hsl(0, 0%, 100%, 0.1);
+	background: hsl(0, 0%, 50%, 0.1);
 	box-shadow: 0 20px 40px hsl(0, 0%, 0%, 0.2);
 	backdrop-filter: blur(20px);
 	-webkit-backdrop-filter: blur(20px);
@@ -121,74 +122,75 @@ const CurrentContainer = styled.div`
 	border: 2px solid hsl(0, 0%, 100%, 0.2);
 
 	.current__city {
-		margin-bottom: 2rem;
+		margin-bottom: 1.5rem;
 		text-transform: capitalize;
+
+		h2 {
+			font-size: 1.8rem;
+			font-weight: 450;
+		}
 	}
 
 	.current__main {
 		display: flex;
-		justify-content: space-between;
-		margin-top: 2rem;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		margin-top: 1rem;
 	}
 
-	h4,
-	p {
-		font-size: 1.2rem;
-	}
-
-	.current__left {
+	.current__top {
+		width: 100%;
 		display: flex;
 		flex-direction: column;
-		align-items: space-between;
 	}
 
 	.current__weather {
+		width: 100%;
 		display: flex;
+		justify-content: space-around;
 		align-items: center;
+		margin: 1rem 0rem;
 
-		h2 {
-			font-size: 6rem;
+		h4 {
 			font-weight: 600;
 			margin-right: 2rem;
 		}
 
 		img {
-			height: 20rem;
-			width: 20rem;
+			height: 6rem;
+			width: 6rem;
 		}
 	}
 
-	.current__desc h2 {
+	.current__desc h3 {
 		text-transform: capitalize;
-		font-weight: 500;
-		font-size: 28px;
+		font-weight: 600;
 	}
 
 	.current__info {
 		display: flex;
-		flex-direction: column;
-		justify-content: center;
+		justify-content: space-between;
+		flex-wrap: wrap;
 
 		h4,
 		p {
 			margin-right: 0.5rem;
 		}
 
-		.feels__like,
-		.high__low,
-		.description {
+		&__temps {
 			margin-bottom: 1rem;
 			display: flex;
+			white-space: no-wrap;
 		}
 	}
 
-	.current__right {
+	.current__bottom {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
 		flex: 1;
-		margin-left: 6rem;
 	}
 
 	.current__extra {
@@ -196,7 +198,7 @@ const CurrentContainer = styled.div`
 		flex-wrap: wrap;
 
 		& > * {
-			flex: 1 1 192px;
+			flex: 1 1 96px;
 		}
 
 		svg,
@@ -204,104 +206,19 @@ const CurrentContainer = styled.div`
 			margin-right: 0.75rem;
 		}
 
-		.sunrise,
-		.sunset,
-		.wind,
-		.uvIndex,
-		.cloud,
-		.por,
-		.humidity,
-		.visibility {
+		&__icons {
 			display: flex;
-			height: 72px;
+			height: 56px;
 			margin-top: 1rem;
-		}
 
-		.wind {
-			flex-direction: column;
-		}
+			&__wind {
+				height: 56px;
+				margin-top: 1rem;
+				flex-direction: column;
 
-		.wind__main {
-			display: flex;
-		}
-	}
-
-	@media (max-width: 1400px) {
-		width: 100%;
-
-		.current__main {
-			display: flex;
-			flex-direction: column;
-			justify-content: center;
-			align-items: center;
-		}
-
-		.current__right {
-			margin-left: 0;
-			padding: 1rem;
-		}
-
-		.current__extra {
-			& > * {
-				flex: 1 1 160px;
-			}
-		}
-	}
-
-	@media (max-width: 768px) {
-		padding: 1rem;
-
-		h2 {
-			font-size: 1.5rem;
-		}
-
-		h4,
-		p {
-			font-size: 1rem;
-		}
-
-		.current__weather {
-			h2 {
-				font-size: 4rem;
-			}
-
-			img {
-				height: 8rem;
-				width: 8rem;
-			}
-		}
-
-		.current__extra {
-			& > * {
-				flex: 1 1 128px;
-			}
-		}
-	}
-
-	@media (max-width: 500px) {
-		h2 {
-			font-size: 1.2rem;
-		}
-
-		h4,
-		p {
-			font-size: 0.9rem;
-		}
-
-		.current__weather {
-			h2 {
-				font-size: 3rem;
-			}
-
-			img {
-				height: 6rem;
-				width: 6rem;
-			}
-		}
-
-		.current__extra {
-			& > * {
-				flex: 1 1 96px;
+				.wind__main {
+					display: flex;
+				}
 			}
 		}
 	}

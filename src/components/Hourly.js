@@ -21,12 +21,12 @@ const Hourly = () => {
 							hourly.map((dp) => (
 								<HourlySummary key={dp.dt}>
 									<Link to={`/hourly/${dp.dt}`}>
-										<h4>{formatTime(dp.dt, timezoneOffset)}</h4>
+										<h5>{formatTime(dp.dt, timezoneOffset)}</h5>
 										<img
 											src={convertIcon(dp.weather[0].icon)}
 											alt={dp.weather[0].main}
 										/>
-										<h4>{Math.round(dp.temp)}&#176;C</h4>
+										<h5>{Math.round(dp.temp)}&#176;C</h5>
 									</Link>
 								</HourlySummary>
 							))}
@@ -51,7 +51,7 @@ const HourlyContainer = styled.div`
 	overflow-x: scroll;
 	width: 100%;
 	margin: 0 auto;
-	padding: 2rem;
+	padding: 1rem 2rem;
 
 	@media (max-width: 500px) {
 		::-webkit-scrollbar {
@@ -73,7 +73,7 @@ const HourlySummary = styled.div`
 	margin-right: 10px;
 	transition: transform 0.2s ease-out;
 	cursor: pointer;
-	background: hsl(0, 0%, 100%, 0.1);
+	background: hsl(0, 0%, 50%, 0.1);
 	box-shadow: 0 5px 10px hsl(0, 0%, 0%, 0.2);
 	backdrop-filter: blur(20px);
 	-webkit-backdrop-filter: blur(20px);

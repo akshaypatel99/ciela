@@ -45,7 +45,6 @@ const HourlyDetail = ({ pathId }) => {
 					<HourDetail>
 						<div className='hourlydtl__title'>
 							<h2>{formatTime(detail.dt, timezoneOffset)}</h2>
-							<div className='line'></div>
 						</div>
 
 						<div className='hourlydtl__close'>
@@ -142,7 +141,7 @@ const CardShadow = styled.div`
 	width: 100%;
 	min-height: 100vh;
 	overflow-y: scroll;
-	background: rgba(0, 0, 0, 0.4);
+	background: hsl(190, 20%, 25%, 0.4);
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -155,9 +154,7 @@ const CardShadow = styled.div`
 
 const HourDetail = styled.div`
 	width: 90%;
-	border-radius: 1rem;
 	padding: 2rem 10rem;
-	background: white;
 	position: absolute;
 	margin: auto;
 	top: 50%;
@@ -165,18 +162,16 @@ const HourDetail = styled.div`
 	left: 0;
 	right: 0;
 	z-index: 10;
-	border: 3px solid hsl(191, 81%, 54%);
+	background: hsl(0, 0%, 50%, 0.1);
+	box-shadow: 0 20px 40px hsl(0, 0%, 0%, 0.2);
+	backdrop-filter: blur(20px);
+	-webkit-backdrop-filter: blur(20px);
+	border-radius: 10px;
+	border: 2px solid hsl(0, 0%, 100%, 0.2);
 
 	.hourlydtl__title {
 		h2 {
 			font-weight: 700;
-		}
-
-		.line {
-			width: 5rem;
-			height: 5px;
-			margin-top: 0.5rem;
-			background: hsl(191, 81%, 54%);
 		}
 	}
 
@@ -353,11 +348,6 @@ const HourDetail = styled.div`
 	}
 
 	@media (max-width: 768px) {
-		.hourlydtl__title {
-			.line {
-				width: 3rem;
-			}
-		}
 		.hourlydtl__left {
 			min-height: 10rem;
 
