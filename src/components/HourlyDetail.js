@@ -52,12 +52,12 @@ const HourlyDetail = ({ pathId }) => {
 						</div>
 
 						<div className='hourlydtl'>
-							<div className='hourlydtl__left'>
-								<div className='hourlydtl__left__desc'>
-									<h3>{detail.weather[0].description}</h3>
+							<div className='hourlydtl__top'>
+								<div className='hourlydtl__top__desc'>
+									<h4>{detail.weather[0].description}</h4>
 								</div>
 
-								<div className='hourlydtl__left__weather'>
+								<div className='hourlydtl__top__weather'>
 									<img
 										src={convertIcon(detail.weather[0].icon)}
 										alt={detail.weather[0].main}
@@ -65,52 +65,48 @@ const HourlyDetail = ({ pathId }) => {
 									<h2>{Math.round(detail.temp)}&#176;C</h2>
 								</div>
 							</div>
-							<div className='hourlydtl__right'>
-								<div className='hourlydtl__right__icons'>
-									<div className='feels'>
+							<div className='hourlydtl__bottom'>
+								<div className='hourlydtl__bottom__info'>
+									<div className='hourlydtl__bottom__info__icons'>
 										<Thermometer />
 										<p>Feels like: {detail.feels_like.toFixed(0)}&#176;C</p>
 									</div>
-									<div className='cloud'>
+									<div className='hourlydtl__bottom__info__icons'>
 										<Cloud />
 										<p>{detail.clouds}% cloudy</p>
 									</div>
 
-									<div className='por'>
+									<div className='hourlydtl__bottom__info__icons'>
 										<Umbrella />
 										<p>{(detail.pop * 100).toFixed(0)}% chance of rain</p>
 									</div>
 
-									<div className='uvIndex'>
+									<div className='hourlydtl__bottom__info__icons'>
 										<Sun />
 										<p>UV Index: {detail.uvi}</p>
 									</div>
 
-									<div className='humidity'>
+									<div className='hourlydtl__bottom__info__icons'>
 										<Droplet />
 										<p>{detail.humidity}% humidity</p>
 									</div>
 
-									<div className='pressure'>
+									<div className='hourlydtl__bottom__info__icons'>
 										<LifeBuoy />
 										<p>Pressure: {detail.pressure} hPa</p>
 									</div>
 
-									<div className='visibility'>
+									<div className='hourlydtl__bottom__info__icons'>
 										<Eye />
 										<p>Visibility: {detail.visibility} metres</p>
 									</div>
 
-									<div className='wind'>
-										<div className='wind__main'>
-											<Wind />
-											<p>
-												{Math.round(detail.wind_speed * 2.237).toFixed(0)} mph
-											</p>
-										</div>
-										<div className='wind__dir'>
-											<p>{convertWindDirection(detail.wind_deg)}</p>
-										</div>
+									<div className='hourlydtl__bottom__info__icons'>
+										<Wind />
+										<p>
+											{Math.round(detail.wind_speed * 2.237).toFixed(0)} mph{' '}
+											{convertWindDirection(detail.wind_deg)} wind
+										</p>
 									</div>
 								</div>
 							</div>
@@ -141,7 +137,7 @@ const CardShadow = styled.div`
 	width: 100%;
 	min-height: 100vh;
 	overflow-y: scroll;
-	background: hsl(190, 20%, 25%, 0.4);
+	background: hsl(190, 20%, 30%, 0.3);
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -154,24 +150,24 @@ const CardShadow = styled.div`
 
 const HourDetail = styled.div`
 	width: 90%;
-	padding: 2rem 10rem;
+	min-height: 690px;
+	padding: 1.5rem;
 	position: absolute;
 	margin: auto;
 	top: 50%;
-	transform: translateY(-50%);
-	left: 0;
-	right: 0;
+	left: 50%;
+	transform: translateY(-50%) translateX(-50%);
 	z-index: 10;
 	background: hsl(0, 0%, 50%, 0.1);
 	box-shadow: 0 20px 40px hsl(0, 0%, 0%, 0.2);
-	backdrop-filter: blur(20px);
-	-webkit-backdrop-filter: blur(20px);
+	backdrop-filter: blur(25px);
+	-webkit-backdrop-filter: blur(25px);
 	border-radius: 10px;
 	border: 2px solid hsl(0, 0%, 100%, 0.2);
 
 	.hourlydtl__title {
 		h2 {
-			font-weight: 700;
+			font-weight: 600;
 		}
 	}
 
@@ -184,85 +180,75 @@ const HourDetail = styled.div`
 
 	.hourlydtl {
 		display: flex;
+		flex-direction: column;
+		align-items: center;
 		justify-content: space-between;
 		margin-top: 2rem;
 	}
 
-	.hourlydtl__left {
+	.hourlydtl__top {
+		width: 100%;
+		min-height: 170px;
 		display: flex;
 		flex-direction: column;
-		flex: 0.4;
 
 		&__desc {
 			width: 100%;
 
-			h3 {
+			h4 {
 				text-transform: capitalize;
 				font-weight: 500;
-				font-size: 1.5rem;
+				text-align: center;
 			}
 		}
 
 		&__weather {
+			width: 100%;
 			display: flex;
 			flex-direction: row;
 			justify-content: space-around;
 			align-items: center;
+			margin: 0 auto;
 
 			img {
-				height: 18rem;
-				width: 18rem;
+				height: 8rem;
+				width: 8rem;
 			}
 
 			h2 {
-				font-size: 5rem;
+				font-size: 3.5rem;
 				font-weight: 600;
 			}
 		}
 	}
 
-	.hourlydtl__right {
+	.hourlydtl__bottom {
 		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-		flex: 1;
-		margin-left: 4rem;
 		margin-bottom: 2rem;
-	}
 
-	.hourlydtl__right__icons {
-		display: flex;
-		flex-wrap: wrap;
-
-		& > * {
-			flex: 1 1 160px;
-			margin: 0.25rem;
-		}
-
-		svg,
-		p {
-			margin-right: 0.75rem;
-		}
-
-		.wind,
-		.uvIndex,
-		.cloud,
-		.por,
-		.humidity,
-		.pressure,
-		.visibility,
-		.feels {
+		&__info {
 			display: flex;
-			height: 80px;
-		}
+			flex-wrap: wrap;
+			margin-top: 1rem;
 
-		.wind {
-			flex-direction: column;
-		}
+			& > * {
+				flex: 1 1 104px;
+				margin: 0.25rem;
+			}
 
-		.wind__main {
-			display: flex;
+			svg,
+			p {
+				margin-right: 0.75rem;
+			}
+
+			&__icons {
+				display: flex;
+				height: 48px;
+
+				p {
+					font-size: 0.8rem;
+				}
+			}
 		}
 	}
 
@@ -278,108 +264,16 @@ const HourDetail = styled.div`
 		right: 1rem;
 	}
 
-	@media (max-width: 1400px) {
-		padding: 2rem 4rem;
+	@media (min-width: 500px) {
+		max-width: 460px;
 
-		.hourlydtl__left {
-			&__weather {
-				img {
-					height: 15rem;
-					width: 15rem;
-				}
-			}
-		}
+		.hourlydtl__bottom {
+			width: 90%;
+			margin: 1rem auto;
 
-		.hourlydtl__right__icons {
-			margin-top: 1rem;
-			& > * {
-				flex: 1 1 128px;
-			}
-
-			.wind,
-			.uvIndex,
-			.cloud,
-			.por,
-			.humidity,
-			.pressure,
-			.visibility,
-			.feels {
-				height: 80px;
-			}
-		}
-	}
-
-	@media (max-width: 1200px) {
-		.hourlydtl {
-			flex-direction: column;
-			align-items: center;
-		}
-	}
-
-	@media (max-width: 1024px) {
-		padding: 2rem;
-
-		.hourlydtl__left {
-			width: 100%;
-
-			&__desc {
-				h3 {
-					font-size: 1.3rem;
-				}
-			}
-
-			&__weather {
-				width: 60%;
-				margin: 0 auto;
-				flex-direction: row;
-				justify-content: space-around;
-				align-items: center;
-
-				img {
-					height: 12rem;
-					width: 12rem;
-				}
-			}
-		}
-
-		.hourlydtl__right {
-			margin-left: 0rem;
-		}
-	}
-
-	@media (max-width: 768px) {
-		.hourlydtl__left {
-			min-height: 10rem;
-
-			&__weather {
-				width: 100%;
-
-				img {
-					height: 8rem;
-					width: 8rem;
-				}
-
-				h2 {
-					font-size: 3.5rem;
-				}
-			}
-		}
-
-		.hourlydtl__right__icons {
-			margin-top: 1rem;
-			& > * {
-				flex: 1 1 104px;
-			}
-
-			.wind,
-			.uvIndex,
-			.cloud,
-			.por,
-			.humidity,
-			.pressure,
-			.visibility,
-			.feels {
+			&__info__icons {
 				height: 64px;
+				margin-top: 1rem;
 
 				p {
 					font-size: 0.9rem;
@@ -388,49 +282,9 @@ const HourDetail = styled.div`
 		}
 	}
 
-	@media (max-width: 500px) {
-		padding: 1.5rem;
-
-		.hourlydtl__left {
-			width: 100%;
-
-			&__desc {
-				h3 {
-					font-size: 1.2rem;
-				}
-			}
-		}
-
-		.hourlydtl__right__icons {
-			.wind,
-			.uvIndex,
-			.cloud,
-			.por,
-			.humidity,
-			.pressure,
-			.visibility,
-			.feels {
-				height: 48px;
-
-				p {
-					font-size: 0.8rem;
-				}
-			}
-		}
-	}
-
 	@media (max-height: 700px) {
-		.hourlydtl__right__icons {
-			.wind,
-			.uvIndex,
-			.cloud,
-			.por,
-			.humidity,
-			.pressure,
-			.visibility,
-			.feels {
-				height: 44px;
-			}
+		.hourlydtl__bottom__info__icons {
+			height: 44px;
 		}
 	}
 `;

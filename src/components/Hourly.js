@@ -82,6 +82,11 @@ const HourlySummary = styled.div`
 
 	a {
 		text-decoration: none;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-around;
+		align-items: center;
 	}
 
 	/* Give yellow border on HourlySummary that reads 00:00 / 86400 seconds in a day */

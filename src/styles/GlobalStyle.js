@@ -2,11 +2,13 @@ import { createGlobalStyle } from 'styled-components';
 import sky from '../assets/images/sky.jpg';
 
 const GlobalStyle = createGlobalStyle`
+  @import url('https://fonts.googleapis.com/css2?family=Playball&family=Poppins&display=swap');
+
   * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Metropolis', sans-serif;
     color: hsl(0, 0%, 100%);
   }
 
@@ -21,7 +23,7 @@ const GlobalStyle = createGlobalStyle`
 
   h2 {
     font-size: 2rem;
-    font-weight: 500;
+    font-weight: 600;
   }
 
   h3 {
@@ -37,11 +39,11 @@ const GlobalStyle = createGlobalStyle`
   }
 
   h6 {
-    font-size: 0.9rem;
+    font-size: 1rem;
   }
 
   p {
-    font-size: 0.9rem;
+    font-size: 1rem;
   }
 `;
 

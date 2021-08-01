@@ -90,7 +90,7 @@ const DailyContainer = styled.div`
 `;
 
 const DailySummary = styled.div`
-	padding: 1.1rem;
+	padding: 2rem;
 	min-width: 256px;
 	min-height: 176px;
 	margin-right: 1rem;
@@ -112,6 +112,7 @@ const DailySummary = styled.div`
 	.daily__top {
 		display: flex;
 		justify-content: space-between;
+		margin-bottom: 1rem;
 	}
 
 	.daily__bottom {
@@ -125,6 +126,9 @@ const DailySummary = styled.div`
 	}
 
 	.daily__main {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-around;
 		p {
 			text-transform: capitalize;
 			padding-top: 0.5rem;

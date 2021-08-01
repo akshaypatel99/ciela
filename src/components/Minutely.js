@@ -155,6 +155,7 @@ const Chart = styled.div`
 	display: flex;
 	overflow-y: hidden;
 	overflow-x: scroll;
+	margin: 0.25rem 0;
 `;
 
 const Key = styled.div`
@@ -174,6 +175,7 @@ const KeySquare = styled.div`
 	.color {
 		min-height: 20px;
 		min-width: 40px;
+		margin-bottom: 0.25rem;
 	}
 
 	.description {

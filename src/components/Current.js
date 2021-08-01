@@ -21,7 +21,7 @@ const Current = ({ city }) => {
 
 					<CurrentContainer>
 						<div className='current__city'>
-							<h2>{city ? city : address}</h2>
+							<h3>{city ? city : address}</h3>
 						</div>
 
 						<div className='current__main'>
@@ -76,16 +76,12 @@ const Current = ({ city }) => {
 										<p>{current.clouds}% cloudy</p>
 									</div>
 
-									<div className='current__extra__icons__wind'>
-										<div className='wind__main'>
-											<Wind />
-											<p>
-												{Math.round(current.wind_speed * 2.237).toFixed(0)} mph
-											</p>
-										</div>
-										<div className='wind__dir'>
-											<p>{convertWindDirection(current.wind_deg)} wind</p>
-										</div>
+									<div className='current__extra__icons'>
+										<Wind />
+										<p className='wind'>
+											{Math.round(current.wind_speed * 2.237).toFixed(0)} mph{' '}
+											{convertWindDirection(current.wind_deg)} wind
+										</p>
 									</div>
 									<div className='current__extra__icons'>
 										<Umbrella />
@@ -125,9 +121,8 @@ const CurrentContainer = styled.div`
 		margin-bottom: 1.5rem;
 		text-transform: capitalize;
 
-		h2 {
-			font-size: 1.8rem;
-			font-weight: 450;
+		h3 {
+			font-weight: 400;
 		}
 	}
 
@@ -210,16 +205,6 @@ const CurrentContainer = styled.div`
 			display: flex;
 			height: 56px;
 			margin-top: 1rem;
-
-			&__wind {
-				height: 56px;
-				margin-top: 1rem;
-				flex-direction: column;
-
-				.wind__main {
-					display: flex;
-				}
-			}
 		}
 	}
 `;

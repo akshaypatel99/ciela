@@ -60,17 +60,21 @@ const DailyDetail = ({ pathId }) => {
 
 							<div className='dailydtl'>
 								<div className='dailydtl__top'>
-									<div className='dailydtl__top__weather'>
+									<div className='dailydtl__top__desc'>
 										<h4>{day.weather[0].description}</h4>
-										<img
-											src={convertIcon(day.weather[0].icon)}
-											alt={day.weather[0].main}
-										/>
 									</div>
 
-									<div className='dailydtl__top__temp'>
-										<h2 id='high'>{Math.round(day.temp.max)}&#176;C</h2>
-										<h2 id='low'>{Math.round(day.temp.min)}&#176;C</h2>
+									<div className='dailydtl__top__weather'>
+										<div className='dailydtl__top__weather__icon'>
+											<img
+												src={convertIcon(day.weather[0].icon)}
+												alt={day.weather[0].main}
+											/>
+										</div>
+										<div className='dailydtl__top__weather__temp'>
+											<h2 id='high'>{Math.round(day.temp.max)}&#176;C</h2>
+											<h2 id='low'>{Math.round(day.temp.min)}&#176;C</h2>
+										</div>
 									</div>
 								</div>
 								<div className='dailydtl__bottom'>
@@ -116,15 +120,15 @@ const DailyDetail = ({ pathId }) => {
 											</p>
 										</div>
 
-										<div className='temp__feel'>
-											<div className='temperatures'>
+										<div className='dailydtl__bottom__info__temp__feel'>
+											<div className='temp'>
 												<h6>Temperature:</h6>
 												<p>Day: {day.temp.day.toFixed(1)}&#176;C</p>
 												<p>Eve: {day.temp.eve.toFixed(1)}&#176;C</p>
 												<p>Morn: {day.temp.morn.toFixed(1)}&#176;C</p>
 												<p>Night: {day.temp.night.toFixed(1)}&#176;C</p>
 											</div>
-											<div className='feels'>
+											<div className='feel'>
 												<h6>Feels Like:</h6>
 												<p>Day: {day.feels_like.day.toFixed(1)}&#176;C</p>
 												<p>Eve: {day.feels_like.eve.toFixed(1)}&#176;C</p>
@@ -162,7 +166,7 @@ const CardShadow = styled.div`
 	width: 100%;
 	height: 100%;
 	overflow-y: scroll;
-	background: hsl(190, 20%, 25%, 0.4);
+	background: hsl(190, 20%, 30%, 0.4);
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -180,20 +184,19 @@ const DayDetail = styled.div`
 	position: absolute;
 	margin: auto;
 	top: 50%;
-	transform: translateY(-50%);
-	left: 0;
-	right: 0;
+	left: 50%;
+	transform: translateY(-50%) translateX(-50%);
 	z-index: 10;
 	background: hsl(0, 0%, 50%, 0.1);
 	box-shadow: 0 20px 40px hsl(0, 0%, 0%, 0.2);
-	backdrop-filter: blur(20px);
-	-webkit-backdrop-filter: blur(20px);
+	backdrop-filter: blur(25px);
+	-webkit-backdrop-filter: blur(25px);
 	border-radius: 10px;
 	border: 2px solid hsl(0, 0%, 100%, 0.2);
 
 	.dailydtl__title {
 		h2 {
-			font-weight: 600;
+			font-weight: 500;
 		}
 	}
 
@@ -215,85 +218,89 @@ const DayDetail = styled.div`
 		width: 100%;
 		min-height: 170px;
 		display: flex;
-		justify-content: space-around;
-		align-items: center;
+		flex-direction: column;
 
-		&__weather {
-			display: flex;
-			flex-direction: column;
-			padding: 0.5rem;
-
+		&__desc {
 			h4 {
 				text-transform: capitalize;
 				font-weight: 500;
-			}
-
-			img {
-				height: 8rem;
-				width: 8rem;
+				text-align: center;
 			}
 		}
 
-		&__temp {
+		&__weather {
 			display: flex;
-			flex-direction: column;
-			margin-left: 0.5rem;
+			justify-content: space-around;
+			margin-top: 1rem;
+			padding: 0.5rem;
 
-			h2 {
-				font-size: 3rem;
-				font-weight: 600;
+			&__icon {
+				img {
+					height: 8rem;
+					width: 8rem;
+				}
 			}
 
-			#low {
-				font-weight: 500;
+			&__temp {
+				display: flex;
+				flex-direction: column;
+				margin-left: 0.5rem;
+
+				h2 {
+					font-size: 3rem;
+					font-weight: 600;
+				}
+
+				#low {
+					font-weight: 500;
+				}
 			}
 		}
 	}
 
 	.dailydtl__bottom {
 		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-		flex: 1;
 		width: 80%;
 		margin: 0 auto;
-	}
 
-	.dailydtl__bottom__info {
-		display: flex;
-		flex-wrap: wrap;
-		margin-top: 1rem;
-
-		& > * {
-			flex: 1 1 96px;
-		}
-
-		svg,
-		p {
-			margin-right: 0.75rem;
-		}
-
-		.dailydtl__bottom__info__icons {
+		&__info {
 			display: flex;
-			height: 44px;
-			margin-top: 0.75rem;
-
-			p {
-				font-size: 0.8rem;
-			}
-		}
-
-		.temp__feel {
-			display: flex;
-			width: 100%;
-			justify-content: center;
-			padding: 0.5rem 0rem;
+			flex-wrap: wrap;
 			margin-top: 1rem;
 
-			.temperatures,
-			.feels {
-				min-width: 120px;
+			& > * {
+				flex: 1 1 96px;
+			}
+
+			svg,
+			p {
+				margin-right: 0.75rem;
+			}
+
+			&__icons {
+				display: flex;
+				height: 44px;
+				margin-bottom: 0.75rem;
+				align-items: center;
+
+				/* p {
+					font-size: 0.8rem;
+				} */
+			}
+
+			&__temp__feel {
+				display: flex;
+				width: 100%;
+				justify-content: space-around;
+
+				.temp,
+				.feel {
+					min-width: 120px;
+
+					p {
+						margin-top: 0.5rem;
+					}
+				}
 			}
 		}
 	}
@@ -311,26 +318,24 @@ const DayDetail = styled.div`
 	}
 
 	@media (min-width: 500px) {
-		max-width: 450px;
+		max-width: 460px;
 
 		.dailydtl__bottom {
 			width: 90%;
 			margin: 1rem auto;
-		}
 
-		.dailydtl__bottom__info {
-			.dailydtl__bottom__info__icons {
-				height: 64px;
-				margin-top: 1rem;
+			&__info {
+				&__icons {
+					height: 60px;
 
-				p {
-					font-size: 0.9rem;
+					p {
+						font-size: 0.9rem;
+					}
 				}
-			}
 
-			.temp__feel {
-				margin-top: 0;
-				padding-bottom: 0.5rem;
+				&__temp__feel {
+					padding-bottom: 1rem;
+				}
 			}
 		}
 	}
@@ -338,10 +343,8 @@ const DayDetail = styled.div`
 	@media (max-height: 700px) {
 		min-height: 0px;
 
-		.dailydtl__right__icons {
-			.temp__feel {
-				display: none;
-			}
+		.dailydtl__bottom__info__temp__feel {
+			display: none;
 		}
 	}
 `;
