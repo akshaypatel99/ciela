@@ -10,12 +10,14 @@ const weatherReducer = (state = initialState, action) => {
 			return {
 				...state,
 				isLoading: true,
+				error: null,
 			};
 		case 'COORDS_WEATHER':
 			return {
 				...state,
 				weather: action.payload.weather,
 				isLoading: false,
+				error: null,
 			};
 		case 'COORDS_WEATHER_FAIL':
 			return {
@@ -29,6 +31,7 @@ const weatherReducer = (state = initialState, action) => {
 				...state,
 				weather: action.payload.weather,
 				isLoading: false,
+				error: null,
 			};
 		case 'CITY_WEATHER_FAIL':
 			return {
