@@ -244,10 +244,7 @@ const HourDetail = styled.div`
 			&__icons {
 				display: flex;
 				height: 48px;
-
-				p {
-					font-size: 0.8rem;
-				}
+				align-items: center;
 			}
 		}
 	}

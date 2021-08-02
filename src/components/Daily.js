@@ -128,7 +128,12 @@ const DailySummary = styled.div`
 	.daily__main {
 		display: flex;
 		flex-direction: column;
-		justify-content: space-around;
+
+		h4 {
+			font-size: 1.4rem;
+			margin-bottom: 0.75rem;
+		}
+
 		p {
 			text-transform: capitalize;
 			padding-top: 0.5rem;
@@ -157,8 +162,14 @@ const DailySummary = styled.div`
 	}
 
 	.daily__temp {
-		h2 {
-			padding-bottom: 0.5rem;
+		text-align: right;
+
+		h3 {
+			margin-bottom: 0.5rem;
+		}
+
+		h4 {
+			font-size: 1.4rem;
 		}
 	}
 `;

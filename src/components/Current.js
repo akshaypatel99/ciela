@@ -31,13 +31,13 @@ const Current = ({ city }) => {
 								</div>
 
 								<div className='current__weather'>
-									<h1>
-										<span>{Math.round(current.temp)}</span>&#176;C
-									</h1>
 									<img
 										src={convertIcon(current.weather[0].icon)}
 										alt={current.weather[0].main}
 									/>
+									<h1>
+										<span>{Math.round(current.temp)}</span>&#176;C
+									</h1>{' '}
 								</div>
 
 								<div className='current__info'>
@@ -118,8 +118,9 @@ const CurrentContainer = styled.div`
 	border: 2px solid hsl(0, 0%, 100%, 0.2);
 
 	.current__city {
-		margin-bottom: 1.5rem;
+		margin-bottom: 2rem;
 		text-transform: capitalize;
+		text-align: center;
 
 		h3 {
 			font-weight: 400;
@@ -161,6 +162,7 @@ const CurrentContainer = styled.div`
 	.current__desc h3 {
 		text-transform: capitalize;
 		font-weight: 600;
+		text-align: center;
 	}
 
 	.current__info {
@@ -177,6 +179,7 @@ const CurrentContainer = styled.div`
 			margin-bottom: 1rem;
 			display: flex;
 			white-space: no-wrap;
+			align-items: center;
 		}
 	}
 
@@ -205,6 +208,7 @@ const CurrentContainer = styled.div`
 			display: flex;
 			height: 56px;
 			margin-top: 1rem;
+			align-items: center;
 		}
 	}
 `;
