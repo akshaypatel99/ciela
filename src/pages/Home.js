@@ -21,10 +21,11 @@ import {
 const Home = () => {
 	const [city, setCity] = useState('');
 	const [geoLoading, setGeoLoading] = useState(false);
-	const [menuSearch, setMenuSearch] = useState(false);
+	const [showSearch, setShowSearch] = useState(false);
 	const [error, setError] = useState('');
 	const isLoading = useSelector((state) => state.isLoading);
 	const weather = useSelector((state) => state.weather);
+	const apiError = useSelector((state) => state.error);
 
 	const dispatch = useDispatch();
 	const location = useLocation();
@@ -41,7 +42,7 @@ const Home = () => {
 		setGeoLoading(true);
 		dispatch(getCityWeather(city));
 		setGeoLoading(false);
-		setMenuSearch(false);
+		setShowSearch(false);
 	};
 
 	const options = {
@@ -103,45 +104,20 @@ const Home = () => {
 
 						<div
 							className='menu__top__select'
-							onClick={() => setMenuSearch(!menuSearch)}
+							onClick={() => setShowSearch(!showSearch)}
 						>
 							<Search color='#fff' size={36} />
 							<p>Search</p>
 						</div>
 					</MenuTop>
 
-					{/* {menuSearch && (
-						<MenuBottom display={menuSearch}>
-							<div className='menu__bottom__form'>
-								<SearchInput>
-									<form onSubmit={weatherHandler}>
-										<input
-											name='city'
-											type='text'
-											placeholder='Enter city & country'
-											value={city}
-											onChange={cityHandler}
-										/>
-										<button
-											onClick={weatherHandler}
-											onTouchStart={weatherHandler}
-											type='submit'
-										>
-											Get Weather
-										</button>
-									</form>
-								</SearchInput>
-								<p>For best results, enter postcode, city & country.</p>
-							</div>
-						</MenuBottom>
-					)} */}
 					<CSSTransition
-						in={menuSearch}
+						in={showSearch}
 						timeout={100}
 						mountOnEnter
 						unmountOnExit
 					>
-						<MenuBottom display={menuSearch}>
+						<MenuBottom>
 							<div className='menu__bottom__form'>
 								<SearchInput>
 									<form onSubmit={weatherHandler}>
@@ -168,7 +144,16 @@ const Home = () => {
 				</Menu>
 
 				<Results>
-					{error && <h3>{error}</h3>}
+					{error && (
+						<StyledError>
+							<h4>{error}</h4>
+						</StyledError>
+					)}
+					{apiError && (
+						<StyledError>
+							<h4>{apiError}</h4>
+						</StyledError>
+					)}
 					{geoLoading || isLoading ? <Loader /> : null}
 
 					{weather && !isLoading && (
@@ -350,6 +335,25 @@ const Results = styled.div`
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
+`;
+
+const StyledError = styled.div`
+	margin: 2rem auto;
+	height: auto;
+	display: flex;
+	place-items: center;
+	padding: 1rem;
+	background: hsl(0, 0%, 50%, 0.1);
+	box-shadow: 0 8px 16px hsl(0, 0%, 0%, 0.2);
+	backdrop-filter: blur(20px);
+	-webkit-backdrop-filter: blur(20px);
+	border-radius: 10px;
+	border: 2px solid hsl(4, 62%, 56%, 1);
+	opacity: 1;
+
+	h4 {
+		text-align: center;
+	}
 `;
 
 export default Home;

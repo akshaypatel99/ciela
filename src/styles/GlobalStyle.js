@@ -8,7 +8,7 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Metropolis', sans-serif;
+    font-family: 'Metropolis', 'Poppins', sans-serif;
     color: hsl(0, 0%, 100%);
   }
 
@@ -22,8 +22,8 @@ const GlobalStyle = createGlobalStyle`
   }
 
   h2 {
-    font-size: 2rem;
-    font-weight: 600;
+    font-size: 1.8rem;
+    font-weight: 500;
   }
 
   h3 {

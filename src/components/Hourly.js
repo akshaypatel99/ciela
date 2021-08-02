@@ -45,10 +45,10 @@ const Hourly = () => {
 };
 
 const StyledHourly = styled.div`
-	margin-bottom: 2rem;
+	margin-bottom: 3rem;
 
 	.hourly__title {
-		margin-bottom: 1rem;
+		margin-bottom: 0.5rem;
 	}
 `;
 

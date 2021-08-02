@@ -38,6 +38,7 @@ exports.handler = async function (event, context) {
 			daily: response.data.daily,
 			hourly: response.data.hourly,
 			minutely: response.data.minutely,
+			alerts: response.data.alerts || 'No current weather warnings',
 			all: response.data,
 		};
 
@@ -53,7 +54,7 @@ exports.handler = async function (event, context) {
 	} catch (error) {
 		return {
 			statusCode: 404,
-			body: error.toString(),
+			body: JSON.stringify(error.message),
 		};
 	}
 };

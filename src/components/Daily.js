@@ -63,10 +63,10 @@ const Daily = () => {
 };
 
 const StyledDaily = styled.div`
-	margin-bottom: 2rem;
+	margin-bottom: 3rem;
 
 	.daily__title {
-		margin-bottom: 1rem;
+		margin-bottom: 0.5rem;
 	}
 `;
 
