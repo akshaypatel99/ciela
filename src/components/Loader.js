@@ -113,9 +113,12 @@ const Star = styled.div`
 const Loading = styled.div`
 	display: flex;
 	flex-direction: column;
+	justify-content: center;
 	align-items: center;
+
 	h3 {
 		margin-top: 1rem;
+		font-weight: 500;
 	}
 `;
 

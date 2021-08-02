@@ -103,7 +103,7 @@ const DailySummary = styled.div`
 	backdrop-filter: blur(20px);
 	-webkit-backdrop-filter: blur(20px);
 	border-radius: 10px;
-	border: 2px solid hsl(0, 0%, 100%, 0.2);
+	border: 1px solid hsl(0, 0%, 100%, 0.2);
 
 	a {
 		text-decoration: none;

@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { formatTime } from '../utils/convertUnixTime';
 import convertIcon from '../utils/convertIcon';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 const Hourly = () => {
 	const isLoading = useSelector((state) => state.isLoading);
@@ -19,7 +19,14 @@ const Hourly = () => {
 					<HourlyContainer>
 						{hourly &&
 							hourly.map((dp) => (
-								<HourlySummary key={dp.dt}>
+								<HourlySummary
+									key={dp.dt}
+									newDay={
+										formatTime(dp.dt, timezoneOffset) === '00:00'
+											? '1px solid #fecb00'
+											: '1px solid hsl(0, 0%, 100%, 0.2)'
+									}
+								>
 									<Link to={`/hourly/${dp.dt}`}>
 										<h5>{formatTime(dp.dt, timezoneOffset)}</h5>
 										<img
@@ -78,7 +85,8 @@ const HourlySummary = styled.div`
 	backdrop-filter: blur(20px);
 	-webkit-backdrop-filter: blur(20px);
 	border-radius: 10px;
-	border: 2px solid hsl(0, 0%, 100%, 0.2);
+	border: 1px solid hsl(0, 0%, 100%, 0.2);
+	border: ${(props) => props.newDay};
 
 	a {
 		text-decoration: none;
@@ -88,14 +96,6 @@ const HourlySummary = styled.div`
 		justify-content: space-around;
 		align-items: center;
 	}
-
-	/* Give yellow border on HourlySummary that reads 00:00 / 86400 seconds in a day */
-	${(props) => {
-		props.key % 86400 === 0 &&
-			css`
-				border: 2px solid hsl(39, 91%, 74%);
-			`;
-	}}
 `;
 
 export default Hourly;

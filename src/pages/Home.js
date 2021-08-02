@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { Search, MapPin } from 'react-feather';
+import { CSSTransition } from 'react-transition-group';
 
 import Current from '../components/Current';
 import Daily from '../components/Daily';
@@ -20,6 +21,7 @@ import {
 const Home = () => {
 	const [city, setCity] = useState('');
 	const [geoLoading, setGeoLoading] = useState(false);
+	const [menuSearch, setMenuSearch] = useState(false);
 	const [error, setError] = useState('');
 	const isLoading = useSelector((state) => state.isLoading);
 	const weather = useSelector((state) => state.weather);
@@ -39,6 +41,7 @@ const Home = () => {
 		setGeoLoading(true);
 		dispatch(getCityWeather(city));
 		setGeoLoading(false);
+		setMenuSearch(false);
 	};
 
 	const options = {
@@ -85,44 +88,84 @@ const Home = () => {
 
 			<Container>
 				<Banner>
-					<div className='logo__section'>
-						<h1>Ciela</h1>
-						<h4>{today}</h4>
-					</div>
-
-					<div className='search__section'>
-						<div className='geolocation' onClick={getGeolocation}>
-							<MapPin color='#fff' />
-							<h4>Use my current location</h4>
-						</div>
-						<h6>OR</h6>
-						<div className='search__form'>
-							<SearchInput>
-								<form onSubmit={weatherHandler}>
-									<Search color='#999' size={18} />
-									<input
-										name='city'
-										type='text'
-										placeholder='Enter city and country'
-										value={city}
-										onChange={cityHandler}
-									/>
-									<button
-										onClick={weatherHandler}
-										onTouchStart={weatherHandler}
-										type='submit'
-									>
-										Get Weather
-									</button>
-								</form>
-							</SearchInput>
-							<p>
-								For best results, enter your postcode, city and country: e.g. N1
-								London UK.
-							</p>
-						</div>
-					</div>
+					<h1>Ciela</h1>
+					<h4>{today}</h4>
 				</Banner>
+
+				<Menu>
+					<MenuTop>
+						<div className='menu__top__select' onClick={getGeolocation}>
+							<MapPin color='#fff' size={36} />
+							<p>Location</p>
+						</div>
+
+						<div className='vl'></div>
+
+						<div
+							className='menu__top__select'
+							onClick={() => setMenuSearch(!menuSearch)}
+						>
+							<Search color='#fff' size={36} />
+							<p>Search</p>
+						</div>
+					</MenuTop>
+
+					{/* {menuSearch && (
+						<MenuBottom display={menuSearch}>
+							<div className='menu__bottom__form'>
+								<SearchInput>
+									<form onSubmit={weatherHandler}>
+										<input
+											name='city'
+											type='text'
+											placeholder='Enter city & country'
+											value={city}
+											onChange={cityHandler}
+										/>
+										<button
+											onClick={weatherHandler}
+											onTouchStart={weatherHandler}
+											type='submit'
+										>
+											Get Weather
+										</button>
+									</form>
+								</SearchInput>
+								<p>For best results, enter postcode, city & country.</p>
+							</div>
+						</MenuBottom>
+					)} */}
+					<CSSTransition
+						in={menuSearch}
+						timeout={100}
+						mountOnEnter
+						unmountOnExit
+					>
+						<MenuBottom display={menuSearch}>
+							<div className='menu__bottom__form'>
+								<SearchInput>
+									<form onSubmit={weatherHandler}>
+										<input
+											name='city'
+											type='text'
+											placeholder='Enter city & country'
+											value={city}
+											onChange={cityHandler}
+										/>
+										<button
+											onClick={weatherHandler}
+											onTouchStart={weatherHandler}
+											type='submit'
+										>
+											Get Weather
+										</button>
+									</form>
+								</SearchInput>
+								<p>For best results, enter postcode, city & country.</p>
+							</div>
+						</MenuBottom>
+					</CSSTransition>
+				</Menu>
 
 				<Results>
 					{error && <h3>{error}</h3>}
@@ -170,66 +213,95 @@ const Banner = styled.div`
 	flex-direction: column;
 	align-items: center;
 	justify-content: space-between;
-	margin-bottom: 2rem;
+	margin-bottom: 3rem;
 
-	.logo__section {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-
-		h1 {
-			font-family: 'Playball', sans-serif;
-			font-style: italic;
-			margin-bottom: 1rem;
-		}
-
-		h4 {
-			font-weight: 600;
-			font-style: italic;
-		}
+	h1 {
+		font-family: 'Playball', sans-serif;
+		font-style: italic;
+		margin-bottom: 1rem;
 	}
 
-	.search__section {
+	h4 {
+		font-weight: 600;
+		font-style: italic;
+	}
+`;
+
+const Menu = styled.div`
+	width: 90%;
+	margin: 0 auto 3rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: 1.5rem;
+	background: hsl(0, 0%, 50%, 0.1);
+	box-shadow: 0 20px 40px hsl(0, 0%, 0%, 0.2);
+	backdrop-filter: blur(20px);
+	-webkit-backdrop-filter: blur(20px);
+	border-radius: 10px;
+	border: 1px solid hsl(0, 0%, 100%, 0.2);
+
+	p {
+		font-weight: 400;
+	}
+`;
+
+const MenuTop = styled.div`
+	width: 90%;
+	height: 5rem;
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
+	margin: 0 auto;
+
+	.menu__top__select {
 		display: flex;
 		flex-direction: column;
+		height: 100%;
 		align-items: center;
-		justify-content: flex-end;
-		margin-top: 5vh;
-		padding: 2rem;
-		background: hsl(0, 0%, 50%, 0.1);
-		box-shadow: 0 20px 40px hsl(0, 0%, 0%, 0.2);
-		backdrop-filter: blur(20px);
-		-webkit-backdrop-filter: blur(20px);
-		border-radius: 10px;
-		border: 2px solid hsl(0, 0%, 100%, 0.2);
+		justify-content: space-around;
+		cursor: pointer;
+	}
 
-		h6 {
-			margin: 1rem 0rem;
-		}
+	.vl {
+		border-left: 1px dashed white;
+		height: 80%;
+		margin: 0 2rem;
+	}
+`;
 
+const MenuBottom = styled.div`
+	margin-top: 2rem;
+	height: 0rem;
+
+	&.enter {
+		opacity: 0;
+		height: 0rem;
+	}
+	&.enter-active {
+		opacity: 1;
+		height: 5rem;
+		transition: opacity 500ms, height 200ms;
+	}
+	&.enter-done {
+		height: 5rem;
+	}
+
+	&.exit {
+		opacity: 1;
+		height: 5rem;
+	}
+	&.exit-active {
+		opacity: 0;
+		height: 0rem;
+		transition: opacity 200ms, height 200ms;
+	}
+
+	.menu__bottom__form {
 		p {
-			font-size: 12px;
-		}
-
-		.geolocation {
-			display: flex;
-			margin-left: 0.5rem;
-			z-index: 2;
-			cursor: pointer;
-
-			h4 {
-				margin-left: 0.5rem;
-			}
-		}
-	}
-
-	@media (max-width: 768px) {
-		margin-bottom: 0rem;
-
-		.search__section {
-			margin: 2rem auto;
-			padding: 1rem;
+			font-size: 0.75rem;
+			text-align: center;
 		}
 	}
 `;
@@ -243,17 +315,16 @@ const SearchInput = styled.div`
 		justify-content: center;
 		padding: 0.75rem;
 		border-radius: 2rem;
+		border: 1px solid white;
 		background: hsl(208, 21%, 88%);
 	}
 
 	input {
 		background: transparent;
-		margin-left: 0.5rem;
-		min-width: 20rem;
-		max-width: 30rem;
 		border: none;
 		outline: none;
-		font-size: 14px;
+		color: #555;
+		font-size: 0.8rem;
 		font-weight: 500;
 		text-align: center;
 		text-transform: capitalize;
@@ -267,20 +338,15 @@ const SearchInput = styled.div`
 		display: none;
 	}
 
-	@media (max-width: 500px) {
-		form {
-			padding: 0.5rem;
-		}
-
+	@media (min-width: 500px) {
 		input {
-			min-width: 10rem;
-			font-size: 0.8rem;
+			font-size: 1rem;
 		}
 	}
 `;
 
 const Results = styled.div`
-	min-height: 50vh;
+	height: 100%;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;

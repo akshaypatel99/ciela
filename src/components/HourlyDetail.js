@@ -163,7 +163,7 @@ const HourDetail = styled.div`
 	backdrop-filter: blur(25px);
 	-webkit-backdrop-filter: blur(25px);
 	border-radius: 10px;
-	border: 2px solid hsl(0, 0%, 100%, 0.2);
+	border: 1px solid hsl(0, 0%, 100%, 0.2);
 
 	.hourlydtl__title {
 		h2 {

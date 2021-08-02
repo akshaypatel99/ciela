@@ -38,6 +38,7 @@ exports.handler = async function (event, context) {
 			daily: response.data.daily,
 			hourly: response.data.hourly,
 			minutely: response.data.minutely,
+			all: response.data,
 		};
 
 		console.log(weather);
