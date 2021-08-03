@@ -257,7 +257,7 @@ const DayDetail = styled.div`
 
 	.dailydtl__bottom {
 		display: flex;
-		width: 80%;
+		width: 90%;
 		margin: 0 auto;
 
 		&__info {

@@ -150,7 +150,7 @@ const CardShadow = styled.div`
 
 const HourDetail = styled.div`
 	width: 90%;
-	height: 80%;
+	height: 85%;
 	padding: 1.5rem;
 	position: absolute;
 	margin: auto;
