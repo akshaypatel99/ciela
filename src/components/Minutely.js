@@ -12,7 +12,7 @@ const Hourly = () => {
 			{!isLoading && minutely && (
 				<StyledMinutely>
 					<div className='minutely__title'>
-						<h3>Rainfall Next Hour</h3>
+						<h2>Rainfall Next Hour</h2>
 					</div>
 
 					<MinutelyContainer>
@@ -116,8 +116,9 @@ const StyledMinutely = styled.div`
 	.minutely__title {
 		margin-bottom: 1rem;
 
-		h3 {
-			font-family: 'Metropolis SemiBold';
+		h2 {
+			/* font-family: 'Metropolis SemiBold'; */
+			font-family: 'SourceSansPro Bold';
 		}
 	}
 `;
@@ -148,6 +149,10 @@ const MinutelyDataPoint = styled.div`
 const TopScale = styled.div`
 	display: flex;
 	justify-content: space-between;
+
+	.increments h6 {
+		font-family: 'SourceSansPro SemiBold';
+	}
 `;
 
 const BottomScale = styled.div`
@@ -168,7 +173,7 @@ const Key = styled.div`
 	.key__title,
 	h4 {
 		margin-bottom: 0.5rem;
-		font-weight: 550;
+		font-family: 'SourceSansPro SemiBold';
 	}
 `;
 const KeyContainer = styled.div`

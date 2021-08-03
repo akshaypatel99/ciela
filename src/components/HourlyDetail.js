@@ -150,7 +150,7 @@ const CardShadow = styled.div`
 
 const HourDetail = styled.div`
 	width: 90%;
-	height: 85%;
+	max-height: 90%;
 	padding: 1.5rem;
 	position: absolute;
 	margin: auto;
@@ -167,13 +167,14 @@ const HourDetail = styled.div`
 
 	.hourlydtl__title {
 		h2 {
-			font-family: 'Metropolis SemiBold';
+			/* font-family: 'Metropolis SemiBold'; */
+			font-family: 'SourceSansPro SemiBold';
 		}
 	}
 
 	.hourlydtl__close {
 		position: absolute;
-		top: 1rem;
+		top: 1.5rem;
 		right: 1rem;
 		cursor: pointer;
 	}
@@ -196,7 +197,8 @@ const HourDetail = styled.div`
 
 			h4 {
 				text-transform: capitalize;
-				font-family: 'Metropolis Medium';
+				/* font-family: 'Metropolis Medium'; */
+				font-family: 'SourceSansPro SemiBold';
 				text-align: center;
 			}
 		}
@@ -216,14 +218,15 @@ const HourDetail = styled.div`
 
 			h2 {
 				font-size: 3.5rem;
-				font-family: 'Metropolis SemiBold';
+				/* font-family: 'Metropolis SemiBold'; */
+				font-family: 'SourceSansPro Bold';
 			}
 		}
 	}
 
 	.hourlydtl__bottom {
 		display: flex;
-		margin-bottom: 2rem;
+		margin-bottom: 3rem;
 
 		&__info {
 			display: flex;
@@ -231,7 +234,7 @@ const HourDetail = styled.div`
 			margin-top: 1rem;
 
 			& > * {
-				flex: 1 1 104px;
+				flex: 1 1 112px;
 				margin: 0.25rem;
 			}
 

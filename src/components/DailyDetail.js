@@ -72,8 +72,10 @@ const DailyDetail = ({ pathId }) => {
 											/>
 										</div>
 										<div className='dailydtl__top__weather__temp'>
-											<h2 id='high'>{Math.round(day.temp.max)}&#176;C</h2>
-											<h2 id='low'>{Math.round(day.temp.min)}&#176;C</h2>
+											<h2>
+												<span>{Math.round(day.temp.max)}&#176;C</span>
+											</h2>
+											<h2>{Math.round(day.temp.min)}&#176;C</h2>
 										</div>
 									</div>
 								</div>
@@ -179,7 +181,7 @@ const CardShadow = styled.div`
 
 const DayDetail = styled.div`
 	width: 90%;
-	height: 80%;
+	max-height: 90%;
 	padding: 1.5rem;
 	position: absolute;
 	margin: auto;
@@ -196,13 +198,14 @@ const DayDetail = styled.div`
 
 	.dailydtl__title {
 		h2 {
-			font-family: 'Metropolis Medium';
+			/* font-family: 'Metropolis Medium'; */
+			font-family: 'SourceSansPro SemiBold';
 		}
 	}
 
 	.dailydtl__close {
 		position: absolute;
-		top: 1rem;
+		top: 1.5rem;
 		right: 1rem;
 		cursor: pointer;
 	}
@@ -223,7 +226,8 @@ const DayDetail = styled.div`
 		&__desc {
 			h4 {
 				text-transform: capitalize;
-				font-family: 'Metropolis Medium';
+				/* font-family: 'Metropolis Medium'; */
+				font-family: 'SourceSansPro SemiBold';
 				text-align: center;
 			}
 		}
@@ -249,7 +253,12 @@ const DayDetail = styled.div`
 
 				h2 {
 					font-size: 3rem;
-					font-family: 'Metropolis SemiBold';
+					/* font-family: 'Metropolis SemiBold'; */
+					font-family: 'SourceSansPro SemiBold';
+
+					span {
+						font-family: 'SourceSansPro Bold';
+					}
 				}
 			}
 		}
@@ -258,7 +267,7 @@ const DayDetail = styled.div`
 	.dailydtl__bottom {
 		display: flex;
 		width: 90%;
-		margin: 0 auto;
+		margin: 0 auto 2rem;
 
 		&__info {
 			display: flex;
@@ -266,7 +275,7 @@ const DayDetail = styled.div`
 			margin-top: 1rem;
 
 			& > * {
-				flex: 1 1 96px;
+				flex: 1 1 112px;
 			}
 
 			svg,
@@ -279,10 +288,6 @@ const DayDetail = styled.div`
 				height: 44px;
 				margin-bottom: 0.75rem;
 				align-items: center;
-
-				/* p {
-					font-size: 0.8rem;
-				} */
 			}
 
 			&__temp__feel {
@@ -337,9 +342,7 @@ const DayDetail = styled.div`
 		}
 	}
 
-	@media (max-height: 700px) {
-		min-height: 0px;
-
+	@media (max-height: 800px) {
 		.dailydtl__bottom__info__temp__feel {
 			display: none;
 		}

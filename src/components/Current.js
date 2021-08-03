@@ -28,7 +28,7 @@ const Current = ({ city }) => {
 				<>
 					<StyledCurrent>
 						<div className='currently__title'>
-							<h3>Currently</h3>
+							<h2>Currently</h2>
 						</div>
 
 						<div className='warning' onClick={() => setShowAlert(!showAlert)}>
@@ -123,14 +123,15 @@ const StyledCurrent = styled.div`
 	.currently__title {
 		margin-bottom: 1rem;
 
-		h3 {
-			font-family: 'Metropolis SemiBold';
+		h2 {
+			/* font-family: 'Metropolis SemiBold'; */
+			font-family: 'SourceSansPro Bold';
 		}
 	}
 
 	.warning {
 		position: absolute;
-		top: 0;
+		top: 0.4rem;
 		right: 0.25rem;
 		cursor: pointer;
 	}
@@ -180,8 +181,13 @@ const CurrentContainer = styled.div`
 		margin: 1rem 0rem;
 
 		h1 {
-			font-family: 'Metropolis SemiBold';
+			/* font-family: 'Metropolis SemiBold'; */
+			font-family: 'SourceSansPro SemiBold';
 			font-size: 3.5rem;
+
+			span {
+				font-family: 'SourceSansPro Bold';
+			}
 		}
 
 		img {
@@ -192,7 +198,8 @@ const CurrentContainer = styled.div`
 
 	.current__desc h3 {
 		text-transform: capitalize;
-		font-family: 'Metropolis SemiBold';
+		/* font-family: 'Metropolis SemiBold'; */
+		font-family: 'SourceSansPro Bold';
 		text-align: center;
 	}
 
