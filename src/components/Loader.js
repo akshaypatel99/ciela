@@ -118,7 +118,7 @@ const Loading = styled.div`
 
 	h3 {
 		margin-top: 1rem;
-		font-weight: 500;
+		font-family: 'Metropolis Medium';
 	}
 `;
 

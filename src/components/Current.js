@@ -28,7 +28,7 @@ const Current = ({ city }) => {
 				<>
 					<StyledCurrent>
 						<div className='currently__title'>
-							<h2>Currently</h2>
+							<h3>Currently</h3>
 						</div>
 
 						<div className='warning' onClick={() => setShowAlert(!showAlert)}>
@@ -39,7 +39,7 @@ const Current = ({ city }) => {
 
 						<CurrentContainer>
 							<div className='current__city'>
-								<h3>{city ? city : address}</h3>
+								<h4>{city ? city : address}</h4>
 							</div>
 
 							<div className='current__main'>
@@ -122,6 +122,10 @@ const StyledCurrent = styled.div`
 
 	.currently__title {
 		margin-bottom: 1rem;
+
+		h3 {
+			font-family: 'Metropolis SemiBold';
+		}
 	}
 
 	.warning {
@@ -149,8 +153,8 @@ const CurrentContainer = styled.div`
 		text-transform: capitalize;
 		text-align: center;
 
-		h3 {
-			font-weight: 400;
+		h4 {
+			font-size: 1.4rem;
 		}
 	}
 
@@ -175,9 +179,9 @@ const CurrentContainer = styled.div`
 		align-items: center;
 		margin: 1rem 0rem;
 
-		h4 {
-			font-weight: 600;
-			margin-right: 2rem;
+		h1 {
+			font-family: 'Metropolis SemiBold';
+			font-size: 3.5rem;
 		}
 
 		img {
@@ -188,7 +192,7 @@ const CurrentContainer = styled.div`
 
 	.current__desc h3 {
 		text-transform: capitalize;
-		font-weight: 600;
+		font-family: 'Metropolis SemiBold';
 		text-align: center;
 	}
 

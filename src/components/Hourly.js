@@ -13,7 +13,7 @@ const Hourly = () => {
 			{!isLoading && hourly && (
 				<StyledHourly>
 					<div className='hourly__title'>
-						<h2>Next 48 Hours</h2>
+						<h3>Next 48 Hours</h3>
 					</div>
 
 					<HourlyContainer>
@@ -49,6 +49,10 @@ const StyledHourly = styled.div`
 
 	.hourly__title {
 		margin-bottom: 0.5rem;
+
+		h3 {
+			font-family: 'Metropolis SemiBold';
+		}
 	}
 `;
 

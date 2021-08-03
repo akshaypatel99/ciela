@@ -61,7 +61,7 @@ export const rainfallKey = [
 	},
 	{
 		color: '#a358ff',
-		amount: '>32',
+		amount: '> 32',
 		description: 'Torrential rain',
 	},
 ];

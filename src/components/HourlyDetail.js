@@ -150,7 +150,7 @@ const CardShadow = styled.div`
 
 const HourDetail = styled.div`
 	width: 90%;
-	min-height: 690px;
+	min-height: 640px;
 	padding: 1.5rem;
 	position: absolute;
 	margin: auto;
@@ -167,7 +167,7 @@ const HourDetail = styled.div`
 
 	.hourlydtl__title {
 		h2 {
-			font-weight: 600;
+			font-family: 'Metropolis SemiBold';
 		}
 	}
 
@@ -197,7 +197,7 @@ const HourDetail = styled.div`
 
 			h4 {
 				text-transform: capitalize;
-				font-weight: 500;
+				font-family: 'Metropolis Medium';
 				text-align: center;
 			}
 		}
@@ -217,7 +217,7 @@ const HourDetail = styled.div`
 
 			h2 {
 				font-size: 3.5rem;
-				font-weight: 600;
+				font-family: 'Metropolis SemiBold';
 			}
 		}
 	}

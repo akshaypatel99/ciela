@@ -196,7 +196,7 @@ const DayDetail = styled.div`
 
 	.dailydtl__title {
 		h2 {
-			font-weight: 500;
+			font-family: 'Metropolis Medium';
 		}
 	}
 
@@ -223,7 +223,7 @@ const DayDetail = styled.div`
 		&__desc {
 			h4 {
 				text-transform: capitalize;
-				font-weight: 500;
+				font-family: 'Metropolis Medium';
 				text-align: center;
 			}
 		}
@@ -245,14 +245,11 @@ const DayDetail = styled.div`
 				display: flex;
 				flex-direction: column;
 				margin-left: 0.5rem;
+				text-align: right;
 
 				h2 {
 					font-size: 3rem;
-					font-weight: 600;
-				}
-
-				#low {
-					font-weight: 500;
+					font-family: 'Metropolis SemiBold';
 				}
 			}
 		}

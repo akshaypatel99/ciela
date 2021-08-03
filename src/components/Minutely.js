@@ -12,7 +12,7 @@ const Hourly = () => {
 			{!isLoading && minutely && (
 				<StyledMinutely>
 					<div className='minutely__title'>
-						<h2>Rainfall Next Hour</h2>
+						<h3>Rainfall Next Hour</h3>
 					</div>
 
 					<MinutelyContainer>
@@ -115,6 +115,10 @@ const StyledMinutely = styled.div`
 
 	.minutely__title {
 		margin-bottom: 1rem;
+
+		h3 {
+			font-family: 'Metropolis SemiBold';
+		}
 	}
 `;
 

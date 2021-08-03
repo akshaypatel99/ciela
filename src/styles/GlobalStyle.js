@@ -1,8 +1,37 @@
 import { createGlobalStyle } from 'styled-components';
 import sky from '../assets/images/sky.jpg';
+import Metropolis from '../assets/fonts/Metropolis-Regular.woff2';
+import MetropolisMedium from '../assets/fonts/Metropolis-Medium.woff2';
+import MetropolisSemiBold from '../assets/fonts/Metropolis-SemiBold.woff2';
+import Playball from '../assets/fonts/Playball-Regular.ttf';
 
 const GlobalStyle = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css2?family=Playball&family=Poppins&display=swap');
+
+  @font-face {
+    font-family: 'Metropolis';
+    font-style: normal;
+    font-weight: 400;
+    src: url(${Metropolis}) format('woff2');
+  }
+  @font-face {
+    font-family: 'Metropolis Medium';
+    font-style: normal;
+    font-weight: 500;
+    src: url(${MetropolisMedium}) format('woff2');
+  }
+  @font-face {
+    font-family: 'Metropolis SemiBold';
+    font-style: normal;
+    font-weight: 600;
+    src: url(${MetropolisSemiBold}) format('woff2');
+  }
+  @font-face {
+    font-family: 'Playball';
+    font-style: normal;
+    font-weight: 400;
+    src: url(${Playball}) format('ttf');
+  }
 
   * {
     margin: 0;
@@ -17,13 +46,11 @@ const GlobalStyle = createGlobalStyle`
   }
 
   h1 {
-    font-weight: 600;
     font-size: 4.2rem;
   }
 
   h2 {
     font-size: 1.8rem;
-    font-weight: 500;
   }
 
   h3 {
@@ -44,7 +71,6 @@ const GlobalStyle = createGlobalStyle`
 
   p {
     font-size: 0.9rem;
-    font-weight: 500;
   }
 `;
 

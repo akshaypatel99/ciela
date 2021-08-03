@@ -14,7 +14,7 @@ const Daily = () => {
 			{!isLoading && daily && (
 				<StyledDaily>
 					<div className='daily__title'>
-						<h2>Week Ahead</h2>
+						<h3>Week Ahead</h3>
 					</div>
 
 					<DailyContainer>
@@ -67,6 +67,10 @@ const StyledDaily = styled.div`
 
 	.daily__title {
 		margin-bottom: 0.5rem;
+
+		h3 {
+			font-family: 'Metropolis SemiBold';
+		}
 	}
 `;
 
@@ -132,6 +136,7 @@ const DailySummary = styled.div`
 		h4 {
 			font-size: 1.4rem;
 			margin-bottom: 0.75rem;
+			font-family: 'Metropolis Medium';
 		}
 
 		p {
@@ -155,17 +160,23 @@ const DailySummary = styled.div`
 	.daily__wind {
 		display: flex;
 		padding-bottom: 1rem;
+		align-items: center;
 	}
 
 	.daily__por {
 		display: flex;
+		align-items: center;
 	}
 
 	.daily__temp {
-		text-align: right;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-end;
+		justify-content: center;
 
 		h3 {
 			margin-bottom: 0.5rem;
+			font-family: 'Metropolis Medium';
 		}
 
 		h4 {

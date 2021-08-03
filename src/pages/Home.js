@@ -207,7 +207,7 @@ const Banner = styled.div`
 	}
 
 	h4 {
-		font-weight: 600;
+		font-family: 'Metropolis SemiBold';
 		font-style: italic;
 	}
 `;
@@ -310,7 +310,7 @@ const SearchInput = styled.div`
 		outline: none;
 		color: #555;
 		font-size: 0.8rem;
-		font-weight: 500;
+		font-family: 'Metropolis Medium';
 		text-align: center;
 		text-transform: capitalize;
 
