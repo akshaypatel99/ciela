@@ -12,7 +12,7 @@ import {
 	Umbrella,
 	Sun,
 	Cloud,
-	Zap,
+	AlertTriangle,
 } from 'react-feather';
 
 const Current = ({ city }) => {
@@ -32,7 +32,7 @@ const Current = ({ city }) => {
 						</div>
 
 						<div className='warning' onClick={() => setShowAlert(!showAlert)}>
-							<Zap />
+							<AlertTriangle />
 						</div>
 
 						{showAlert && <Alert />}
@@ -211,6 +211,7 @@ const CurrentContainer = styled.div`
 			display: flex;
 			white-space: no-wrap;
 			align-items: center;
+			padding: 0.2rem;
 		}
 	}
 
@@ -240,6 +241,17 @@ const CurrentContainer = styled.div`
 			height: 56px;
 			margin-top: 1rem;
 			align-items: center;
+		}
+	}
+
+	@media (max-width: 420px) {
+		.current__info {
+			justify-content: space-around;
+			flex-wrap: wrap;
+
+			&__temps {
+				margin-bottom: 0.5rem;
+			}
 		}
 	}
 `;

@@ -150,7 +150,7 @@ const CardShadow = styled.div`
 
 const HourDetail = styled.div`
 	width: 90%;
-	min-height: 640px;
+	height: 80%;
 	padding: 1.5rem;
 	position: absolute;
 	margin: auto;
@@ -188,7 +188,6 @@ const HourDetail = styled.div`
 
 	.hourlydtl__top {
 		width: 100%;
-		min-height: 170px;
 		display: flex;
 		flex-direction: column;
 
@@ -283,6 +282,10 @@ const HourDetail = styled.div`
 		.hourlydtl__bottom__info__icons {
 			height: 44px;
 		}
+	}
+
+	@media (min-height: 1000px) {
+		height: 650px;
 	}
 `;
 

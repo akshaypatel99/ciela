@@ -179,7 +179,7 @@ const CardShadow = styled.div`
 
 const DayDetail = styled.div`
 	width: 90%;
-	min-height: 690px;
+	height: 80%;
 	padding: 1.5rem;
 	position: absolute;
 	margin: auto;
@@ -343,6 +343,10 @@ const DayDetail = styled.div`
 		.dailydtl__bottom__info__temp__feel {
 			display: none;
 		}
+	}
+
+	@media (min-height: 1000px) {
+		height: 700px;
 	}
 `;
 

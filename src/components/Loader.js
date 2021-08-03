@@ -31,18 +31,6 @@ const commonStyle = {
 	bottom: 0,
 };
 
-// const sizeItem = {
-// 	small: '10px',
-// 	default: '12px',
-// 	large: '14px',
-// };
-
-// const sizeContainer = {
-// 	small: '24px',
-// 	default: '30px',
-// 	large: '36px',
-// };
-
 const LoadContainer = styled.div`
 	width: ${(props) =>
 		props.size === 'small' ? 68 : props.size === 'large' ? 88 : 80}px;
@@ -102,7 +90,7 @@ const Star = styled.div`
 	background: linear-gradient(
 		-45deg,
 		${(props) => props.color || 'hsl(0, 0%, 100%)'},
-		rgba(0, 0, 255, 0)
+		rgb(39, 117, 148)
 	);
 	position: absolute;
 	border-radius: 50%;
@@ -118,6 +106,7 @@ const Loading = styled.div`
 
 	h3 {
 		margin-top: 1rem;
+		font-size: 1.4rem;
 		font-family: 'Metropolis Medium';
 	}
 `;
