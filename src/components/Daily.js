@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { formatDayDate } from '../utils/convertUnixTime';
 import convertIcon from '../utils/convertIcon';
 import styled from 'styled-components';
+import { slideInLeft } from '../styles/GlobalStyle';
 import { Wind, Umbrella } from 'react-feather';
 
 const Daily = () => {
@@ -64,6 +65,7 @@ const Daily = () => {
 
 const StyledDaily = styled.div`
 	margin-bottom: 3rem;
+	animation: ${slideInLeft} 0.6s ease-in 0s 1 normal forwards running;
 
 	.daily__title {
 		margin-bottom: 0.5rem;

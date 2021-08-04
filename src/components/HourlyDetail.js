@@ -137,7 +137,7 @@ const CardShadow = styled.div`
 	width: 100%;
 	min-height: 100vh;
 	overflow-y: scroll;
-	background: hsl(190, 20%, 30%, 0.3);
+	background: hsl(210, 40%, 40%, 0.4);
 	position: fixed;
 	top: 0;
 	left: 0;

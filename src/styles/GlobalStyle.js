@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle, keyframes } from 'styled-components';
 import sky from '../assets/images/sky.jpg';
 import SourceSansPro from '../assets/fonts/source-sans-pro-v14-latin-regular.woff2';
 import SourceSansProBold from '../assets/fonts/source-sans-pro-v14-latin-700.woff2';
@@ -41,6 +41,9 @@ const GlobalStyle = createGlobalStyle`
 
   html {
     background: url(${sky}) no-repeat center center fixed;
+    background-color: hsl(230, 100%, 30%, 0.4);
+    background-blend-mode: screen;
+    scroll-behavior: smooth;
   }
 
   h1 {
@@ -73,3 +76,46 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 export default GlobalStyle;
+
+// Animation
+export const slideInBottom = keyframes`
+	from {
+		transform: translateY(200px);
+		opacity: 0;
+	}
+	to {
+		transform: translateY(0);
+		opacity: 1;
+	}
+`;
+
+export const slideInLeft = keyframes`
+	from {
+		transform: translateX(-100px);
+		opacity: 0;
+	}
+	to {
+		transform: translateX(0);
+		opacity: 1;
+	}
+`;
+
+export const slideInRight = keyframes`
+	from {
+		transform: translateX(100px);
+		opacity: 0;
+	}
+	to {
+		transform: translateX(0);
+		opacity: 1;
+	}
+`;
+
+export const fadeIn = keyframes`
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+`;

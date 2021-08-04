@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
-import { Search, MapPin } from 'react-feather';
+import { fadeIn } from '../styles/GlobalStyle';
 import { CSSTransition } from 'react-transition-group';
 
 import Current from '../components/Current';
@@ -17,6 +17,8 @@ import {
 	getCoordsWeather,
 	getCityWeather,
 } from '../redux/actions/weatherActions';
+import SearchForm from '../components/SearchForm';
+import MenuSelect from '../components/MenuSelect';
 
 const Home = () => {
 	const [city, setCity] = useState('');
@@ -95,50 +97,30 @@ const Home = () => {
 
 				<Menu>
 					<MenuTop>
-						<div className='menu__top__select' onClick={getGeolocation}>
-							<MapPin color='#fff' size={36} />
-							<p>Location</p>
-						</div>
-
-						<div className='vl'></div>
-
-						<div
-							className='menu__top__select'
-							onClick={() => setShowSearch(!showSearch)}
-						>
-							<Search color='#fff' size={36} />
-							<p>Search</p>
-						</div>
+						<MenuSelect
+							getGeolocation={getGeolocation}
+							setShowSearch={setShowSearch}
+							showSearch={showSearch}
+						/>
 					</MenuTop>
 
 					<CSSTransition
 						in={showSearch}
-						timeout={100}
+						timeout={{
+							appear: 100,
+							enter: 100,
+							exit: 100,
+						}}
+						appear
 						mountOnEnter
 						unmountOnExit
 					>
 						<MenuBottom>
-							<div className='menu__bottom__form'>
-								<SearchInput>
-									<form onSubmit={weatherHandler}>
-										<input
-											name='city'
-											type='text'
-											placeholder='Enter city & country'
-											value={city}
-											onChange={cityHandler}
-										/>
-										<button
-											onClick={weatherHandler}
-											onTouchStart={weatherHandler}
-											type='submit'
-										>
-											Get Weather
-										</button>
-									</form>
-								</SearchInput>
-								<p>For best results, enter postcode, city & country.</p>
-							</div>
+							<SearchForm
+								weatherHandler={weatherHandler}
+								city={city}
+								cityHandler={cityHandler}
+							/>
 						</MenuBottom>
 					</CSSTransition>
 				</Menu>
@@ -225,6 +207,7 @@ const Menu = styled.div`
 	-webkit-backdrop-filter: blur(20px);
 	border-radius: 10px;
 	border: 1px solid hsl(0, 0%, 100%, 0.2);
+	animation: ${fadeIn} 0.6s ease-in 0s 1 normal forwards running;
 
 	p {
 		font-weight: 400;
@@ -232,42 +215,26 @@ const Menu = styled.div`
 `;
 
 const MenuTop = styled.div`
-	width: 90%;
+	width: 100%;
 	height: 5rem;
-	display: flex;
-	align-items: center;
-	justify-content: space-evenly;
-	margin: 0 auto;
-
-	.menu__top__select {
-		display: flex;
-		flex-direction: column;
-		height: 100%;
-		align-items: center;
-		justify-content: space-around;
-		cursor: pointer;
-	}
-
-	.vl {
-		border-left: 1px dashed white;
-		height: 80%;
-		margin: 0 2rem;
-	}
 `;
 
 const MenuBottom = styled.div`
-	margin-top: 2rem;
 	height: 0rem;
+	width: 90%;
+	margin-top: 2rem;
 
 	&.enter {
 		opacity: 0;
 		height: 0rem;
 	}
+
 	&.enter-active {
 		opacity: 1;
 		height: 5rem;
 		transition: opacity 500ms, height 200ms;
 	}
+
 	&.enter-done {
 		height: 5rem;
 	}
@@ -286,45 +253,6 @@ const MenuBottom = styled.div`
 		p {
 			font-size: 0.75rem;
 			text-align: center;
-		}
-	}
-`;
-
-const SearchInput = styled.div`
-	margin-bottom: 0.5rem;
-
-	form {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		padding: 0.75rem;
-		border-radius: 2rem;
-		border: 1px solid white;
-		background: hsl(208, 21%, 88%);
-	}
-
-	input {
-		background: transparent;
-		border: none;
-		outline: none;
-		color: #555;
-		font-size: 0.8rem;
-		font-family: 'SourceSansPro SemiBold';
-		text-align: center;
-		text-transform: capitalize;
-
-		input:focus {
-			background: none;
-		}
-	}
-
-	button {
-		display: none;
-	}
-
-	@media (min-width: 500px) {
-		input {
-			font-size: 1rem;
 		}
 	}
 `;

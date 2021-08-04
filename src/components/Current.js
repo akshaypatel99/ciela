@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { formatTime } from '../utils/convertUnixTime';
 import styled from 'styled-components';
+import { fadeIn } from '../styles/GlobalStyle';
 import convertIcon from '../utils/convertIcon';
 import convertWindDirection from '../utils/convertWindDirection';
 import Alert from './Alert';
@@ -119,6 +120,7 @@ const Current = ({ city }) => {
 const StyledCurrent = styled.div`
 	margin-bottom: 4rem;
 	position: relative;
+	animation: ${fadeIn} 0.6s ease-in 0s 1 normal forwards running;
 
 	.currently__title {
 		margin-bottom: 1rem;

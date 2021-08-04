@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { formatTime } from '../utils/convertUnixTime';
 import convertIcon from '../utils/convertIcon';
 import styled from 'styled-components';
+import { slideInRight } from '../styles/GlobalStyle';
 
 const Hourly = () => {
 	const isLoading = useSelector((state) => state.isLoading);
@@ -46,6 +47,7 @@ const Hourly = () => {
 
 const StyledHourly = styled.div`
 	margin-bottom: 3rem;
+	animation: ${slideInRight} 0.6s ease-in 0s 1 normal forwards running;
 
 	.hourly__title {
 		margin-bottom: 0.5rem;

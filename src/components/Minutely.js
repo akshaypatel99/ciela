@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux';
 import { rainfall, rainfallKey } from '../utils/rainfall';
 import styled from 'styled-components';
+import { slideInBottom } from '../styles/GlobalStyle';
 import { formatTime } from '../utils/convertUnixTime';
 
 const Hourly = () => {
@@ -112,6 +113,7 @@ const Hourly = () => {
 
 const StyledMinutely = styled.div`
 	margin-bottom: 2rem;
+	animation: ${slideInBottom} 0.6s ease-in 0s 1 normal forwards running;
 
 	.minutely__title {
 		margin-bottom: 1rem;
