@@ -69,7 +69,6 @@ const StyledDaily = styled.div`
 		margin-bottom: 0.5rem;
 
 		h2 {
-			/* font-family: 'Metropolis SemiBold'; */
 			font-family: 'SourceSansPro Bold';
 		}
 	}
@@ -137,7 +136,6 @@ const DailySummary = styled.div`
 		h4 {
 			font-size: 1.4rem;
 			margin-bottom: 0.75rem;
-			/* font-family: 'Metropolis Medium'; */
 			font-family: 'SourceSansPro SemiBold';
 		}
 
@@ -178,7 +176,6 @@ const DailySummary = styled.div`
 
 		h3 {
 			margin-bottom: 0.5rem;
-			/* font-family: 'Metropolis Medium'; */
 			font-family: 'SourceSansPro SemiBold';
 		}
 

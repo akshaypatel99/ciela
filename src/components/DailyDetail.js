@@ -198,7 +198,6 @@ const DayDetail = styled.div`
 
 	.dailydtl__title {
 		h2 {
-			/* font-family: 'Metropolis Medium'; */
 			font-family: 'SourceSansPro SemiBold';
 		}
 	}
@@ -226,7 +225,6 @@ const DayDetail = styled.div`
 		&__desc {
 			h4 {
 				text-transform: capitalize;
-				/* font-family: 'Metropolis Medium'; */
 				font-family: 'SourceSansPro SemiBold';
 				text-align: center;
 			}
@@ -253,7 +251,6 @@ const DayDetail = styled.div`
 
 				h2 {
 					font-size: 3rem;
-					/* font-family: 'Metropolis SemiBold'; */
 					font-family: 'SourceSansPro SemiBold';
 
 					span {

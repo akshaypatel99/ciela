@@ -1,34 +1,11 @@
 import { createGlobalStyle } from 'styled-components';
 import sky from '../assets/images/sky.jpg';
-import Metropolis from '../assets/fonts/Metropolis-Regular.woff2';
-import MetropolisMedium from '../assets/fonts/Metropolis-Medium.woff2';
-import MetropolisSemiBold from '../assets/fonts/Metropolis-SemiBold.woff2';
 import SourceSansPro from '../assets/fonts/source-sans-pro-v14-latin-regular.woff2';
 import SourceSansProBold from '../assets/fonts/source-sans-pro-v14-latin-700.woff2';
 import SourceSansProSemiBold from '../assets/fonts/source-sans-pro-v14-latin-600.woff2';
 import Playball from '../assets/fonts/Playball-Regular.ttf';
 
 const GlobalStyle = createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css2?family=Playball&family=Poppins&display=swap');
-
-  @font-face {
-    font-family: 'Metropolis';
-    font-style: normal;
-    font-weight: 400;
-    src: url(${Metropolis}) format('woff2');
-  }
-  @font-face {
-    font-family: 'Metropolis Medium';
-    font-style: normal;
-    font-weight: 500;
-    src: url(${MetropolisMedium}) format('woff2');
-  }
-  @font-face {
-    font-family: 'Metropolis SemiBold';
-    font-style: normal;
-    font-weight: 600;
-    src: url(${MetropolisSemiBold}) format('woff2');
-  }
   @font-face {
     font-family: 'Playball';
     font-style: normal;

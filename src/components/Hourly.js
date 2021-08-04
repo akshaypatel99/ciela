@@ -51,7 +51,6 @@ const StyledHourly = styled.div`
 		margin-bottom: 0.5rem;
 
 		h2 {
-			/* font-family: 'Metropolis SemiBold'; */
 			font-family: 'SourceSansPro Bold';
 		}
 	}

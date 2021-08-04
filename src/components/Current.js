@@ -124,7 +124,6 @@ const StyledCurrent = styled.div`
 		margin-bottom: 1rem;
 
 		h2 {
-			/* font-family: 'Metropolis SemiBold'; */
 			font-family: 'SourceSansPro Bold';
 		}
 	}
@@ -181,7 +180,6 @@ const CurrentContainer = styled.div`
 		margin: 1rem 0rem;
 
 		h1 {
-			/* font-family: 'Metropolis SemiBold'; */
 			font-family: 'SourceSansPro SemiBold';
 			font-size: 3.5rem;
 
@@ -198,7 +196,6 @@ const CurrentContainer = styled.div`
 
 	.current__desc h3 {
 		text-transform: capitalize;
-		/* font-family: 'Metropolis SemiBold'; */
 		font-family: 'SourceSansPro Bold';
 		text-align: center;
 	}

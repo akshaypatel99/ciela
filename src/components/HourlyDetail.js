@@ -167,7 +167,6 @@ const HourDetail = styled.div`
 
 	.hourlydtl__title {
 		h2 {
-			/* font-family: 'Metropolis SemiBold'; */
 			font-family: 'SourceSansPro SemiBold';
 		}
 	}
@@ -197,7 +196,6 @@ const HourDetail = styled.div`
 
 			h4 {
 				text-transform: capitalize;
-				/* font-family: 'Metropolis Medium'; */
 				font-family: 'SourceSansPro SemiBold';
 				text-align: center;
 			}
@@ -218,7 +216,6 @@ const HourDetail = styled.div`
 
 			h2 {
 				font-size: 3.5rem;
-				/* font-family: 'Metropolis SemiBold'; */
 				font-family: 'SourceSansPro Bold';
 			}
 		}

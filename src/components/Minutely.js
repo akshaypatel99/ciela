@@ -117,7 +117,6 @@ const StyledMinutely = styled.div`
 		margin-bottom: 1rem;
 
 		h2 {
-			/* font-family: 'Metropolis SemiBold'; */
 			font-family: 'SourceSansPro Bold';
 		}
 	}
