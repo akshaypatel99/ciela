@@ -1,5 +1,5 @@
 import { createGlobalStyle, keyframes } from 'styled-components';
-import sky from '../assets/images/sky.jpg';
+import sky from '../assets/images/sky4.webp';
 import SourceSansPro from '../assets/fonts/source-sans-pro-v14-latin-regular.woff2';
 import SourceSansProBold from '../assets/fonts/source-sans-pro-v14-latin-700.woff2';
 import SourceSansProSemiBold from '../assets/fonts/source-sans-pro-v14-latin-600.woff2';
@@ -41,8 +41,6 @@ const GlobalStyle = createGlobalStyle`
 
   html {
     background: url(${sky}) no-repeat center center fixed;
-    background-color: hsl(230, 100%, 30%, 0.4);
-    background-blend-mode: screen;
     scroll-behavior: smooth;
   }
 
