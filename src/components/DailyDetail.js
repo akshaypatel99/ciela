@@ -1,3 +1,4 @@
+import { useRef, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useHistory, Link } from 'react-router-dom';
 import { formatTime, formatDayDate } from '../utils/convertUnixTime';
@@ -22,8 +23,8 @@ const DailyDetail = ({ pathId }) => {
 	const isLoading = useSelector((state) => state.isLoading);
 	const { timezoneOffset } = useSelector((state) => state.weather);
 	const history = useHistory();
+	const closeRef = useRef();
 
-	// Exit Detail
 	const exitDetailHandler = (e) => {
 		const element = e.target;
 		if (element.classList.contains('shadow')) {
@@ -44,6 +45,31 @@ const DailyDetail = ({ pathId }) => {
 		)
 	);
 
+	useEffect(() => {
+		closeRef.current.focus();
+	}, []);
+
+	useEffect(() => {
+		function onKeyDown(event) {
+			const escape = event.key === 'Escape';
+			const isLeft = event.key === 'ArrowLeft';
+			const isRight = event.key === 'ArrowRight';
+
+			if (escape) {
+				history.push('/');
+			} else if (index > 0 && isLeft) {
+				history.push(`/daily/${day.dt - 86400}`);
+			} else if (index < 7 && isRight) {
+				history.push(`/daily/${day.dt + 86400}`);
+			}
+		}
+		document.body.addEventListener('keydown', onKeyDown);
+
+		return () => {
+			document.body.removeEventListener('keydown', onKeyDown);
+		};
+	}, [day.dt, index, history]);
+
 	return (
 		<>
 			{!isLoading && (
@@ -54,7 +80,16 @@ const DailyDetail = ({ pathId }) => {
 								<h2>{formatDayDate(day.dt, timezoneOffset)}</h2>
 							</div>
 
-							<div className='dailydtl__close'>
+							<div
+								className='dailydtl__close'
+								ref={closeRef}
+								tabindex='5'
+								onKeyDown={(event) => {
+									if (event.key === 'Enter') {
+										history.push('/');
+									}
+								}}
+							>
 								<X onClick={() => history.push('/')} />
 							</div>
 

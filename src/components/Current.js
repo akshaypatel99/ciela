@@ -32,7 +32,16 @@ const Current = ({ city }) => {
 							<h2>Currently</h2>
 						</div>
 
-						<div className='warning' onClick={() => setShowAlert(!showAlert)}>
+						<div
+							className='warning'
+							tabindex='4'
+							onClick={() => setShowAlert(!showAlert)}
+							onKeyDown={(event) => {
+								if (event.key === 'Enter') {
+									setShowAlert(!showAlert);
+								}
+							}}
+						>
 							<AlertTriangle />
 						</div>
 

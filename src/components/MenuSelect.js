@@ -4,7 +4,16 @@ import { Search, MapPin } from 'react-feather';
 const MenuSelect = ({ getGeolocation, setShowSearch, showSearch }) => {
 	return (
 		<StyledSelect>
-			<div className='menu__top__select' onClick={getGeolocation}>
+			<div
+				className='menu__top__select'
+				tabindex='1'
+				onClick={getGeolocation}
+				onKeyDown={(event) => {
+					if (event.key === 'Enter') {
+						getGeolocation();
+					}
+				}}
+			>
 				<MapPin color='#fff' size={36} />
 				<p>Location</p>
 			</div>
@@ -13,7 +22,13 @@ const MenuSelect = ({ getGeolocation, setShowSearch, showSearch }) => {
 
 			<div
 				className='menu__top__select'
+				tabindex='2'
 				onClick={() => setShowSearch(!showSearch)}
+				onKeyUp={(event) => {
+					if (event.key === 'Enter') {
+						setShowSearch(!showSearch);
+					}
+				}}
 			>
 				<Search color='#fff' size={36} />
 				<p>Search</p>

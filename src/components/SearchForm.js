@@ -1,6 +1,19 @@
+import { useRef, useEffect } from 'react';
 import styled from 'styled-components';
 
-const SearchForm = ({ weatherHandler, city, cityHandler }) => {
+const SearchForm = ({
+	weatherHandler,
+	city,
+	cityHandler,
+	showSearch,
+	setShowSearch,
+}) => {
+	const inputRef = useRef();
+
+	useEffect(() => {
+		inputRef.current.focus();
+	}, []);
+
 	return (
 		<SearchInput>
 			<form onSubmit={weatherHandler}>
@@ -10,9 +23,21 @@ const SearchForm = ({ weatherHandler, city, cityHandler }) => {
 					placeholder='Enter city & country'
 					value={city}
 					onChange={cityHandler}
+					ref={inputRef}
+					tabindex='3'
+					onKeyDown={(event) => {
+						if (event.key === 'Escape') {
+							setShowSearch(!showSearch);
+						}
+					}}
 				/>
 				<button
 					onClick={weatherHandler}
+					onKeyDown={(event) => {
+						if (event.key === 'Enter') {
+							weatherHandler();
+						}
+					}}
 					onTouchStart={weatherHandler}
 					type='submit'
 				>

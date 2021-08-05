@@ -120,6 +120,8 @@ const Home = () => {
 								weatherHandler={weatherHandler}
 								city={city}
 								cityHandler={cityHandler}
+								setShowSearch={setShowSearch}
+								showSearch={showSearch}
 							/>
 						</MenuBottom>
 					</CSSTransition>
