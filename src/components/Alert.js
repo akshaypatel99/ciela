@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { formatDayDate } from '../utils/convertUnixTime';
 
 const Alert = () => {
-	// const isLoading = useSelector((state) => state.isLoading);
 	const { alerts, timezoneOffset } = useSelector((state) => state.weather);
 
 	let message;

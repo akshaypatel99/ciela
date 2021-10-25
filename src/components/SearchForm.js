@@ -59,7 +59,7 @@ const SearchInput = styled.div`
 		align-items: center;
 		justify-content: center;
 		padding: 0.75rem;
-		border-radius: 2rem;
+		border-radius: 1.5rem;
 		border: 1px solid white;
 		background: hsl(208, 21%, 88%);
 	}
@@ -68,9 +68,7 @@ const SearchInput = styled.div`
 		background: transparent;
 		border: none;
 		outline: none;
-		color: #555;
-		font-size: 0.8rem;
-		font-family: 'SourceSansPro SemiBold';
+		color: #333;
 		text-align: center;
 		text-transform: capitalize;
 
@@ -84,14 +82,7 @@ const SearchInput = styled.div`
 	}
 
 	p {
-		font-size: 0.75rem;
 		text-align: center;
 		padding-top: 0.75rem;
-	}
-
-	@media (min-width: 500px) {
-		input {
-			font-size: 1rem;
-		}
 	}
 `;

@@ -39,13 +39,13 @@ const Daily = () => {
 											<div className='daily__small'>
 												<div className='daily__wind'>
 													<Wind />
-													<p>
+													<h6>
 														{Math.round(dp.wind_speed * 2.237).toFixed(0)} mph
-													</p>
+													</h6>
 												</div>
 												<div className='daily__por'>
 													<Umbrella />
-													<p>{(dp.pop * 100).toFixed(0)}%</p>
+													<h6>{(dp.pop * 100).toFixed(0)}%</h6>
 												</div>
 											</div>
 											<div className='daily__temp'>
@@ -69,10 +69,6 @@ const StyledDaily = styled.div`
 
 	.daily__title {
 		margin-bottom: 0.5rem;
-
-		h2 {
-			font-family: 'SourceSansPro Bold';
-		}
 	}
 `;
 
@@ -126,7 +122,7 @@ const DailySummary = styled.div`
 		justify-content: space-between;
 
 		svg,
-		p {
+		h6 {
 			margin-right: 0.5rem;
 		}
 	}
@@ -138,12 +134,12 @@ const DailySummary = styled.div`
 		h4 {
 			font-size: 1.4rem;
 			margin-bottom: 0.75rem;
-			font-family: 'SourceSansPro SemiBold';
+			text-transform: uppercase;
 		}
 
 		p {
-			text-transform: capitalize;
 			padding-top: 0.5rem;
+			text-transform: uppercase;
 		}
 	}
 
@@ -178,7 +174,6 @@ const DailySummary = styled.div`
 
 		h3 {
 			margin-bottom: 0.5rem;
-			font-family: 'SourceSansPro SemiBold';
 		}
 
 		h4 {

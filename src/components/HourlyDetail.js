@@ -90,7 +90,7 @@ const HourlyDetail = ({ pathId }) => {
 						<div className='hourlydtl'>
 							<div className='hourlydtl__top'>
 								<div className='hourlydtl__top__desc'>
-									<h4>{hour.weather[0].description}</h4>
+									<h3>{hour.weather[0].description}</h3>
 								</div>
 
 								<div className='hourlydtl__top__weather'>
@@ -105,44 +105,44 @@ const HourlyDetail = ({ pathId }) => {
 								<div className='hourlydtl__bottom__info'>
 									<div className='hourlydtl__bottom__info__icons'>
 										<Thermometer />
-										<p>Feels like: {hour.feels_like.toFixed(0)}&#176;C</p>
+										<h6>Feels like: {hour.feels_like.toFixed(0)}&#176;C</h6>
 									</div>
 									<div className='hourlydtl__bottom__info__icons'>
 										<Cloud />
-										<p>{hour.clouds}% cloudy</p>
+										<h6>{hour.clouds}% cloudy</h6>
 									</div>
 
 									<div className='hourlydtl__bottom__info__icons'>
 										<Umbrella />
-										<p>{(hour.pop * 100).toFixed(0)}% chance of rain</p>
+										<h6>{(hour.pop * 100).toFixed(0)}% chance of rain</h6>
 									</div>
 
 									<div className='hourlydtl__bottom__info__icons'>
 										<Sun />
-										<p>UV Index: {hour.uvi}</p>
+										<h6>UV Index: {hour.uvi}</h6>
 									</div>
 
 									<div className='hourlydtl__bottom__info__icons'>
 										<Droplet />
-										<p>{hour.humidity}% humidity</p>
+										<h6>{hour.humidity}% humidity</h6>
 									</div>
 
 									<div className='hourlydtl__bottom__info__icons'>
 										<LifeBuoy />
-										<p>Pressure: {hour.pressure} hPa</p>
+										<h6>Pressure: {hour.pressure} hPa</h6>
 									</div>
 
 									<div className='hourlydtl__bottom__info__icons'>
 										<Eye />
-										<p>Visibility: {hour.visibility} metres</p>
+										<h6>Visibility: {hour.visibility} metres</h6>
 									</div>
 
 									<div className='hourlydtl__bottom__info__icons'>
 										<Wind />
-										<p>
+										<h6>
 											{Math.round(hour.wind_speed * 2.237).toFixed(0)} mph{' '}
 											{convertWindDirection(hour.wind_deg)} wind
-										</p>
+										</h6>
 									</div>
 								</div>
 							</div>
@@ -201,12 +201,6 @@ const HourDetail = styled.div`
 	border-radius: 10px;
 	border: 1px solid hsl(0, 0%, 100%, 0.2);
 
-	.hourlydtl__title {
-		h2 {
-			font-family: 'SourceSansPro SemiBold';
-		}
-	}
-
 	.hourlydtl__close {
 		position: absolute;
 		top: 1.5rem;
@@ -230,9 +224,8 @@ const HourDetail = styled.div`
 		&__desc {
 			width: 100%;
 
-			h4 {
-				text-transform: capitalize;
-				font-family: 'SourceSansPro SemiBold';
+			h3 {
+				text-transform: uppercase;
 				text-align: center;
 			}
 		}
@@ -252,7 +245,6 @@ const HourDetail = styled.div`
 
 			h2 {
 				font-size: 3.5rem;
-				font-family: 'SourceSansPro Bold';
 			}
 		}
 	}
@@ -272,7 +264,7 @@ const HourDetail = styled.div`
 			}
 
 			svg,
-			p {
+			h6 {
 				margin-right: 0.75rem;
 			}
 

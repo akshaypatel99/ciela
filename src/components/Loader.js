@@ -107,7 +107,7 @@ const Loading = styled.div`
 	h3 {
 		margin-top: 1rem;
 		font-size: 1.4rem;
-		font-family: 'SourceSansPro SemiBold';
+		text-transform: uppercase;
 	}
 `;
 

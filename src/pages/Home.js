@@ -185,13 +185,12 @@ const Banner = styled.div`
 	margin-bottom: 3rem;
 
 	h1 {
-		font-family: 'Playball', sans-serif;
-		font-style: italic;
 		margin-bottom: 1rem;
 	}
 
 	h4 {
-		font-family: 'SourceSansPro SemiBold';
+		text-transform: uppercase;
+		font-weight: bold;
 	}
 `;
 
@@ -210,10 +209,6 @@ const Menu = styled.div`
 	border-radius: 10px;
 	border: 1px solid hsl(0, 0%, 100%, 0.2);
 	animation: ${fadeIn} 0.6s ease-in 0s 1 normal forwards running;
-
-	p {
-		font-weight: 400;
-	}
 `;
 
 const MenuTop = styled.div`
@@ -253,7 +248,6 @@ const MenuBottom = styled.div`
 
 	.menu__bottom__form {
 		p {
-			font-size: 0.75rem;
 			text-align: center;
 		}
 	}

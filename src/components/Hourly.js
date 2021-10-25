@@ -51,10 +51,6 @@ const StyledHourly = styled.div`
 
 	.hourly__title {
 		margin-bottom: 0.5rem;
-
-		h2 {
-			font-family: 'SourceSansPro Bold';
-		}
 	}
 `;
 
@@ -101,10 +97,6 @@ const HourlySummary = styled.div`
 		flex-direction: column;
 		justify-content: space-around;
 		align-items: center;
-	}
-
-	h5 {
-		font-family: 'SourceSansPro Bold';
 	}
 `;
 

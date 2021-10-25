@@ -96,7 +96,7 @@ const DailyDetail = ({ pathId }) => {
 							<div className='dailydtl'>
 								<div className='dailydtl__top'>
 									<div className='dailydtl__top__desc'>
-										<h4>{day.weather[0].description}</h4>
+										<h3>{day.weather[0].description}</h3>
 									</div>
 
 									<div className='dailydtl__top__weather'>
@@ -118,59 +118,59 @@ const DailyDetail = ({ pathId }) => {
 									<div className='dailydtl__bottom__info'>
 										<div className='dailydtl__bottom__info__icons'>
 											<Sunrise />
-											<p>{formatTime(day.sunrise, timezoneOffset)}</p>
+											<h6>{formatTime(day.sunrise, timezoneOffset)}</h6>
 										</div>
 										<div className='dailydtl__bottom__info__icons'>
 											<Sunset />
-											<p>{formatTime(day.sunset, timezoneOffset)}</p>
+											<h6>{formatTime(day.sunset, timezoneOffset)}</h6>
 										</div>
 										<div className='dailydtl__bottom__info__icons'>
 											<Sun />
-											<p>UV Index: {day.uvi}</p>
+											<h6>UV Index: {day.uvi}</h6>
 										</div>
 
 										<div className='dailydtl__bottom__info__icons'>
 											<Cloud />
-											<p>{day.clouds}% cloudy</p>
+											<h6>{day.clouds}% cloudy</h6>
 										</div>
 
 										<div className='dailydtl__bottom__info__icons'>
 											<Umbrella />
-											<p>{(day.pop * 100).toFixed(0)}% chance of rain</p>
+											<h6>{(day.pop * 100).toFixed(0)}% chance of rain</h6>
 										</div>
 
 										<div className='dailydtl__bottom__info__icons'>
 											<Droplet />
-											<p>{day.humidity}% humidity</p>
+											<h6>{day.humidity}% humidity</h6>
 										</div>
 
 										<div className='dailydtl__bottom__info__icons'>
 											<LifeBuoy />
-											<p>Pressure: {day.pressure} hPa</p>
+											<h6>Pressure: {day.pressure} hPa</h6>
 										</div>
 
 										<div className='dailydtl__bottom__info__icons'>
 											<Wind />
-											<p className='wind'>
+											<h6 className='wind'>
 												{Math.round(day.wind_speed * 2.237).toFixed(0)} mph{' '}
 												{convertWindDirection(day.wind_deg)} wind
-											</p>
+											</h6>
 										</div>
 
 										<div className='dailydtl__bottom__info__temp__feel'>
 											<div className='temp'>
 												<h6>Temperature:</h6>
-												<p>Day: {day.temp.day.toFixed(1)}&#176;C</p>
-												<p>Eve: {day.temp.eve.toFixed(1)}&#176;C</p>
-												<p>Morn: {day.temp.morn.toFixed(1)}&#176;C</p>
-												<p>Night: {day.temp.night.toFixed(1)}&#176;C</p>
+												<h6>Day: {day.temp.day.toFixed(1)}&#176;C</h6>
+												<h6>Eve: {day.temp.eve.toFixed(1)}&#176;C</h6>
+												<h6>Morn: {day.temp.morn.toFixed(1)}&#176;C</h6>
+												<h6>Night: {day.temp.night.toFixed(1)}&#176;C</h6>
 											</div>
 											<div className='feel'>
 												<h6>Feels Like:</h6>
-												<p>Day: {day.feels_like.day.toFixed(1)}&#176;C</p>
-												<p>Eve: {day.feels_like.eve.toFixed(1)}&#176;C</p>
-												<p>Morn: {day.feels_like.morn.toFixed(1)}&#176;C</p>
-												<p>Night: {day.feels_like.night.toFixed(1)}&#176;C</p>
+												<h6>Day: {day.feels_like.day.toFixed(1)}&#176;C</h6>
+												<h6>Eve: {day.feels_like.eve.toFixed(1)}&#176;C</h6>
+												<h6>Morn: {day.feels_like.morn.toFixed(1)}&#176;C</h6>
+												<h6>Night: {day.feels_like.night.toFixed(1)}&#176;C</h6>
 											</div>
 										</div>
 									</div>
@@ -233,7 +233,7 @@ const DayDetail = styled.div`
 
 	.dailydtl__title {
 		h2 {
-			font-family: 'SourceSansPro SemiBold';
+			text-transform: uppercase;
 		}
 	}
 
@@ -258,9 +258,8 @@ const DayDetail = styled.div`
 		flex-direction: column;
 
 		&__desc {
-			h4 {
-				text-transform: capitalize;
-				font-family: 'SourceSansPro SemiBold';
+			h3 {
+				text-transform: uppercase;
 				text-align: center;
 			}
 		}
@@ -286,11 +285,6 @@ const DayDetail = styled.div`
 
 				h2 {
 					font-size: 3rem;
-					font-family: 'SourceSansPro SemiBold';
-
-					span {
-						font-family: 'SourceSansPro Bold';
-					}
 				}
 			}
 		}
@@ -311,7 +305,7 @@ const DayDetail = styled.div`
 			}
 
 			svg,
-			p {
+			h6 {
 				margin-right: 0.75rem;
 			}
 
@@ -331,7 +325,7 @@ const DayDetail = styled.div`
 				.feel {
 					min-width: 120px;
 
-					p {
+					h6 {
 						margin-top: 0.5rem;
 					}
 				}

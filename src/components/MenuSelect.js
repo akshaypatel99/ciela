@@ -54,6 +54,7 @@ const StyledSelect = styled.div`
 		align-items: center;
 		justify-content: space-around;
 		cursor: pointer;
+		text-transform: uppercase;
 	}
 
 	.vl {

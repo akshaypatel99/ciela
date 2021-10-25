@@ -1,48 +1,44 @@
 import { createGlobalStyle, keyframes } from 'styled-components';
-import sky from '../assets/images/sky.webp';
-import SourceSansPro from '../assets/fonts/source-sans-pro-v14-latin-regular.woff2';
-import SourceSansProBold from '../assets/fonts/source-sans-pro-v14-latin-700.woff2';
-import SourceSansProSemiBold from '../assets/fonts/source-sans-pro-v14-latin-600.woff2';
-import Playball from '../assets/fonts/Playball-Regular.ttf';
+import PompiereTTF from '../assets/fonts/Pompiere-Regular.ttf';
+import PompiereWoff from '../assets/fonts/Pompiere.woff';
+import PompiereWoff2 from '../assets/fonts/Pompiere.woff2';
 
 const GlobalStyle = createGlobalStyle`
   @font-face {
-    font-family: 'Playball';
+    font-family: 'Pompiere';
     font-style: normal;
     font-weight: 400;
-    src: url(${Playball}) format('ttf');
+    font-display: auto;
+    src: url(${PompiereWoff}) format('woff'), url(${PompiereWoff2}) format('woff2'), url(${PompiereTTF}) format('ttf'),;
   }
-  @font-face {
-    font-family: 'SourceSansPro';
-    font-style: normal;
-    font-weight: 400;
-    src: url(${SourceSansPro}) format('woff2');
-  }
-  @font-face {
-    font-family: 'SourceSansPro Bold';
-    font-style: normal;
-    font-weight: 700;
-    src: url(${SourceSansProBold}) format('woff2');
-  }
-  @font-face {
-    font-family: 'SourceSansPro SemiBold';
-    font-style: normal;
-    font-weight: 600;
-    src: url(${SourceSansProSemiBold}) format('woff2');
-  }
+  @font-face {font-family: "Pompiere"; src: url("//db.onlinewebfonts.com/t/fd4f7a6c707089988f46815c42c5fc8d.eot"); src: url("//db.onlinewebfonts.com/t/fd4f7a6c707089988f46815c42c5fc8d.eot?#iefix") format("embedded-opentype"), url("//db.onlinewebfonts.com/t/fd4f7a6c707089988f46815c42c5fc8d.woff2") format("woff2"), url("//db.onlinewebfonts.com/t/fd4f7a6c707089988f46815c42c5fc8d.woff") format("woff"), url("//db.onlinewebfonts.com/t/fd4f7a6c707089988f46815c42c5fc8d.ttf") format("truetype"), url("//db.onlinewebfonts.com/t/fd4f7a6c707089988f46815c42c5fc8d.svg#Pompiere") format("svg"); }
 
   * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'SourceSansPro';
+    font-family: 'Pompiere';
     color: hsl(0, 0%, 100%);
   }
 
   html {
-    background: url(${sky}) no-repeat center center fixed;
-    background-size: cover;
+    background: linear-gradient(120deg,#004c82,#00649c,#247db7,#4997d3,#69b1f0,#86cdff) no-repeat center center fixed;
+    background-size: 180% 180%;
+    animation: gradient-animation 8s ease infinite;
     scroll-behavior: smooth;
+
+
+    @keyframes gradient-animation {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
   }
 
   h1 {
@@ -62,15 +58,15 @@ const GlobalStyle = createGlobalStyle`
   }
 
   h5 {
-    font-size: 1rem;
+    font-size: 1.15rem;
   }
 
   h6 {
-    font-size: 1rem;
+    font-size: 1.1rem;
   }
 
-  p {
-    font-size: 0.9rem;
+  input, p {
+    font-size: 1rem;
   }
 `;
 

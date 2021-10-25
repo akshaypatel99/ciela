@@ -70,16 +70,16 @@ const Current = ({ city }) => {
 
 									<div className='current__info'>
 										<div className='current__info__temps'>
-											<p>Feels like: </p>
-											<h6>{Math.round(current.feels_like)}&#176;C</h6>
+											<h6>Feels like: </h6>{' '}
+											<h5>{Math.round(current.feels_like)}&#176;C</h5>
 										</div>
 										<div className='current__info__temps'>
-											<p>High: </p>
-											<h6>{Math.round(daily[0].temp.max)}&#176;C</h6>
+											<h6>High: </h6>{' '}
+											<h5>{Math.round(daily[0].temp.max)}&#176;C</h5>
 										</div>
 										<div className='current__info__temps'>
-											<p>Low: </p>
-											<h6>{Math.round(daily[0].temp.min)}&#176;C</h6>
+											<h6>Low: </h6>{' '}
+											<h5>{Math.round(daily[0].temp.min)}&#176;C</h5>
 										</div>
 									</div>
 								</div>
@@ -88,32 +88,32 @@ const Current = ({ city }) => {
 									<div className='current__extra'>
 										<div className='current__extra__icons'>
 											<Sunrise />
-											<p>{formatTime(current.sunrise, timezoneOffset)}</p>
+											<h6>{formatTime(current.sunrise, timezoneOffset)}</h6>
 										</div>
 										<div className='current__extra__icons'>
 											<Sunset />
-											<p>{formatTime(current.sunset, timezoneOffset)}</p>
+											<h6>{formatTime(current.sunset, timezoneOffset)}</h6>
 										</div>
 
 										<div className='current__extra__icons'>
 											<Sun />
-											<p>UV Index: {current.uvi}</p>
+											<h6>UV Index: {current.uvi}</h6>
 										</div>
 										<div className='current__extra__icons'>
 											<Cloud />
-											<p>{current.clouds}% cloudy</p>
+											<h6>{current.clouds}% cloudy</h6>
 										</div>
 
 										<div className='current__extra__icons'>
 											<Wind />
-											<p className='wind'>
+											<h6 className='wind'>
 												{Math.round(current.wind_speed * 2.237).toFixed(0)} mph{' '}
 												{convertWindDirection(current.wind_deg)} wind
-											</p>
+											</h6>
 										</div>
 										<div className='current__extra__icons'>
 											<Umbrella />
-											<p>{(daily[0].pop * 100).toFixed(0)}% chance of rain</p>
+											<h6>{(daily[0].pop * 100).toFixed(0)}% chance of rain</h6>
 										</div>
 									</div>
 								</div>
@@ -133,10 +133,6 @@ const StyledCurrent = styled.div`
 
 	.currently__title {
 		margin-bottom: 1rem;
-
-		h2 {
-			font-family: 'SourceSansPro Bold';
-		}
 	}
 
 	.warning {
@@ -163,10 +159,6 @@ const CurrentContainer = styled.div`
 		margin-bottom: 2rem;
 		text-transform: capitalize;
 		text-align: center;
-
-		h4 {
-			font-size: 1.4rem;
-		}
 	}
 
 	.current__main {
@@ -191,12 +183,7 @@ const CurrentContainer = styled.div`
 		margin: 1rem 0rem;
 
 		h1 {
-			font-family: 'SourceSansPro SemiBold';
 			font-size: 3.5rem;
-
-			span {
-				font-family: 'SourceSansPro Bold';
-			}
 		}
 
 		img {
@@ -206,8 +193,7 @@ const CurrentContainer = styled.div`
 	}
 
 	.current__desc h3 {
-		text-transform: capitalize;
-		font-family: 'SourceSansPro Bold';
+		text-transform: uppercase;
 		text-align: center;
 	}
 
@@ -216,17 +202,16 @@ const CurrentContainer = styled.div`
 		justify-content: space-between;
 		flex-wrap: wrap;
 
-		h4,
-		p {
-			margin-right: 0.5rem;
-		}
-
 		&__temps {
 			margin-bottom: 1rem;
 			display: flex;
 			white-space: no-wrap;
 			align-items: center;
 			padding: 0.2rem;
+
+			h5 {
+				margin-left: 0.25rem;
+			}
 		}
 	}
 
@@ -247,7 +232,7 @@ const CurrentContainer = styled.div`
 		}
 
 		svg,
-		p {
+		h6 {
 			margin-right: 0.75rem;
 		}
 
@@ -255,6 +240,7 @@ const CurrentContainer = styled.div`
 			display: flex;
 			height: 56px;
 			margin-top: 1rem;
+			margin-left: 0.5rem;
 			align-items: center;
 		}
 	}

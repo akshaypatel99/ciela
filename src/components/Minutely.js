@@ -117,10 +117,6 @@ const StyledMinutely = styled.div`
 
 	.minutely__title {
 		margin-bottom: 1rem;
-
-		h2 {
-			font-family: 'SourceSansPro Bold';
-		}
 	}
 `;
 
@@ -150,10 +146,6 @@ const MinutelyDataPoint = styled.div`
 const TopScale = styled.div`
 	display: flex;
 	justify-content: space-between;
-
-	.increments h6 {
-		font-family: 'SourceSansPro SemiBold';
-	}
 `;
 
 const BottomScale = styled.div`
@@ -174,7 +166,7 @@ const Key = styled.div`
 	.key__title,
 	h4 {
 		margin-bottom: 0.5rem;
-		font-family: 'SourceSansPro SemiBold';
+		text-transform: uppercase;
 	}
 `;
 const KeyContainer = styled.div`
@@ -190,6 +182,11 @@ const KeySquare = styled.div`
 
 	.description {
 		margin-bottom: 0.5rem;
+
+		p {
+			font-size: 0.8rem;
+			text-transform: uppercase;
+		}
 	}
 `;
 
