@@ -1,17 +1,10 @@
 import { createGlobalStyle, keyframes } from 'styled-components';
-import PompiereTTF from '../assets/fonts/Pompiere-Regular.ttf';
-import PompiereWoff from '../assets/fonts/Pompiere.woff';
-import PompiereWoff2 from '../assets/fonts/Pompiere.woff2';
 
 const GlobalStyle = createGlobalStyle`
   @font-face {
-    font-family: 'Pompiere';
-    font-style: normal;
-    font-weight: 400;
-    font-display: auto;
-    src: url(${PompiereWoff}) format('woff'), url(${PompiereWoff2}) format('woff2'), url(${PompiereTTF}) format('ttf'),;
+    font-family: "Pompiere";
+    src: url('https://fonts.googleapis.com/css2?family=Pompiere&display=swap');
   }
-  @font-face {font-family: "Pompiere"; src: url("//db.onlinewebfonts.com/t/fd4f7a6c707089988f46815c42c5fc8d.eot"); src: url("//db.onlinewebfonts.com/t/fd4f7a6c707089988f46815c42c5fc8d.eot?#iefix") format("embedded-opentype"), url("//db.onlinewebfonts.com/t/fd4f7a6c707089988f46815c42c5fc8d.woff2") format("woff2"), url("//db.onlinewebfonts.com/t/fd4f7a6c707089988f46815c42c5fc8d.woff") format("woff"), url("//db.onlinewebfonts.com/t/fd4f7a6c707089988f46815c42c5fc8d.ttf") format("truetype"), url("//db.onlinewebfonts.com/t/fd4f7a6c707089988f46815c42c5fc8d.svg#Pompiere") format("svg"); }
 
   * {
     margin: 0;
