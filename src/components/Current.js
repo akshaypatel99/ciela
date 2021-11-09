@@ -34,6 +34,7 @@ const Current = ({ city }) => {
 
 						<div
 							className='warning'
+							aria-label='weather warning'
 							tabindex='4'
 							onClick={() => setShowAlert(!showAlert)}
 							onKeyDown={(event) => {
@@ -148,7 +149,7 @@ const CurrentContainer = styled.div`
 	min-height: 10rem;
 	width: 100%;
 	margin: 0 auto;
-	background: hsl(0, 0%, 50%, 0.1);
+	background: hsl(0, 0%, 100%, 0.1);
 	box-shadow: 0 20px 40px hsl(0, 0%, 0%, 0.2);
 	backdrop-filter: blur(20px);
 	-webkit-backdrop-filter: blur(20px);

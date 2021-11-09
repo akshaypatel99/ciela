@@ -55,6 +55,10 @@ const StyledSelect = styled.div`
 		justify-content: space-around;
 		cursor: pointer;
 		text-transform: uppercase;
+
+		p {
+			font-size: 1.2rem;
+		}
 	}
 
 	.vl {

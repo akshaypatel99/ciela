@@ -190,7 +190,7 @@ const Banner = styled.div`
 
 	h4 {
 		text-transform: uppercase;
-		font-weight: bold;
+		font-weight: 500;
 	}
 `;
 
@@ -202,7 +202,7 @@ const Menu = styled.div`
 	align-items: center;
 	justify-content: center;
 	padding: 1.5rem;
-	background: hsl(0, 0%, 50%, 0.1);
+	background: hsl(0, 0%, 100%, 0.1);
 	box-shadow: 0 20px 40px hsl(0, 0%, 0%, 0.2);
 	backdrop-filter: blur(20px);
 	-webkit-backdrop-filter: blur(20px);
@@ -266,7 +266,7 @@ const StyledError = styled.div`
 	display: flex;
 	place-items: center;
 	padding: 1rem;
-	background: hsl(0, 0%, 50%, 0.1);
+	background: hsl(0, 0%, 100%, 0.1);
 	box-shadow: 0 8px 16px hsl(0, 0%, 0%, 0.2);
 	backdrop-filter: blur(20px);
 	-webkit-backdrop-filter: blur(20px);

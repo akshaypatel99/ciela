@@ -125,7 +125,7 @@ const MinutelyContainer = styled.div`
 	flex-direction: column;
 	padding: 1.5rem;
 	margin: 0 auto;
-	background: hsl(0, 0%, 50%, 0.1);
+	background: hsl(0, 0%, 100%, 0.1);
 	box-shadow: 0 8px 16px hsl(0, 0%, 0%, 0.2);
 	backdrop-filter: blur(20px);
 	-webkit-backdrop-filter: blur(20px);

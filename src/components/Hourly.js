@@ -82,7 +82,7 @@ const HourlySummary = styled.div`
 	margin-right: 10px;
 	transition: transform 0.2s ease-out;
 	cursor: pointer;
-	background: hsl(0, 0%, 50%, 0.1);
+	background: hsl(0, 0%, 100%, 0.1);
 	box-shadow: 0 5px 10px hsl(0, 0%, 0%, 0.2);
 	backdrop-filter: blur(20px);
 	-webkit-backdrop-filter: blur(20px);
