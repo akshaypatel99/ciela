@@ -45,7 +45,7 @@ const Current = ({ city, method }) => {
 					<AlertTriangle />
 				</div>
 
-				{showAlert && <Alert alerts={alerts} />}
+				{showAlert && <Alert alerts={alerts} timezoneOffset={timezoneOffset} />}
 
 				<CurrentContainer>
 					{isLoading ? (

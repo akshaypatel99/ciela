@@ -1,10 +1,7 @@
-import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { formatDayDate } from '../utils/convertUnixTime';
 
-const Alert = () => {
-	const { alerts, timezoneOffset } = useSelector((state) => state.weather);
-
+const Alert = ({ alerts, timezoneOffset }) => {
 	let message;
 
 	if (Array.isArray(alerts)) {
