@@ -1,46 +1,55 @@
-import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { formatTime } from '../utils/convertUnixTime';
 import convertIcon from '../utils/convertIcon';
 import styled from 'styled-components';
 import { slideInRight } from '../styles/GlobalStyle';
+import useWeather from '../utils/useWeather';
+import Error from './Error';
 
-const Hourly = () => {
-	const isLoading = useSelector((state) => state.isLoading);
-	const { hourly, timezoneOffset } = useSelector((state) => state.weather);
+const Hourly = ({ method }) => {
+	const { data, status, error } = useWeather(method);
+	const { hourly, timezoneOffset } = data || {};
+	const isLoading = status === 'loading';
+	const isError = status === 'error';
 
 	return (
 		<>
-			{!isLoading && hourly && (
-				<StyledHourly>
-					<div className='hourly__title'>
-						<h2>Next 48 Hours</h2>
-					</div>
+			<StyledHourly>
+				<div className='hourly__title'>
+					<h2>Next 48 Hours</h2>
+				</div>
 
-					<HourlyContainer>
-						{hourly &&
-							hourly.map((dp) => (
-								<HourlySummary
-									key={dp.dt}
-									newDay={
-										formatTime(dp.dt, timezoneOffset) === '00:00'
-											? '1px solid #fecb00'
-											: '1px solid hsl(0, 0%, 100%, 0.2)'
-									}
-								>
-									<Link to={`/hourly/${dp.dt}`}>
-										<h5>{formatTime(dp.dt, timezoneOffset)}</h5>
-										<img
-											src={convertIcon(dp.weather[0].icon)}
-											alt={dp.weather[0].main}
-										/>
-										<h5>{Math.round(dp.temp)}&#176;C</h5>
-									</Link>
-								</HourlySummary>
-							))}
-					</HourlyContainer>
-				</StyledHourly>
-			)}
+				<HourlyContainer>
+					{isLoading ? (
+						<h4>Loading...</h4>
+					) : isError ? (
+						<Error error={error} />
+					) : (
+						<>
+							{hourly &&
+								hourly.map((dp) => (
+									<HourlySummary
+										key={dp.dt}
+										newDay={
+											formatTime(dp.dt, timezoneOffset) === '00:00'
+												? '1px solid #fecb00'
+												: '1px solid hsl(0, 0%, 100%, 0.2)'
+										}
+									>
+										<Link to={`/hourly/${dp.dt}`}>
+											<h5>{formatTime(dp.dt, timezoneOffset)}</h5>
+											<img
+												src={convertIcon(dp.weather[0].icon)}
+												alt={dp.weather[0].main}
+											/>
+											<h5>{Math.round(dp.temp)}&#176;C</h5>
+										</Link>
+									</HourlySummary>
+								))}
+						</>
+					)}
+				</HourlyContainer>
+			</StyledHourly>
 		</>
 	);
 };
@@ -61,12 +70,6 @@ const HourlyContainer = styled.div`
 	width: 100%;
 	margin: 0 auto;
 	padding: 1rem 2rem;
-
-	@media (max-width: 500px) {
-		::-webkit-scrollbar {
-			display: none;
-		}
-	}
 `;
 
 const HourlySummary = styled.div`

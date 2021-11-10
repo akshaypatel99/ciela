@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { fadeIn } from '../styles/GlobalStyle';
 import { CSSTransition } from 'react-transition-group';
+import { useGeoPosition } from '../utils/useGeoposition';
 
 import Current from '../components/Current';
 import Daily from '../components/Daily';
@@ -13,10 +13,6 @@ import Loader from '../components/Loader';
 
 import DailyDetail from '../components/DailyDetail';
 import HourlyDetail from '../components/HourlyDetail';
-import {
-	getCoordsWeather,
-	getCityWeather,
-} from '../redux/actions/weatherActions';
 import SearchForm from '../components/SearchForm';
 import MenuSelect from '../components/MenuSelect';
 
@@ -24,15 +20,45 @@ const Home = () => {
 	const [city, setCity] = useState('');
 	const [geoLoading, setGeoLoading] = useState(false);
 	const [showSearch, setShowSearch] = useState(false);
+	const [showResults, setShowResults] = useState(false);
 	const [error, setError] = useState('');
-	const isLoading = useSelector((state) => state.isLoading);
-	const weather = useSelector((state) => state.weather);
-	const apiError = useSelector((state) => state.error);
+	const { status: geoStatus, position, error: geoError } = useGeoPosition();
+	const [method, setMethod] = useState({
+		route: 'coords',
+		position: position || {},
+		city: city || '',
+	});
 
-	const dispatch = useDispatch();
 	const location = useLocation();
 	const pathId = location.pathname.split('/')[2];
 	const pathDiv = location.pathname.split('/')[1];
+
+	const today = new Date().toLocaleDateString('en-GB', {
+		weekday: 'long',
+		year: 'numeric',
+		month: 'long',
+		day: 'numeric',
+	});
+
+	const getGeolocation = () => {
+		if (geoStatus === 'idle' || geoStatus === 'pending') {
+			return setGeoLoading(true);
+		}
+
+		if (geoStatus === 'rejected') {
+			setGeoLoading(false);
+			return setError(geoError.message);
+		}
+
+		if (geoStatus === 'resolved') {
+			setError('');
+			setCity('');
+			setGeoLoading(false);
+			setMethod({ ...method, route: 'coords', position: position });
+			setShowResults(true);
+			return;
+		}
+	};
 
 	const cityHandler = (e) => {
 		e.preventDefault();
@@ -42,52 +68,21 @@ const Home = () => {
 	const weatherHandler = async (e) => {
 		e.preventDefault();
 		setGeoLoading(true);
-		dispatch(getCityWeather(city));
+		setMethod({ ...method, route: 'city', city: city });
 		setGeoLoading(false);
 		setShowSearch(false);
-	};
-
-	const options = {
-		weekday: 'long',
-		year: 'numeric',
-		month: 'long',
-		day: 'numeric',
-	};
-
-	const today = new Date().toLocaleDateString('en-GB', options);
-
-	const coordsWeather = async (position) => {
-		const lat = position.coords.latitude;
-		const lon = position.coords.longitude;
-		console.log('lat', lat, 'lon', lon);
-		dispatch(getCoordsWeather(lat, lon));
-		setCity('');
-		setGeoLoading(false);
-	};
-
-	const coordsError = (error) => {
-		setError(
-			'Unable to find your location. Please try again or use the search box.'
-		);
-		setTimeout(setError(''), 3000);
-		setGeoLoading(false);
-	};
-
-	const getGeolocation = () => {
-		setGeoLoading(true);
-		if (!navigator.geolocation) {
-			setError(
-				'Geolocation is not supported by your browser. Please use the search box.'
-			);
-			setGeoLoading(false);
-		}
-		navigator.geolocation.getCurrentPosition(coordsWeather, coordsError);
+		setShowResults(true);
+		return;
 	};
 
 	return (
 		<StyledHome>
-			{pathDiv === 'daily' && pathId && <DailyDetail pathId={pathId} />}
-			{pathDiv === 'hourly' && pathId && <HourlyDetail pathId={pathId} />}
+			{pathDiv === 'daily' && pathId && (
+				<DailyDetail pathId={pathId} method={method} />
+			)}
+			{pathDiv === 'hourly' && pathId && (
+				<HourlyDetail pathId={pathId} method={method} />
+			)}
 
 			<Container>
 				<Banner>
@@ -133,19 +128,14 @@ const Home = () => {
 							<h4>{error}</h4>
 						</StyledError>
 					)}
-					{apiError && (
-						<StyledError>
-							<h4>{apiError}</h4>
-						</StyledError>
-					)}
-					{geoLoading || isLoading ? <Loader /> : null}
+					{geoLoading ? <Loader /> : null}
 
-					{weather && !isLoading && (
+					{showResults && (
 						<>
-							<Current city={city} />
-							<Daily />
-							<Hourly />
-							<Minutely />
+							<Current city={city} method={method} />
+							<Daily method={method} />
+							<Hourly method={method} />
+							<Minutely method={method} />
 						</>
 					)}
 				</Results>

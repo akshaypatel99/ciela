@@ -1,64 +1,73 @@
-import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { formatDayDate } from '../utils/convertUnixTime';
 import convertIcon from '../utils/convertIcon';
 import styled from 'styled-components';
 import { slideInLeft } from '../styles/GlobalStyle';
 import { Wind, Umbrella } from 'react-feather';
+import useWeather from '../utils/useWeather';
+import Error from './Error';
 
-const Daily = () => {
-	const isLoading = useSelector((state) => state.isLoading);
-	const { daily, timezoneOffset } = useSelector((state) => state.weather);
+const Daily = ({ method }) => {
+	const { data, status, error } = useWeather(method);
+	const { daily, timezoneOffset } = data || {};
+	const isLoading = status === 'loading';
+	const isError = status === 'error';
 
 	return (
 		<>
-			{!isLoading && daily && (
-				<StyledDaily>
-					<div className='daily__title'>
-						<h2>Week Ahead</h2>
-					</div>
+			<StyledDaily>
+				<div className='daily__title'>
+					<h2>Week Ahead</h2>
+				</div>
 
-					<DailyContainer>
-						{daily &&
-							daily.map((dp) => (
-								<DailySummary key={dp.dt}>
-									<Link to={`/daily/${dp.dt}`}>
-										<div className='daily__top'>
-											<div className='daily__main'>
-												<h4>{formatDayDate(dp.dt, timezoneOffset)}</h4>
-												<p>{dp.weather[0].description}</p>
-											</div>
-											<div className='daily__icon'>
-												<img
-													src={convertIcon(dp.weather[0].icon)}
-													alt={dp.weather[0].main}
-												/>
-											</div>
-										</div>
-										<div className='daily__bottom'>
-											<div className='daily__small'>
-												<div className='daily__wind'>
-													<Wind />
-													<h6>
-														{Math.round(dp.wind_speed * 2.237).toFixed(0)} mph
-													</h6>
+				<DailyContainer>
+					{isLoading ? (
+						<h4>Loading...</h4>
+					) : isError ? (
+						<Error error={error} />
+					) : (
+						<>
+							{daily &&
+								daily.map((dp) => (
+									<DailySummary key={dp.dt}>
+										<Link to={`/daily/${dp.dt}`}>
+											<div className='daily__top'>
+												<div className='daily__main'>
+													<h4>{formatDayDate(dp.dt, timezoneOffset)}</h4>
+													<p>{dp.weather[0].description}</p>
 												</div>
-												<div className='daily__por'>
-													<Umbrella />
-													<h6>{(dp.pop * 100).toFixed(0)}%</h6>
+												<div className='daily__icon'>
+													<img
+														src={convertIcon(dp.weather[0].icon)}
+														alt={dp.weather[0].main}
+													/>
 												</div>
 											</div>
-											<div className='daily__temp'>
-												<h3>{Math.round(dp.temp.max)}&#176;C</h3>
-												<h4>{Math.round(dp.temp.min)}&#176;C</h4>
+											<div className='daily__bottom'>
+												<div className='daily__small'>
+													<div className='daily__wind'>
+														<Wind />
+														<h6>
+															{Math.round(dp.wind_speed * 2.237).toFixed(0)} mph
+														</h6>
+													</div>
+													<div className='daily__por'>
+														<Umbrella />
+														<h6>{(dp.pop * 100).toFixed(0)}%</h6>
+													</div>
+												</div>
+												<div className='daily__temp'>
+													<h3>{Math.round(dp.temp.max)}&#176;C</h3>
+													<h4>{Math.round(dp.temp.min)}&#176;C</h4>
+												</div>
 											</div>
-										</div>
-									</Link>
-								</DailySummary>
-							))}
-					</DailyContainer>
-				</StyledDaily>
-			)}
+										</Link>
+									</DailySummary>
+								))}
+						</>
+					)}
+				</DailyContainer>
+			</StyledDaily>
 		</>
 	);
 };
@@ -79,16 +88,6 @@ const DailyContainer = styled.div`
 	width: 100%;
 	margin: 0 auto;
 	padding: 1rem 2rem;
-
-	::-webkit-scrollbar {
-		display: none;
-	}
-
-	@media (min-width: 500px) {
-		::-webkit-scrollbar {
-			display: auto;
-		}
-	}
 `;
 
 const DailySummary = styled.div`

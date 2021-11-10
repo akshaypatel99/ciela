@@ -24,7 +24,7 @@ const SearchForm = ({
 					value={city}
 					onChange={cityHandler}
 					ref={inputRef}
-					tabindex='3'
+					tabIndex='3'
 					onKeyDown={(event) => {
 						if (event.key === 'Escape') {
 							setShowSearch(!showSearch);

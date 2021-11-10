@@ -1,5 +1,4 @@
 import { useRef, useEffect } from 'react';
-import { useSelector } from 'react-redux';
 import { useHistory, Link } from 'react-router-dom';
 import { formatTime } from '../utils/convertUnixTime';
 import convertIcon from '../utils/convertIcon';
@@ -18,10 +17,10 @@ import {
 	ChevronsRight,
 	X,
 } from 'react-feather';
+import useWeather from '../utils/useWeather';
+import Error from './Error';
 
-const HourlyDetail = ({ pathId }) => {
-	const isLoading = useSelector((state) => state.isLoading);
-	const { hourly, timezoneOffset } = useSelector((state) => state.weather);
+const HourlyDetail = ({ pathId, method }) => {
 	const history = useHistory();
 	const closeRef = useRef();
 
@@ -32,6 +31,11 @@ const HourlyDetail = ({ pathId }) => {
 			history.push('/');
 		}
 	};
+
+	const { data, status, error } = useWeather(method);
+	const { hourly, timezoneOffset } = data || {};
+	const isLoading = status === 'loading';
+	const isError = status === 'error';
 
 	const hour = hourly.filter(
 		(hour) => hour.dt.toString() === pathId.toString()
@@ -67,104 +71,110 @@ const HourlyDetail = ({ pathId }) => {
 
 	return (
 		<>
-			{!isLoading && hour && (
-				<CardShadow className='shadow' onClick={exitDetailHandler}>
-					<HourDetail>
-						<div className='hourlydtl__title'>
-							<h2>{formatTime(hour.dt, timezoneOffset)}</h2>
-						</div>
+			<CardShadow className='shadow' onClick={exitDetailHandler}>
+				<HourDetail>
+					{isLoading ? (
+						<h4>Loading...</h4>
+					) : isError ? (
+						<Error error={error} />
+					) : (
+						<>
+							<div className='hourlydtl__title'>
+								<h2>{formatTime(hour.dt, timezoneOffset)}</h2>
+							</div>
 
-						<div
-							className='hourlydtl__close'
-							ref={closeRef}
-							tabindex='6'
-							onKeyDown={(event) => {
-								if (event.key === 'Enter') {
-									history.push('/');
-								}
-							}}
-						>
-							<X onClick={() => history.push('/')} />
-						</div>
+							<div
+								className='hourlydtl__close'
+								ref={closeRef}
+								tabIndex='6'
+								onKeyDown={(event) => {
+									if (event.key === 'Enter') {
+										history.push('/');
+									}
+								}}
+							>
+								<X onClick={() => history.push('/')} />
+							</div>
 
-						<div className='hourlydtl'>
-							<div className='hourlydtl__top'>
-								<div className='hourlydtl__top__desc'>
-									<h3>{hour.weather[0].description}</h3>
+							<div className='hourlydtl'>
+								<div className='hourlydtl__top'>
+									<div className='hourlydtl__top__desc'>
+										<h3>{hour.weather[0].description}</h3>
+									</div>
+
+									<div className='hourlydtl__top__weather'>
+										<img
+											src={convertIcon(hour.weather[0].icon)}
+											alt={hour.weather[0].main}
+										/>
+										<h2>{Math.round(hour.temp)}&#176;C</h2>
+									</div>
 								</div>
+								<div className='hourlydtl__bottom'>
+									<div className='hourlydtl__bottom__info'>
+										<div className='hourlydtl__bottom__info__icons'>
+											<Thermometer />
+											<h6>Feels like: {hour.feels_like.toFixed(0)}&#176;C</h6>
+										</div>
+										<div className='hourlydtl__bottom__info__icons'>
+											<Cloud />
+											<h6>{hour.clouds}% cloudy</h6>
+										</div>
 
-								<div className='hourlydtl__top__weather'>
-									<img
-										src={convertIcon(hour.weather[0].icon)}
-										alt={hour.weather[0].main}
-									/>
-									<h2>{Math.round(hour.temp)}&#176;C</h2>
+										<div className='hourlydtl__bottom__info__icons'>
+											<Umbrella />
+											<h6>{(hour.pop * 100).toFixed(0)}% chance of rain</h6>
+										</div>
+
+										<div className='hourlydtl__bottom__info__icons'>
+											<Sun />
+											<h6>UV Index: {hour.uvi}</h6>
+										</div>
+
+										<div className='hourlydtl__bottom__info__icons'>
+											<Droplet />
+											<h6>{hour.humidity}% humidity</h6>
+										</div>
+
+										<div className='hourlydtl__bottom__info__icons'>
+											<LifeBuoy />
+											<h6>Pressure: {hour.pressure} hPa</h6>
+										</div>
+
+										<div className='hourlydtl__bottom__info__icons'>
+											<Eye />
+											<h6>Visibility: {hour.visibility} metres</h6>
+										</div>
+
+										<div className='hourlydtl__bottom__info__icons'>
+											<Wind />
+											<h6>
+												{Math.round(hour.wind_speed * 2.237).toFixed(0)} mph{' '}
+												{convertWindDirection(hour.wind_deg)} wind
+											</h6>
+										</div>
+									</div>
 								</div>
 							</div>
-							<div className='hourlydtl__bottom'>
-								<div className='hourlydtl__bottom__info'>
-									<div className='hourlydtl__bottom__info__icons'>
-										<Thermometer />
-										<h6>Feels like: {hour.feels_like.toFixed(0)}&#176;C</h6>
-									</div>
-									<div className='hourlydtl__bottom__info__icons'>
-										<Cloud />
-										<h6>{hour.clouds}% cloudy</h6>
-									</div>
 
-									<div className='hourlydtl__bottom__info__icons'>
-										<Umbrella />
-										<h6>{(hour.pop * 100).toFixed(0)}% chance of rain</h6>
-									</div>
-
-									<div className='hourlydtl__bottom__info__icons'>
-										<Sun />
-										<h6>UV Index: {hour.uvi}</h6>
-									</div>
-
-									<div className='hourlydtl__bottom__info__icons'>
-										<Droplet />
-										<h6>{hour.humidity}% humidity</h6>
-									</div>
-
-									<div className='hourlydtl__bottom__info__icons'>
-										<LifeBuoy />
-										<h6>Pressure: {hour.pressure} hPa</h6>
-									</div>
-
-									<div className='hourlydtl__bottom__info__icons'>
-										<Eye />
-										<h6>Visibility: {hour.visibility} metres</h6>
-									</div>
-
-									<div className='hourlydtl__bottom__info__icons'>
-										<Wind />
-										<h6>
-											{Math.round(hour.wind_speed * 2.237).toFixed(0)} mph{' '}
-											{convertWindDirection(hour.wind_deg)} wind
-										</h6>
-									</div>
-								</div>
+							<div className='hourlydtl__nav__prev'>
+								{index > 0 && (
+									<Link to={`/hourly/${hour.dt - 3600}`}>
+										<ChevronsLeft />
+									</Link>
+								)}
 							</div>
-						</div>
-
-						<div className='hourlydtl__nav__prev'>
-							{index > 0 && (
-								<Link to={`/hourly/${hour.dt - 3600}`}>
-									<ChevronsLeft />
-								</Link>
-							)}
-						</div>
-						<div className='hourlydtl__nav__next'>
-							{index < 47 && (
-								<Link to={`/hourly/${hour.dt + 3600}`}>
-									<ChevronsRight />
-								</Link>
-							)}
-						</div>
-					</HourDetail>
-				</CardShadow>
-			)}
+							<div className='hourlydtl__nav__next'>
+								{index < 47 && (
+									<Link to={`/hourly/${hour.dt + 3600}`}>
+										<ChevronsRight />
+									</Link>
+								)}
+							</div>
+						</>
+					)}
+				</HourDetail>
+			</CardShadow>
 		</>
 	);
 };

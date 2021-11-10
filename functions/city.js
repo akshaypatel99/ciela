@@ -52,9 +52,11 @@ exports.handler = async function (event, context) {
 			},
 		};
 	} catch (error) {
+		console.error(error);
+		console.log(JSON.stringify(error.response.data.message));
 		return {
-			statusCode: 404,
-			body: JSON.stringify(error.message),
+			statusCode: error.response.data.cod,
+			body: JSON.stringify({ message: error.response.data.message }),
 		};
 	}
 };

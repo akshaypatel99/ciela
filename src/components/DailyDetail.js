@@ -1,5 +1,4 @@
 import { useRef, useEffect } from 'react';
-import { useSelector } from 'react-redux';
 import { useHistory, Link } from 'react-router-dom';
 import { formatTime, formatDayDate } from '../utils/convertUnixTime';
 import convertIcon from '../utils/convertIcon';
@@ -18,10 +17,10 @@ import {
 	ChevronsRight,
 	X,
 } from 'react-feather';
+import useWeather from '../utils/useWeather';
+import Error from './Error';
 
-const DailyDetail = ({ pathId }) => {
-	const isLoading = useSelector((state) => state.isLoading);
-	const { timezoneOffset } = useSelector((state) => state.weather);
+const DailyDetail = ({ pathId, method }) => {
 	const history = useHistory();
 	const closeRef = useRef();
 
@@ -33,16 +32,14 @@ const DailyDetail = ({ pathId }) => {
 		}
 	};
 
-	const day = useSelector(
-		(state) =>
-			state.weather.daily.filter(
-				(day) => day.dt.toString() === pathId.toString()
-			)[0]
-	);
-	const index = useSelector((state) =>
-		state.weather.daily.findIndex(
-			(day) => day.dt.toString() === pathId.toString()
-		)
+	const { data, status, error } = useWeather(method);
+	const { daily, timezoneOffset } = data || {};
+	const isLoading = status === 'loading';
+	const isError = status === 'error';
+
+	const day = daily.filter((day) => day.dt.toString() === pathId.toString())[0];
+	const index = daily.findIndex(
+		(day) => day.dt.toString() === pathId.toString()
 	);
 
 	useEffect(() => {
@@ -72,10 +69,14 @@ const DailyDetail = ({ pathId }) => {
 
 	return (
 		<>
-			{!isLoading && (
-				<CardShadow className='shadow' onClick={exitDetailHandler}>
-					{day && (
-						<DayDetail>
+			<CardShadow className='shadow' onClick={exitDetailHandler}>
+				<DayDetail>
+					{isLoading ? (
+						<h4>Loading...</h4>
+					) : isError ? (
+						<Error error={error} />
+					) : (
+						<>
 							<div className='dailydtl__title'>
 								<h2>{formatDayDate(day.dt, timezoneOffset)}</h2>
 							</div>
@@ -83,7 +84,7 @@ const DailyDetail = ({ pathId }) => {
 							<div
 								className='dailydtl__close'
 								ref={closeRef}
-								tabindex='5'
+								tabIndex='5'
 								onKeyDown={(event) => {
 									if (event.key === 'Enter') {
 										history.push('/');
@@ -191,10 +192,10 @@ const DailyDetail = ({ pathId }) => {
 									</Link>
 								)}
 							</div>
-						</DayDetail>
+						</>
 					)}
-				</CardShadow>
-			)}
+				</DayDetail>
+			</CardShadow>
 		</>
 	);
 };

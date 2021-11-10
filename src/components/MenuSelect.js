@@ -6,7 +6,7 @@ const MenuSelect = ({ getGeolocation, setShowSearch, showSearch }) => {
 		<StyledSelect>
 			<div
 				className='menu__top__select'
-				tabindex='1'
+				tabIndex='1'
 				onClick={getGeolocation}
 				onKeyDown={(event) => {
 					if (event.key === 'Enter') {
@@ -22,7 +22,7 @@ const MenuSelect = ({ getGeolocation, setShowSearch, showSearch }) => {
 
 			<div
 				className='menu__top__select'
-				tabindex='2'
+				tabIndex='2'
 				onClick={() => setShowSearch(!showSearch)}
 				onKeyUp={(event) => {
 					if (event.key === 'Enter') {

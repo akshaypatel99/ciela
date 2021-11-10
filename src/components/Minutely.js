@@ -1,112 +1,121 @@
-import { useSelector } from 'react-redux';
 import { rainfall, rainfallKey } from '../utils/rainfall';
 import styled from 'styled-components';
 import { slideInBottom } from '../styles/GlobalStyle';
 import { formatTime } from '../utils/convertUnixTime';
+import useWeather from '../utils/useWeather';
+import Error from './Error';
 
-const Hourly = () => {
-	const isLoading = useSelector((state) => state.isLoading);
-	const { minutely, timezoneOffset } = useSelector((state) => state.weather);
+const Minutely = ({ method }) => {
+	const { data, status, error } = useWeather(method);
+	const { minutely, timezoneOffset } = data || {};
+	const isLoading = status === 'loading';
+	const isError = status === 'error';
 
 	return (
 		<>
-			{!isLoading && minutely && (
-				<StyledMinutely>
-					<div className='minutely__title'>
-						<h2>Rainfall Next Hour</h2>
-					</div>
+			<StyledMinutely>
+				<div className='minutely__title'>
+					<h2>Rainfall Next Hour</h2>
+				</div>
 
-					<MinutelyContainer>
-						<TopScale>
-							<div className='increments'>
-								<h6>Now</h6>
-							</div>
-							<div className='increments'>
-								<h6>15</h6>
-							</div>
-							<div className='increments'>
-								<h6>30</h6>
-							</div>
-							<div className='increments'>
-								<h6>45</h6>
-							</div>
-							<div className='increments'>
-								<h6>60</h6>
-							</div>
-						</TopScale>
-						<Chart>
-							{minutely &&
-								minutely.map((dp, index) => {
-									if (dp.precipitation > 0) {
-										return (
-											<MinutelyDataPoint
-												key={dp.dt}
-												style={{
-													background: `${rainfall(dp.precipitation)}`,
-													borderTop: '1px solid hsl(208, 12%, 58%)',
-													borderBottom: '1px solid hsl(208, 12%, 58%)',
-												}}
-											></MinutelyDataPoint>
-										);
-									} else {
-										return (
-											<MinutelyDataPoint
-												key={dp.dt}
-												style={{
-													background: 'hsl(190, 90%, 92%)',
-													borderTop: '1px solid hsl(208, 12%, 58%)',
-													borderBottom: '1px solid hsl(208, 12%, 58%)',
-												}}
-											></MinutelyDataPoint>
-										);
-									}
-								})}
-						</Chart>
-						<BottomScale>
-							<div className='increments'>
-								<h6>{formatTime(minutely[0].dt, timezoneOffset)}</h6>
-							</div>
-							<div className='increments'>
-								<h6>{formatTime(minutely[15].dt, timezoneOffset)}</h6>
-							</div>
-							<div className='increments'>
-								<h6>{formatTime(minutely[30].dt, timezoneOffset)}</h6>
-							</div>
-							<div className='increments'>
-								<h6>{formatTime(minutely[45].dt, timezoneOffset)}</h6>
-							</div>
-							<div className='increments'>
-								<h6>{formatTime(minutely[60].dt, timezoneOffset)}</h6>
-							</div>
-						</BottomScale>
-						<Key>
-							<div className='key__title'>
-								<h4>Key</h4>
-								<p>Rainfall in mm/hr</p>
-							</div>
+				<MinutelyContainer>
+					{isLoading ? (
+						<h4>Loading...</h4>
+					) : isError ? (
+						<Error error={error} />
+					) : (
+						<>
+							<TopScale>
+								<div className='increments'>
+									<h6>Now</h6>
+								</div>
+								<div className='increments'>
+									<h6>15</h6>
+								</div>
+								<div className='increments'>
+									<h6>30</h6>
+								</div>
+								<div className='increments'>
+									<h6>45</h6>
+								</div>
+								<div className='increments'>
+									<h6>60</h6>
+								</div>
+							</TopScale>
+							<Chart>
+								{minutely &&
+									minutely.map((dp, index) => {
+										if (dp.precipitation > 0) {
+											return (
+												<MinutelyDataPoint
+													key={dp.dt}
+													style={{
+														background: `${rainfall(dp.precipitation)}`,
+														borderTop: '1px solid hsl(208, 12%, 58%)',
+														borderBottom: '1px solid hsl(208, 12%, 58%)',
+													}}
+												></MinutelyDataPoint>
+											);
+										} else {
+											return (
+												<MinutelyDataPoint
+													key={dp.dt}
+													style={{
+														background: 'hsl(190, 90%, 92%)',
+														borderTop: '1px solid hsl(208, 12%, 58%)',
+														borderBottom: '1px solid hsl(208, 12%, 58%)',
+													}}
+												></MinutelyDataPoint>
+											);
+										}
+									})}
+							</Chart>
+							<BottomScale>
+								<div className='increments'>
+									<h6>{formatTime(minutely[0].dt, timezoneOffset)}</h6>
+								</div>
+								<div className='increments'>
+									<h6>{formatTime(minutely[15].dt, timezoneOffset)}</h6>
+								</div>
+								<div className='increments'>
+									<h6>{formatTime(minutely[30].dt, timezoneOffset)}</h6>
+								</div>
+								<div className='increments'>
+									<h6>{formatTime(minutely[45].dt, timezoneOffset)}</h6>
+								</div>
+								<div className='increments'>
+									<h6>{formatTime(minutely[60].dt, timezoneOffset)}</h6>
+								</div>
+							</BottomScale>
+							<Key>
+								<div className='key__title'>
+									<h4>Key</h4>
+									<p>Rainfall in mm/hr</p>
+								</div>
 
-							<KeyContainer>
-								{rainfallKey.map((el) => (
-									<KeySquare key={el.color}>
-										<div
-											className='color'
-											style={{
-												background: `${el.color}`,
-											}}
-										></div>
-										<div className='amount'>
-											<p>{el.amount}</p>
-										</div>
-										<div className='description'>
-											<p>{el.description}</p>
-										</div>
-									</KeySquare>
-								))}
-							</KeyContainer>
-						</Key>
-					</MinutelyContainer>
-				</StyledMinutely>
-			)}
+								<KeyContainer>
+									{rainfallKey.map((el) => (
+										<KeySquare key={el.color}>
+											<div
+												className='color'
+												style={{
+													background: `${el.color}`,
+												}}
+											></div>
+											<div className='amount'>
+												<p>{el.amount}</p>
+											</div>
+											<div className='description'>
+												<p>{el.description}</p>
+											</div>
+										</KeySquare>
+									))}
+								</KeyContainer>
+							</Key>
+						</>
+					)}
+				</MinutelyContainer>
+			</StyledMinutely>
 		</>
 	);
 };
@@ -190,4 +199,4 @@ const KeySquare = styled.div`
 	}
 `;
 
-export default Hourly;
+export default Minutely;

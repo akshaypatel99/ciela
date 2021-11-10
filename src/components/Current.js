@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
 import { formatTime } from '../utils/convertUnixTime';
 import styled from 'styled-components';
 import { fadeIn } from '../styles/GlobalStyle';
 import convertIcon from '../utils/convertIcon';
 import convertWindDirection from '../utils/convertWindDirection';
 import Alert from './Alert';
+import Error from './Error';
 import {
 	Sunrise,
 	Sunset,
@@ -15,40 +15,45 @@ import {
 	Cloud,
 	AlertTriangle,
 } from 'react-feather';
+import useWeather from '../utils/useWeather';
 
-const Current = ({ city }) => {
+const Current = ({ city, method }) => {
 	const [showAlert, setShowAlert] = useState(false);
-	const isLoading = useSelector((state) => state.isLoading);
-	const { current, daily, address, timezoneOffset } = useSelector(
-		(state) => state.weather
-	);
+	const { data, status, error } = useWeather(method);
+	const { current, daily, address, timezoneOffset, alerts } = data || {};
+	const isLoading = status === 'loading';
+	const isError = status === 'error';
 
 	return (
 		<>
-			{!isLoading && current && (
-				<>
-					<StyledCurrent>
-						<div className='currently__title'>
-							<h2>Currently</h2>
-						</div>
+			<StyledCurrent>
+				<div className='currently__title'>
+					<h2>Currently</h2>
+				</div>
 
-						<div
-							className='warning'
-							aria-label='weather warning'
-							tabindex='4'
-							onClick={() => setShowAlert(!showAlert)}
-							onKeyDown={(event) => {
-								if (event.key === 'Enter') {
-									setShowAlert(!showAlert);
-								}
-							}}
-						>
-							<AlertTriangle />
-						</div>
+				<div
+					className='warning'
+					aria-label='weather warning'
+					tabIndex='4'
+					onClick={() => setShowAlert(!showAlert)}
+					onKeyDown={(event) => {
+						if (event.key === 'Enter') {
+							setShowAlert(!showAlert);
+						}
+					}}
+				>
+					<AlertTriangle />
+				</div>
 
-						{showAlert && <Alert />}
+				{showAlert && <Alert alerts={alerts} />}
 
-						<CurrentContainer>
+				<CurrentContainer>
+					{isLoading ? (
+						<h4>Loading...</h4>
+					) : isError ? (
+						<Error error={error} />
+					) : (
+						<>
 							<div className='current__city'>
 								<h4>{city ? city : address}</h4>
 							</div>
@@ -119,10 +124,10 @@ const Current = ({ city }) => {
 									</div>
 								</div>
 							</div>
-						</CurrentContainer>
-					</StyledCurrent>
-				</>
-			)}
+						</>
+					)}
+				</CurrentContainer>
+			</StyledCurrent>
 		</>
 	);
 };
