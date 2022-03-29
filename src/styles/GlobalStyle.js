@@ -12,8 +12,6 @@ const GlobalStyle = createGlobalStyle`
 
   body {   
     background: rgb(49,140,231);
-    background: linear-gradient(90deg, rgba(49,140,231,1) 0%, rgba(135,206,235,1) 100%);
-    background-size: 110% 110%;
     scroll-behavior: smooth;
 
 
