@@ -10,10 +10,9 @@ const GlobalStyle = createGlobalStyle`
     color: hsl(0, 0%, 100%);
   }
 
-  body {
-    background: '#4AA4EF';  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #2f80ed, #64c8f0);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right,#2f80ed, #64c8f0); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  body {   
+    background: rgb(49,140,231);
+    background: linear-gradient(90deg, rgba(49,140,231,1) 0%, rgba(135,206,235,1) 100%);
     background-size: 110% 110%;
     scroll-behavior: smooth;
 
