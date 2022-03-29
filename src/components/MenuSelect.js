@@ -54,10 +54,11 @@ const StyledSelect = styled.div`
 		align-items: center;
 		justify-content: space-around;
 		cursor: pointer;
-		text-transform: uppercase;
+		/* text-transform: uppercase; */
 
 		p {
 			font-size: 1.2rem;
+			font-weight: 600;
 		}
 	}
 

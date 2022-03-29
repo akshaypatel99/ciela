@@ -52,6 +52,7 @@ const StyledAlert = styled.div`
 	opacity: 1;
 
 	.alert__msg {
+		max-width: 100%;
 		display: flex;
 		flex-direction: column;
 

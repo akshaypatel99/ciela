@@ -235,6 +235,7 @@ const DayDetail = styled.div`
 	.dailydtl__title {
 		h2 {
 			text-transform: uppercase;
+			font-weight: 600;
 		}
 	}
 
@@ -262,6 +263,7 @@ const DayDetail = styled.div`
 			h3 {
 				text-transform: uppercase;
 				text-align: center;
+				font-weight: 600;
 			}
 		}
 
@@ -286,6 +288,11 @@ const DayDetail = styled.div`
 
 				h2 {
 					font-size: 3rem;
+					font-weight: 500;
+
+					span {
+						font-weight: 600;
+					}
 				}
 			}
 		}

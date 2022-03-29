@@ -165,6 +165,10 @@ const Container = styled.div`
 	@media (min-width: 500px) {
 		max-width: 500px;
 	}
+
+	@media (min-width: 768px) {
+		max-width: 600px;
+	}
 `;
 
 const Banner = styled.div`
@@ -176,16 +180,18 @@ const Banner = styled.div`
 
 	h1 {
 		margin-bottom: 1rem;
+		font-weight: 500;
 	}
 
 	h4 {
 		text-transform: uppercase;
-		font-weight: 500;
+		font-weight: 400;
 	}
 `;
 
 const Menu = styled.div`
 	width: 90%;
+	max-width: 536px;
 	margin: 0 auto 3rem;
 	display: flex;
 	flex-direction: column;

@@ -226,6 +226,12 @@ const HourDetail = styled.div`
 		margin-top: 2rem;
 	}
 
+	.hourlydtl__title {
+		h2 {
+			font-weight: 600;
+		}
+	}
+
 	.hourlydtl__top {
 		width: 100%;
 		display: flex;
@@ -237,6 +243,7 @@ const HourDetail = styled.div`
 			h3 {
 				text-transform: uppercase;
 				text-align: center;
+				font-weight: 600;
 			}
 		}
 
@@ -255,6 +262,7 @@ const HourDetail = styled.div`
 
 			h2 {
 				font-size: 3.5rem;
+				font-weight: 600;
 			}
 		}
 	}

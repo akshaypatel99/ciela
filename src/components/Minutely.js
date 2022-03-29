@@ -126,12 +126,17 @@ const StyledMinutely = styled.div`
 
 	.minutely__title {
 		margin-bottom: 1rem;
+
+		h2 {
+			font-weight: 600;
+		}
 	}
 `;
 
 const MinutelyContainer = styled.div`
 	display: flex;
 	flex-direction: column;
+	max-width: 536px;
 	padding: 1.5rem;
 	margin: 0 auto;
 	background: hsl(0, 0%, 100%, 0.1);
@@ -155,11 +160,23 @@ const MinutelyDataPoint = styled.div`
 const TopScale = styled.div`
 	display: flex;
 	justify-content: space-between;
+
+	.increments {
+		h6 {
+			font-weight: 500;
+		}
+	}
 `;
 
 const BottomScale = styled.div`
 	display: flex;
 	justify-content: space-between;
+
+	.increments {
+		h6 {
+			font-weight: 500;
+		}
+	}
 `;
 
 const Chart = styled.div`
@@ -172,10 +189,17 @@ const Chart = styled.div`
 const Key = styled.div`
 	margin-top: 2rem;
 
-	.key__title,
-	h4 {
-		margin-bottom: 0.5rem;
-		text-transform: uppercase;
+	.key__title {
+		h4 {
+			font-weight: 600;
+			margin-bottom: 0.5rem;
+			text-transform: uppercase;
+		}
+		p {
+			font-weight: 500;
+			margin-bottom: 0.5rem;
+			text-transform: uppercase;
+		}
 	}
 `;
 const KeyContainer = styled.div`
@@ -195,6 +219,7 @@ const KeySquare = styled.div`
 		p {
 			font-size: 0.8rem;
 			text-transform: uppercase;
+			font-weight: 500;
 		}
 	}
 `;

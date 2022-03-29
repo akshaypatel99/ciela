@@ -78,6 +78,10 @@ const StyledDaily = styled.div`
 
 	.daily__title {
 		margin-bottom: 0.5rem;
+
+		h2 {
+			font-weight: 600;
+		}
 	}
 `;
 
@@ -132,11 +136,13 @@ const DailySummary = styled.div`
 
 		h4 {
 			font-size: 1.4rem;
+			font-weight: 600;
 			margin-bottom: 0.75rem;
 			text-transform: uppercase;
 		}
 
 		p {
+			font-weight: 500;
 			padding-top: 0.5rem;
 			text-transform: uppercase;
 		}
@@ -173,10 +179,12 @@ const DailySummary = styled.div`
 
 		h3 {
 			margin-bottom: 0.5rem;
+			font-weight: 500;
 		}
 
 		h4 {
 			font-size: 1.4rem;
+			font-weight: 500;
 		}
 	}
 `;

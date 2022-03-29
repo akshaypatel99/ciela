@@ -71,6 +71,7 @@ const SearchInput = styled.div`
 		color: #333;
 		text-align: center;
 		text-transform: capitalize;
+		font-weight: 500;
 
 		input:focus {
 			background: none;

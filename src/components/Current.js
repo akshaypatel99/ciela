@@ -139,6 +139,10 @@ const StyledCurrent = styled.div`
 
 	.currently__title {
 		margin-bottom: 1rem;
+
+		h2 {
+			font-weight: 600;
+		}
 	}
 
 	.warning {
@@ -153,6 +157,7 @@ const CurrentContainer = styled.div`
 	padding: 2rem;
 	min-height: 10rem;
 	width: 100%;
+	max-width: 536px;
 	margin: 0 auto;
 	background: hsl(0, 0%, 100%, 0.1);
 	box-shadow: 0 20px 40px hsl(0, 0%, 0%, 0.2);
@@ -190,6 +195,11 @@ const CurrentContainer = styled.div`
 
 		h1 {
 			font-size: 3.5rem;
+			font-weight: 500;
+
+			span {
+				font-weight: 600;
+			}
 		}
 
 		img {
@@ -201,6 +211,7 @@ const CurrentContainer = styled.div`
 	.current__desc h3 {
 		text-transform: uppercase;
 		text-align: center;
+		font-weight: 600;
 	}
 
 	.current__info {

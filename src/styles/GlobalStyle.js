@@ -5,15 +5,16 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Barlow Condensed';
+    font-family: "Assistant";
     font-weight: 400;
     color: hsl(0, 0%, 100%);
   }
 
   body {
-    background: linear-gradient(120deg,#004c82,#00649c,#247db7,#4997d3,#69b1f0) no-repeat center center fixed;
-    background-size: 180% 180%;
-    animation: gradient-animation 8s ease infinite;
+    background: '#4AA4EF';  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #2f80ed, #64c8f0);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right,#2f80ed, #64c8f0); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background-size: 110% 110%;
     scroll-behavior: smooth;
 
 
