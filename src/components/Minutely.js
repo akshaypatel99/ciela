@@ -128,7 +128,7 @@ const StyledMinutely = styled.div`
 		margin-bottom: 1rem;
 
 		h2 {
-			font-weight: 600;
+			font-weight: 700;
 		}
 	}
 `;
@@ -139,7 +139,7 @@ const MinutelyContainer = styled.div`
 	max-width: 536px;
 	padding: 1.5rem;
 	margin: 0 auto;
-	background: hsl(0, 0%, 100%, 0.1);
+	background: hsl(0, 0%, 100%, 0.2);
 	box-shadow: 0 8px 16px hsl(0, 0%, 0%, 0.2);
 	backdrop-filter: blur(20px);
 	-webkit-backdrop-filter: blur(20px);
@@ -163,7 +163,7 @@ const TopScale = styled.div`
 
 	.increments {
 		h6 {
-			font-weight: 500;
+			font-weight: 400;
 		}
 	}
 `;
@@ -174,7 +174,7 @@ const BottomScale = styled.div`
 
 	.increments {
 		h6 {
-			font-weight: 500;
+			font-weight: 400;
 		}
 	}
 `;
@@ -191,12 +191,12 @@ const Key = styled.div`
 
 	.key__title {
 		h4 {
-			font-weight: 600;
+			font-weight: 700;
 			margin-bottom: 0.5rem;
 			text-transform: uppercase;
 		}
 		p {
-			font-weight: 500;
+			font-weight: 400;
 			margin-bottom: 0.5rem;
 			text-transform: uppercase;
 		}
@@ -219,7 +219,7 @@ const KeySquare = styled.div`
 		p {
 			font-size: 0.8rem;
 			text-transform: uppercase;
-			font-weight: 500;
+			font-weight: 400;
 		}
 	}
 `;

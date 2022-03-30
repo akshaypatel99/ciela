@@ -180,7 +180,7 @@ const Banner = styled.div`
 
 	h1 {
 		margin-bottom: 1rem;
-		font-weight: 500;
+		font-weight: 400;
 	}
 
 	h4 {
@@ -198,7 +198,7 @@ const Menu = styled.div`
 	align-items: center;
 	justify-content: center;
 	padding: 1.5rem;
-	background: hsl(0, 0%, 100%, 0.1);
+	background: hsl(0, 0%, 100%, 0.2);
 	box-shadow: 0 20px 40px hsl(0, 0%, 0%, 0.2);
 	backdrop-filter: blur(20px);
 	-webkit-backdrop-filter: blur(20px);

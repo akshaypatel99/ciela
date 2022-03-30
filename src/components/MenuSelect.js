@@ -58,7 +58,7 @@ const StyledSelect = styled.div`
 
 		p {
 			font-size: 1.2rem;
-			font-weight: 600;
+			font-weight: 700;
 		}
 	}
 

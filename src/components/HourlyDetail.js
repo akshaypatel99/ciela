@@ -183,7 +183,7 @@ const CardShadow = styled.div`
 	width: 100%;
 	min-height: 100vh;
 	overflow-y: scroll;
-	background: hsl(204, 67%, 43%, 0.5);
+	background: hsl(208, 100%, 60%, 0.5);
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -204,7 +204,7 @@ const HourDetail = styled.div`
 	left: 50%;
 	transform: translateY(-50%) translateX(-50%);
 	z-index: 10;
-	background: hsl(0, 0%, 100%, 0.1);
+	background: hsl(0, 0%, 100%, 0.2);
 	box-shadow: 0 20px 40px hsl(0, 0%, 0%, 0.2);
 	backdrop-filter: blur(25px);
 	-webkit-backdrop-filter: blur(25px);
@@ -228,7 +228,7 @@ const HourDetail = styled.div`
 
 	.hourlydtl__title {
 		h2 {
-			font-weight: 600;
+			font-weight: 700;
 		}
 	}
 
@@ -243,7 +243,7 @@ const HourDetail = styled.div`
 			h3 {
 				text-transform: uppercase;
 				text-align: center;
-				font-weight: 600;
+				font-weight: 700;
 			}
 		}
 
@@ -262,7 +262,7 @@ const HourDetail = styled.div`
 
 			h2 {
 				font-size: 3.5rem;
-				font-weight: 600;
+				font-weight: 700;
 			}
 		}
 	}

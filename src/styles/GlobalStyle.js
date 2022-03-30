@@ -5,13 +5,13 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Assistant";
+    font-family: "Roboto Condensed", sans-serif;
     font-weight: 400;
     color: hsl(0, 0%, 100%);
   }
 
   body {   
-    background: rgb(49,140,231);
+    background-color: #5bb2ff;
     scroll-behavior: smooth;
 
 
@@ -40,12 +40,12 @@ const GlobalStyle = createGlobalStyle`
 
   h3 {
     font-size: 1.6rem;
-    font-weight: 500;
+    font-weight: 400;
   }
 
   h4 {
     font-size: 1.2rem;
-    font-weight: 500;
+    font-weight: 400;
   }
 
   h5 {

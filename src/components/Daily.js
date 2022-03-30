@@ -80,7 +80,7 @@ const StyledDaily = styled.div`
 		margin-bottom: 0.5rem;
 
 		h2 {
-			font-weight: 600;
+			font-weight: 700;
 		}
 	}
 `;
@@ -103,7 +103,7 @@ const DailySummary = styled.div`
 	flex-direction: column;
 	transition: all 0.2s ease-out;
 	cursor: pointer;
-	background: hsl(0, 0%, 100%, 0.1);
+	background: hsl(0, 0%, 100%, 0.2);
 	box-shadow: 0 8px 16px hsl(0, 0%, 0%, 0.2);
 	backdrop-filter: blur(20px);
 	-webkit-backdrop-filter: blur(20px);
@@ -136,13 +136,13 @@ const DailySummary = styled.div`
 
 		h4 {
 			font-size: 1.4rem;
-			font-weight: 600;
+			font-weight: 700;
 			margin-bottom: 0.75rem;
 			text-transform: uppercase;
 		}
 
 		p {
-			font-weight: 500;
+			font-weight: 400;
 			padding-top: 0.5rem;
 			text-transform: uppercase;
 		}
@@ -179,12 +179,12 @@ const DailySummary = styled.div`
 
 		h3 {
 			margin-bottom: 0.5rem;
-			font-weight: 500;
+			font-weight: 400;
 		}
 
 		h4 {
 			font-size: 1.4rem;
-			font-weight: 500;
+			font-weight: 400;
 		}
 	}
 `;
